@@ -9,6 +9,6 @@ public class UserController
 	@GetMapping
 	public String get() 
 	{
-		return "Bonjours";
+		return "Bonjour";
 	}
 }
