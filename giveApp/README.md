@@ -2,7 +2,7 @@
 
 ## Diagramme EER de la BDD :
 
-A faire
+![alt text](https://zupimages.net/up/20/10/qzwr.jpg)
 
 ## Diagrammes MCD / MPD et MOO :
 ![alt text](https://zupimages.net/up/20/10/haiv.jpg)
