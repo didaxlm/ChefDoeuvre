@@ -1,4 +1,4 @@
-# ChefDoeuvre
+# GivApp
 
 # Diagramme EER de la BDD :
 
