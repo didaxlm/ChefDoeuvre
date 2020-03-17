@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Objet 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int idObjet;
 	private int quantiteObjet;
 	private String nomObjet;

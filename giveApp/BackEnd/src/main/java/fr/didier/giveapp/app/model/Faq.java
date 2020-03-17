@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 public class Faq 
 {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int idFaq;
 	
 	private String question;

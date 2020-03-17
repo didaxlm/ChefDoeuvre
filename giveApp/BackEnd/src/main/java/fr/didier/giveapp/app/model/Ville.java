@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 public class Ville 
 {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int idVille;
 	
 	private String nomVille;

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 public class Historique 
 {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int idHistorique;
 	
 	private Date dateTransaction;

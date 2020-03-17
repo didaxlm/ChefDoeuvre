@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 public class Photo 
 {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int idPhoto;
 	
 	private String urlPhoto;
