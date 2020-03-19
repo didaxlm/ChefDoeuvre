@@ -23,9 +23,10 @@ public class Objet
 	private String etatObjet;
 	private Date dateDepot;
 	
+	public Objet() {}
+	
 	public Objet(int idObjet, int quantiteObjet, String nomObjet, String etatObjet, Date dateDepot) 
 	{
-		super();
 		this.idObjet = idObjet;
 		this.quantiteObjet = quantiteObjet;
 		this.nomObjet = nomObjet;
