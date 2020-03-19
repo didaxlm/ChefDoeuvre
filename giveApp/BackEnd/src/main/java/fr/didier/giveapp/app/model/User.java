@@ -19,7 +19,8 @@ public class User
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idUser, typeUser;
+	private int idUser;
+	private int typeUser;
 	private String userNom ;
 	private String userPrenom;
 	

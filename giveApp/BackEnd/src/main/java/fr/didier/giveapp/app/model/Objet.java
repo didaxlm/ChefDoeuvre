@@ -33,4 +33,8 @@ public class Objet
 		this.etatObjet = etatObjet;
 		this.dateDepot = dateDepot;
 	}
+	// création une methode qui genere la date lors de l'appel de l'objet
+	public void dateInit() {
+		this.dateDepot = new Date();
+	}
 }
