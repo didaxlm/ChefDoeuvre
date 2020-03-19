@@ -43,8 +43,9 @@ class ObjetControllerTest
 	{
 		Objet objet = new Objet();
 		objet.setEtatObjet("Disponible");
+		//objet.dateInit
 		
-		when(this.objetRepository.findById(7)).thenReturn()
+		//when(this.objetRepository.findById(7)).thenReturn()
 	}
 
 }
