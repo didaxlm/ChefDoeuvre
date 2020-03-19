@@ -1,8 +1,6 @@
 # GivApp
 
-# Diagramme EER de la BDD :
 
-![alt text](https://zupimages.net/up/20/10/qzwr.jpg)
 
 # Diagrammes MCD / MPD et MOO :
 ![alt text](https://zupimages.net/up/20/12/3mw9.png)
