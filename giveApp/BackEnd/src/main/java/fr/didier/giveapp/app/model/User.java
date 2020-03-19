@@ -32,10 +32,11 @@ public class User
 	private String pseudo;
 	private Date dateInscription;
 	
+	public User() {}
+	
 	public User(int idUser, int typeUser, String userNom, String userPrenom, String motDePasse, String mail,
 			String adresse, String codePostal, String pseudo, Date dateInscription) 
 	{
-		super();
 		this.idUser = idUser;
 		this.typeUser = typeUser;
 		this.userNom = userNom;
@@ -47,5 +48,8 @@ public class User
 		this.pseudo = pseudo;
 		this.dateInscription = dateInscription;
 	}
+	
+	//@OneToMany
+	//@JoinTable()
 	
 }
