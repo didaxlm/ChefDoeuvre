@@ -18,10 +18,10 @@ public class UserController
 		return "Bonjour";
 	}
 	
-	@PostMapping
+	/*@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public User create(@RequestBody User userData) 
 	{
 		return userData;
-	}
+	}*/
 }
