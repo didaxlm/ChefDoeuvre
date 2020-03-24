@@ -1,18 +1,27 @@
 package fr.didier.giveapp.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Objet 
 {
 	@Id
@@ -22,18 +31,22 @@ public class Objet
 	private String nomObjet;
 	private String etatObjet;
 	private Date dateDepot;
+	@ManyToOne // plusieurs objets ont un utilisateur
+	private User user;
+	@ManyToOne // plusieurs objets sont associées à une ville
+	private Ville ville;
+	@ManyToOne // plusieurs objets appartiennent à une catégorie
+	private Categorie categorie;
+	@OneToMany // un objet détient plusieurs photos
+	@JoinColumn( name="idPhoto", nullable=false, insertable=false, updatable=false )
+	private List<Photo> photo; 
 	
-	public Objet() {}
-	
-	public Objet(int idObjet, int quantiteObjet, String nomObjet, String etatObjet, Date dateDepot) 
+	public Objet(String nomObjet) 
 	{
-		this.idObjet = idObjet;
-		this.quantiteObjet = quantiteObjet;
 		this.nomObjet = nomObjet;
-		this.etatObjet = etatObjet;
-		this.dateDepot = dateDepot;
 	}
-	// création une methode qui genere la date lors de l'appel de l'objet
+	
+	// methode qui génère la date lors de l'appel de l'objet
 	public void dateInit() {
 		this.dateDepot = new Date();
 	}
