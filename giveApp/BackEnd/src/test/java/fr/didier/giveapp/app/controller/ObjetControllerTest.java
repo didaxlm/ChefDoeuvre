@@ -16,11 +16,12 @@ import fr.didier.giveapp.app.repository.ObjetRepository;
  * (Je veux) l'ajouter au répertoire des objets recyclables
  * (Afin de) proposer au recyclage à d'autres personnes
  */
-class ObjetControllerTest
+class ObjetControllerTest extends ObjetController
 {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		
 	}
 
 	@AfterEach
