@@ -16,13 +16,13 @@ import fr.didier.giveapp.app.repository.FaqRepository;
 public class FaqController 
 {
 	@Autowired
-	private FaqRepository faqRepository;
+	private FaqRepository faqDepot;
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Faq ajoutFaq(@RequestBody Faq faq) 
 	{
-		faqRepository.saveAndFlush(faq);
+		faqDepot.saveAndFlush(faq);
 		return faq;
 	}
 }

@@ -3,8 +3,7 @@ package fr.didier.giveapp.app.controller;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -16,20 +15,13 @@ import fr.didier.giveapp.app.repository.ObjetRepository;
  * (Je veux) l'ajouter au répertoire des objets recyclables
  * (Afin de) proposer au recyclage à d'autres personnes
  */
-class ObjetControllerTest extends ObjetController
+class ObjetControllerTest 
 {
-
-	@BeforeEach
-	void setUp() throws Exception {
-		
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	private MockBean mock;
+	
 	@MockBean
-	ObjetRepository objetRepository;
+	private ObjetRepository objetRepository;
+
 	
 	/**
 	 * (Lorsque) je signale le don de l'objet A
@@ -39,14 +31,12 @@ class ObjetControllerTest extends ObjetController
 	 * (Alors) mon porte-feuille d'objet est amendé
 	 * (et) les informations fournie sont affichées
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
-	public void testObjetController() 
+	public void getObjetTest() 
 	{
-		Objet objet = new Objet();
-		objet.setEtatObjet("Disponible");
-		//objet.dateInit
-		
-		//when(this.objetRepository.findById(7)).thenReturn()
+		when(objetRepository.findAll()).thenReturn((List<Objet>) mock);
+		assertEquals(1, objetRepository.findAll()); 
 	}
 
 }
