@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* Material icons */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+#formFooter {
+  background-color: #f6f6f6;
+  opacity: 0.6;
+  border-top: 1px solid #dce8f1;
+  padding: 15px;
+  border-radius: 10px;
+}
+
