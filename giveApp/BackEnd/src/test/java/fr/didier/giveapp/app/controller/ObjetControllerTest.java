@@ -36,7 +36,7 @@ class ObjetControllerTest
 	public void getObjetTest() 
 	{
 		when(objetRepository.findAll()).thenReturn((List<Objet>) mock);
-		assertEquals(1, objetRepository.findAll());
+		assertEquals(1, objetRepository.findAll()); 
 	}
 
 }
