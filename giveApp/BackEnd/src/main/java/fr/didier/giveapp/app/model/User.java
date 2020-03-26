@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class User
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idUser;
+	private int id;
 	private int typeUser;
 	private String nom ;
 	private String prenom;
@@ -39,15 +40,15 @@ public class User
 	private String adresse;
 	private String codePostal;
 	private String pseudo;
+	@JsonFormat(pattern="yyy-MM-dd")
 	private Date dateInscription;
-	@OneToMany // un utilisateur a plusieurs objets
-	@JoinColumn( name="idObjet", nullable=false, insertable=false, updatable=false )
-	private List <Objet> objet;
+	@OneToMany(mappedBy = "user")// un utilisateur a plusieurs objets	
+	private List <Article> article;
 	
-	public User(int idUser, int typeUser, String nom, String prenom, String motDePasse, String mail,
+	public User(int id, int typeUser, String nom, String prenom, String motDePasse, String mail,
 			String adresse, String codePostal, String pseudo, Date dateInscription) 
 	{
-		this.idUser = idUser;
+		this.id = id;
 		this.typeUser = typeUser;
 		this.nom = nom;
 		this.prenom = prenom;

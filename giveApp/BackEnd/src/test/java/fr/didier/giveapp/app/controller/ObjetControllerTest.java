@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import fr.didier.giveapp.app.model.Objet;
-import fr.didier.giveapp.app.repository.ObjetRepository;
+import fr.didier.giveapp.app.model.Article;
+import fr.didier.giveapp.app.repository.ArticleRepository;
 
 /**
  * (En tant que) détenteur d'un objet
@@ -20,7 +20,7 @@ class ObjetControllerTest
 	private MockBean mock;
 	
 	@MockBean
-	private ObjetRepository objetRepository;
+	private ArticleRepository articleRepository;
 
 	
 	/**
@@ -35,8 +35,8 @@ class ObjetControllerTest
 	@Test
 	public void getObjetTest() 
 	{
-		when(objetRepository.findAll()).thenReturn((List<Objet>) mock);
-		assertEquals(1, objetRepository.findAll()); 
+		when(articleRepository.findAll()).thenReturn((List<Article>) mock);
+		assertEquals(1, articleRepository.findAll()); 
 	}
 
 }

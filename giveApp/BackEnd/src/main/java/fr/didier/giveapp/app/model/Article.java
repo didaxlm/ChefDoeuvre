@@ -22,28 +22,29 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Objet 
+public class Article 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idObjet;
-	private int quantiteObjet;
-	private String nomObjet;
+	private int id;
+	private int quantiteArticle;
+	private String article;
 	private String etatObjet;
 	private Date dateDepot;
 	@ManyToOne // plusieurs objets ont un utilisateur
+	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	@ManyToOne // plusieurs objets sont associées à une ville
 	private Ville ville;
 	@ManyToOne // plusieurs objets appartiennent à une catégorie
 	private Categorie categorie;
 	@OneToMany // un objet détient plusieurs photos
-	@JoinColumn( name="idPhoto", nullable=false, insertable=false, updatable=false )
+	@JoinColumn( name="id")
 	private List<Photo> photo; 
 	
-	public Objet(String nomObjet) 
+	public Article(String article) 
 	{
-		this.nomObjet = nomObjet;
+		this.article = article;
 	}
 	
 	// methode qui génère la date lors de l'appel de l'objet

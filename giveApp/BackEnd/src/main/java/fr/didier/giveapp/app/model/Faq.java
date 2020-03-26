@@ -15,7 +15,7 @@ public class Faq
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idFaq;
+	private int id;
 	
 	private String question;
 	private String reponse;
@@ -24,7 +24,7 @@ public class Faq
 	
 	public Faq(int idFaq, String question, String reponse) 
 	{
-		this.idFaq = idFaq;
+		this.id = idFaq;
 		this.question = question;
 		this.reponse = reponse;
 	}

@@ -16,15 +16,15 @@ public class Photo
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idPhoto;	
+	private int id;	
 	private String urlPhoto;
 	@ManyToOne // plusieurs photos détiennent un objet
-	private Objet objet;
+	private Article objet;
 	
 
 	public Photo(int idPhoto, String urlPhoto) 
 	{
-		this.idPhoto = idPhoto;
+		this.id = idPhoto;
 		this.urlPhoto = urlPhoto;
 	}
 }

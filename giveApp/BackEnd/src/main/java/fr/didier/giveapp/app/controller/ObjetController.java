@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.didier.giveapp.app.model.Objet;
-import fr.didier.giveapp.app.repository.ObjetRepository;
+import fr.didier.giveapp.app.model.Article;
+import fr.didier.giveapp.app.repository.ArticleRepository;
 
 @RequestMapping("/objets")
 @RestController
 public class ObjetController 
 {
 	@Autowired
-	private ObjetRepository objetDepot;
+	private ArticleRepository articleDepot;
 	
 	//affiche la liste des objets
 	@GetMapping
-	public List<Objet> afficherListeObjet() 
+	public List<Article> afficherListeArticle() 
 	{
-		return objetDepot.findAll();
+		return articleDepot.findAll();
 	}
 	
 	/*
@@ -35,8 +35,8 @@ public class ObjetController
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Objet createObjet(@RequestBody Objet nomObjet) 
+	public Article createObjet(@RequestBody Article article) 
 	{
-		return objetDepot.saveAndFlush(nomObjet);
+		return articleDepot.saveAndFlush(article);
 	}
 }

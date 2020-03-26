@@ -15,7 +15,7 @@ public class Categorie
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idCategorie;
+	private int id;
 	
 	private String typeCategorie;
 
@@ -23,7 +23,7 @@ public class Categorie
 	
 	public Categorie(int idCategorie, String typeCategorie) 
 	{
-		this.idCategorie = idCategorie;
+		this.id = idCategorie;
 		this.typeCategorie = typeCategorie;
 	}
 }
