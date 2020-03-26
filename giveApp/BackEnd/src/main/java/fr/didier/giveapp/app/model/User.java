@@ -13,13 +13,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="USER")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User 
 {
 	@Id
@@ -40,8 +43,6 @@ public class User
 	@OneToMany // un utilisateur a plusieurs objets
 	@JoinColumn( name="idObjet", nullable=false, insertable=false, updatable=false )
 	private List <Objet> objet;
-	
-	public User() {}
 	
 	public User(int idUser, int typeUser, String nom, String prenom, String motDePasse, String mail,
 			String adresse, String codePostal, String pseudo, Date dateInscription) 

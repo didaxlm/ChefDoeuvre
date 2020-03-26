@@ -25,8 +25,7 @@ public class VilleController
 	@GetMapping
 	public List<Ville> afficherListeVille()
 	{
-		List<Ville> retourListeVille = villeDepot.findAll();
-		return retourListeVille;
+		return villeDepot.findAll();
 	}
 	
 	/*

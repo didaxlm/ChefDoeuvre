@@ -20,8 +20,7 @@ public class UserController
 	@GetMapping
 	public List<User> afficherListeUser() 
 	{
-		List<User> tousLesUsers = userDepot.findAll();
-		return tousLesUsers;
+		return userDepot.findAll();
 	}
 	
 	/*@PostMapping

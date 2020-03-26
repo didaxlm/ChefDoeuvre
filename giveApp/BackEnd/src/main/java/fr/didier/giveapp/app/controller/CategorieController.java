@@ -20,7 +20,6 @@ public class CategorieController
 	@GetMapping
 	public List<Categorie> afficherListeCategorie()
 	{
-		List<Categorie> allCategorie = categorieDepot.findAll();
-		return allCategorie;
+		return categorieDepot.findAll();
 	}
 }

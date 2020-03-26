@@ -25,8 +25,7 @@ public class ObjetController
 	@GetMapping
 	public List<Objet> afficherListeObjet() 
 	{
-		List<Objet> tousLesObjets = objetDepot.findAll();
-		return tousLesObjets;
+		return objetDepot.findAll();
 	}
 	
 	/*
