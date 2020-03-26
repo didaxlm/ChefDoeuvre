@@ -1,0 +1,58 @@
+<div class="image" id="image1">
+  <div class="row h-100 wrapper">
+    <div id="formContent">
+
+      <!-- logo -->
+
+      <div>
+        <img src="../assets/logo.png" class="logo" alt="" />
+      </div>
+
+      <!-- formulaire de connexion 1er champs -->
+
+      <form>
+        <input
+               type="text"
+               name="login"
+               id="login"
+               maxlength="30"
+               minlength="4"
+               class="form-control"
+               placeholder="Nom de l'objet" required>
+
+        <!-- 2eme champs -->
+
+        <input
+               type="password"
+               id="password"
+               maxlength="255"
+               minlength="6"
+               name="login"
+               class="form-control"
+               placeholder="Quelle catégorie ?" required>
+
+        <!-- 3eme champs -->
+
+        <input
+                type="text"
+                id="lieu"
+                maxlength="255"
+                minlength="4"
+                name="localite"
+                class="form-control"
+                placeholder="Lieu du don de l'objet" required>
+
+        <!-- bouton -->
+
+        <button class="btn btn-primary" id="connexion-button">Ajouter</button>
+      </form>
+      <br>
+
+      <!-- autre choix -->
+
+      <div id="other">
+        <a class="underlineHover col-6" [routerLink]="['/don-objet']" >S'inscrire</a>
+      </div>
+    </div>
+  </div>
+</div>
