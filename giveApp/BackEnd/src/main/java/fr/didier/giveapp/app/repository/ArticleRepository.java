@@ -11,5 +11,5 @@ import fr.didier.giveapp.app.model.User;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer>
 {
-	Optional<Article> findByArticle(String article);
+	Optional<Article> findBynomArticle(String nomArticle);
 }

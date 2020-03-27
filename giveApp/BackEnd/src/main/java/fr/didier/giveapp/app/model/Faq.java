@@ -5,12 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Faq 
 {
 	@Id
@@ -20,12 +24,4 @@ public class Faq
 	private String question;
 	private String reponse;
 	
-	public Faq() {}
-	
-	public Faq(int idFaq, String question, String reponse) 
-	{
-		this.id = idFaq;
-		this.question = question;
-		this.reponse = reponse;
-	}
 }

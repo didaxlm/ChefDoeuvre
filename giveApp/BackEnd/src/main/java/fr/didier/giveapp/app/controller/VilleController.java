@@ -39,15 +39,16 @@ public class VilleController
 	{
 		return villeDepot.saveAndFlush(nomVille);
 	}
+	
 	/*
 	 * supprime une ville de la BDD
 	 * @param idVille: correspond à l'id de la ville passé dans le Json
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerVille(@RequestBody Ville idVille) 
+	public String supprimerVille(@RequestBody Ville id) 
 	{
-		villeDepot.delete(idVille);
+		villeDepot.delete(id);
 		return "la ville a été supprimée";
 	}
 }
