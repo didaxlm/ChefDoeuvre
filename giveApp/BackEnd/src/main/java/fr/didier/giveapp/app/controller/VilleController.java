@@ -30,25 +30,25 @@ public class VilleController
 	
 	/*
 	 * ajoute une ville à la liste
-	 * @param nomVille: correspond au nom de la ville passée dans le Json
+	 * @param villeData: correspond aux données de la ville passée dans le Json
 	 * @return
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Ville ajouterVille(@RequestBody Ville nomVille) 
+	public Ville ajouterVille(@RequestBody Ville villeData) 
 	{
-		return villeDepot.saveAndFlush(nomVille);
+		return villeDepot.saveAndFlush(villeData);
 	}
 	
 	/*
 	 * supprime une ville de la BDD
-	 * @param idVille: correspond à l'id de la ville passé dans le Json
+	 * @param villeData: correspond aux données de la ville passé dans le Json
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerVille(@RequestBody Ville id) 
+	public String supprimerVille(@RequestBody Ville villeData) 
 	{
-		villeDepot.delete(id);
+		villeDepot.delete(villeData);
 		return "la ville a été supprimée";
 	}
 }
