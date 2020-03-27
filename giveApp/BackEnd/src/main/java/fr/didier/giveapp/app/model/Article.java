@@ -49,11 +49,6 @@ public class Article
 	@OneToMany(mappedBy = "nomArticle") // un objet détient plusieurs photos
 	private List<Photo> photo; 
 	
-	public Article(String nomArticle) 
-	{
-		this.nomArticle = nomArticle;
-	}
-	
 	// methode qui génère la date lors de l'appel de l'objet
 	public void dateInit() {
 		this.dateDepot = new Date();
