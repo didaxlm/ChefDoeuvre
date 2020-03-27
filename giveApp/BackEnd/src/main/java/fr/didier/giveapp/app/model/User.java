@@ -3,6 +3,7 @@ package fr.didier.giveapp.app.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,9 +42,14 @@ public class User
 	private String adresse;
 	private String codePostal;
 	private String pseudo;
-	@JsonFormat(pattern="yyy-MM-dd")
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateInscription;
-	@OneToMany(mappedBy = "user")// un utilisateur a plusieurs objets	
+	
+	@JsonBackReference // évite les boucles d'appel dans le json
+	// un utilisateur a plusieurs objets
+	@OneToMany(mappedBy = "user",
+			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private List <Article> article;
 	
 	public User(int id, int typeUser, String nom, String prenom, String motDePasse, String mail,
