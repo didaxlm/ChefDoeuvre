@@ -22,7 +22,7 @@ public class FaqController
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Faq ajoutFaq(@RequestBody Faq faq) 
 	{
-		faqDepot.saveAndFlush(faq);
-		return faq;
+		return faqDepot.saveAndFlush(faq);
+
 	}
 }

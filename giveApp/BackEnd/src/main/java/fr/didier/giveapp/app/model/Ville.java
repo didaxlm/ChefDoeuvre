@@ -19,7 +19,7 @@ public class Ville
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idVille;
+	private int id;
 	
 	private String nomVille;	
 }

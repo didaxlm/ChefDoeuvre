@@ -17,13 +17,13 @@ public class Historique
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int idHistorique;
+	private int id;
 	
 	private Date dateTransaction;
 
-	public Historique(int idHistorique, Date dateTransaction) 
+	public Historique(int id, Date dateTransaction) 
 	{
-		this.idHistorique = idHistorique;
+		this.id = id;
 		this.dateTransaction = dateTransaction;
 	}
 }
