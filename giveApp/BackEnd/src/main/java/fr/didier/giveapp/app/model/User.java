@@ -43,7 +43,7 @@ public class User
 	private String codePostal;
 	private String pseudo;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date dateInscription;
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
@@ -51,19 +51,5 @@ public class User
 	@OneToMany(mappedBy = "user",
 			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private List <Article> article;
-	
-	public User(int id, int typeUser, String nom, String prenom, String motDePasse, String mail,
-			String adresse, String codePostal, String pseudo, Date dateInscription) 
-	{
-		this.id = id;
-		this.typeUser = typeUser;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.motDePasse = motDePasse;
-		this.mail = mail;
-		this.adresse = adresse;
-		this.codePostal = codePostal;
-		this.pseudo = pseudo;
-		this.dateInscription = dateInscription;
-	}	
+		
 }
