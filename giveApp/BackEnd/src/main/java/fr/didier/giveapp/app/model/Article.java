@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,10 +31,12 @@ public class Article
 	private int quantiteArticle;
 	private String nomArticle;
 	private String etatArticle;
+	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date dateDepot;
 	
 	// plusieurs objets ont un utilisateur
-	@ManyToOne(cascade = CascadeType.PERSIST) 
+	@ManyToOne(cascade = CascadeType.REFRESH) 
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	

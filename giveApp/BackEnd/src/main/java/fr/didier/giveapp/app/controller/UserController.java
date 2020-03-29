@@ -47,7 +47,7 @@ public class UserController
 	 * @param id: correspond aux données du user passées dans le json
 	 * @return
 	 */
-	@DeleteMapping
+	@DeleteMapping 
 	public String supprimerUser(@RequestBody User userData) 
 	{
 		userDepot.delete(userData);
