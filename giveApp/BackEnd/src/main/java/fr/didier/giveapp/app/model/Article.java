@@ -48,7 +48,9 @@ public class Article
 	@JoinColumn( name="categorie", referencedColumnName = "id")
 	private Categorie categorie;
 	
-	@OneToMany(mappedBy = "nomArticle") // un objet détient plusieurs photos
+	// un objet détient plusieurs photos
+	@OneToMany(mappedBy = "article",
+			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE }) 
 	private List<Photo> photo; 
 	
 	// methode qui génère la date lors de l'appel de l'objet
