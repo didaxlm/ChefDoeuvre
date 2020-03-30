@@ -1,4 +1,4 @@
-package fr.didier.giveapp.app.model;
+							package fr.didier.giveapp.app.model;
 
 import java.util.Date;
 import java.util.List;
@@ -49,7 +49,7 @@ public class User
 	@JsonBackReference // évite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
 	@OneToMany(mappedBy = "user",
-			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE })
 	private List <Article> article;
 		
 }

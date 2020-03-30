@@ -24,7 +24,7 @@ public class Historique
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int id;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date dateTransaction;
 
 }
