@@ -40,7 +40,7 @@ public class User
 	
 	private String mail;
 	private String adresse;
-	private String codePostal;
+	private int codePostal;
 	private String pseudo;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -48,6 +50,7 @@ public class Article
 	@JoinColumn( name="categorie", referencedColumnName = "id")
 	private Categorie categorie;
 	
+	@JsonBackReference // évite les boucles d'appel dans le json
 	// un objet détient plusieurs photos
 	@OneToMany(mappedBy = "article",
 			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE }) 
