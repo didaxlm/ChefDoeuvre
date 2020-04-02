@@ -48,9 +48,8 @@ public class CategorieController
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerCategorie(@RequestBody Categorie categorieData) 
+	public void supprimerCategorie(@RequestBody Categorie categorieData) 
 	{
 		categorieDepot.delete(categorieData);
-		return "la catégorie a été supprimée";
 	}
 }

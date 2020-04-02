@@ -46,9 +46,8 @@ public class VilleController
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerVille(@RequestBody Ville villeData) 
+	public void supprimerVille(@RequestBody Ville villeData) 
 	{
 		villeDepot.delete(villeData);
-		return "la ville a été supprimée";
 	}
 }

@@ -12,7 +12,7 @@ export class User
   motDePasse: string;
   mail: string;
   adresse: string;
-  codePostal: number;
+  codePostal: string;
   pseudo: string;
   dateInscription: Date;
   article: Article;

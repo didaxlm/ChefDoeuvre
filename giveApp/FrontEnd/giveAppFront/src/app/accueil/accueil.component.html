@@ -1,0 +1,28 @@
+<!-- Section visuelle de la page d'accueil -->
+
+<section class="w-100 p-3 image" id="image1">
+  <div class="row h-100 text">
+    <div>
+      <img src="../assets/logo.png" class="logo" alt="logo" />
+      <h1 class="givapp" id="titrePageAccueil">Give App</h1>
+    </div>
+  </div>
+</section>
+
+<!-- Image de présentation -->
+
+<div class="image" id="image2"></div>
+
+<!-- Affichage des objets -->
+
+<div>
+  <div>
+    <h2>liste des objets --------------------tre------------------------ferre</h2>
+    <div>
+      <div *ngFor="let article of articles">
+        <span class="material-icons overlay">machin truc</span>
+        <p class="question" >{{ article.nomArticle  }}</p>
+      </div>
+    </div>
+  </div>
+</div>

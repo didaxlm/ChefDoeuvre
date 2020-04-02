@@ -48,9 +48,8 @@ public class PhotoController
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerPhoto(@RequestBody Photo idPhoto) 
+	public void supprimerPhoto(@RequestBody Photo idPhoto) 
 	{
 		photoDepot.delete(idPhoto);
-		return "Photo supprimée";
 	}
 }

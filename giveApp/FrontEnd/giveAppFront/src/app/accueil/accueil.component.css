@@ -1,0 +1,18 @@
+/* première image de la page d'accueil */
+#image1{
+  background-image: url("src/assets/don1.jpg");
+  height: 768px;
+}
+
+/* Titre */
+#titrePageAccueil
+{
+  font-style: italic;
+}
+
+/* Intersection */
+#image2{
+  background-image: url("src/assets/logo.png");
+}
+
+
