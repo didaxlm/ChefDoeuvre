@@ -31,7 +31,7 @@ import lombok.Setter;
 public class Article 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrï¿½ment
 	private int id;
 	private int quantiteArticle;
 	private String nomArticle;
@@ -46,21 +46,21 @@ public class Article
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne // plusieurs objets sont associées à une ville
+	@ManyToOne // plusieurs objets sont associï¿½es ï¿½ une ville
 	@JoinColumn( name="ville", referencedColumnName = "id")
 	private Ville ville;
 	
-	@ManyToOne // plusieurs objets appartiennent à une catégorie
+	@ManyToOne // plusieurs objets appartiennent ï¿½ une catï¿½gorie
 	@JoinColumn( name="categorie", referencedColumnName = "id")
 	private Categorie categorie;
 	
-	@JsonBackReference // évite les boucles d'appel dans le json
-	// un objet détient plusieurs photos
+	@JsonBackReference // ï¿½vite les boucles d'appel dans le json
+	// un objet dï¿½tient plusieurs photos
 	@OneToMany(mappedBy = "article",
 			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE }) 
 	private List<Photo> photo; 
 	
-	// methode qui génère la date lors de l'appel de l'objet
+	// methode qui gï¿½nï¿½re la date lors de l'appel de l'objet
 	public void dateInit() {
 		this.dateDepot = new Date();
 	}
