@@ -48,9 +48,8 @@ public class FaqController
 	 * @return
 	 */
 	@DeleteMapping 
-	public String supprimerQuestion(@RequestBody Faq faqQuestion) 
+	public void supprimerQuestion(@RequestBody Faq faqQuestion) 
 	{
 		faqDepot.delete(faqQuestion);
-		return "Question supprimée";
 	}
 }

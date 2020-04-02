@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -38,7 +41,8 @@ public class Article
 	private Date dateDepot;
 	
 	// plusieurs objets ont un utilisateur
-	@ManyToOne(cascade = CascadeType.REFRESH) 
+	@ManyToOne() 
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	

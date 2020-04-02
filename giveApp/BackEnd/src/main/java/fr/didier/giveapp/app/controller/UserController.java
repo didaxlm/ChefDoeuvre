@@ -44,13 +44,12 @@ public class UserController
 	
 	/*
 	 * supprime un utilisateur de la BDD
-	 * @param id: correspond aux données du user passées dans le json
+	 * @param userData: correspond aux données du user passées dans le json
 	 * @return
 	 */
 	@DeleteMapping 
-	public String supprimerUser(@RequestBody User userData) 
+	public void	supprimerUser(@RequestBody User userData) 
 	{
 		userDepot.delete(userData);
-		return "utilisateur supprimé";
 	}
 }

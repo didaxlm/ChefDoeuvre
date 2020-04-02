@@ -40,7 +40,7 @@ public class User
 	
 	private String mail;
 	private String adresse;
-	private int codePostal;
+	private String codePostal;
 	private String pseudo;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
@@ -48,8 +48,7 @@ public class User
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
-	@OneToMany(mappedBy = "user",
-			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE })
+	@OneToMany(mappedBy = "user",orphanRemoval = true)
 	private List <Article> article;
 		
 }

@@ -47,9 +47,10 @@ public class ArticleController
 	 * @return
 	 */
 	@DeleteMapping
-	public String supprimerArticle(@RequestBody Article articleData) 
+	public void supprimerArticle(@RequestBody Article articleData) 
 	{
+		//TODO gerer le statut quand on supprime un article qui n'existe pas
 		articleDepot.delete(articleData);
-		return "article supprimé";
+		
 	}
 }
