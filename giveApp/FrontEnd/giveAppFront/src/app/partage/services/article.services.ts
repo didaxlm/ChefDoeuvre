@@ -3,6 +3,7 @@ import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 import {Article} from "../models/article";
 
 /**
@@ -12,21 +13,21 @@ import {Article} from "../models/article";
 export class ArticleService extends RequestServices
 {
   url = this.data.baseUrl + '/articles';
-  list = null;
-  article = null;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type' : 'application/json'})
   };
-
-  constructor(public http: HttpClient, private data: DataService) {
+  constructor(public http: HttpClient, private data:DataService) {
     super(http, data);
   }
 
+  test (){ console.log("le service  est appelé"); }
   /**
    * recupère la liste des articles
    */
-  getList(): Observable<any> {
-    return this.http.get<Article[]>(this.url);
+  getArticle(): Observable<any>
+  {
+    return this.http
+      .get<Article[]>(this.url);
   }
 }

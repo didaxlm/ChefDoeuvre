@@ -1,6 +1,6 @@
 /* première image de la page d'accueil */
 #image1{
-  background-image: url("src/assets/don1.jpg");
+  background-image: url("src/assets/don2.jpg");
   height: 768px;
 }
 
@@ -10,9 +10,17 @@
   font-style: italic;
 }
 
-/* Intersection */
-#image2{
-  background-image: url("src/assets/logo.png");
+.liste{
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 300%;
+  color: #F90000;
 }
+
+.article{
+  color: #0bc5ef;
+}
+
+
 
 

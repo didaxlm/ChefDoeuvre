@@ -1,13 +1,11 @@
 package fr.didier.giveapp.app.repository;
 
-import java.util.Optional;
-
+import fr.didier.giveapp.app.model.Ville;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import fr.didier.giveapp.app.model.Article;
-import fr.didier.giveapp.app.model.Ville;
+import java.util.Optional;
 
 public interface VilleRepository extends JpaRepository<Ville, Integer>
 {
-	Optional<Article> findByNomVille(String nomVille);
+	Optional<Ville> findByNomVille(String nomVille);
 }

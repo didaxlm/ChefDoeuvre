@@ -1,6 +1,8 @@
 package fr.didier.giveapp.app.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,14 +28,22 @@ import lombok.Setter;
 public class Ville 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrï¿½ment
 	private int id;	
 	private String nomVille;
 	
-	@JsonBackReference// évite les boucles d'appel dans le json
+	@JsonBackReference// ï¿½vite les boucles d'appel dans le json
 	// une ville a plusieurs objets
-	@OneToMany(mappedBy = "ville",
-			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	private List<Article> article;
-	
+	@OneToMany(mappedBy = "ville")
+	private Set<Article> articles = new HashSet();
+
+	public Ville(String nomVille)
+	{
+		this.nomVille = nomVille;
+	}
+
+	public void addVille(Article article)
+	{
+		articles.add(article);
+	}
 }

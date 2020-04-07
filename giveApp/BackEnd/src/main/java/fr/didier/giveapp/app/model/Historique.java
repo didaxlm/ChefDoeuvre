@@ -1,5 +1,6 @@
 package fr.didier.giveapp.app.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,9 @@ public class Historique
 	private int id;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy")
-	private Date dateTransaction;
+	private LocalDate dateTransaction;
 
+	public Historique(LocalDate dateTransaction) {
+		this.dateTransaction = dateTransaction;
+	}
 }

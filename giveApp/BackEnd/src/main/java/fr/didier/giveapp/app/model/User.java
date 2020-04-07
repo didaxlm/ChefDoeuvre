@@ -1,7 +1,10 @@
 							package fr.didier.giveapp.app.model;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -44,11 +47,28 @@ public class User
 	private String pseudo;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
-	private Date dateInscription;
+	private LocalDate dateInscription;
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
-	@OneToMany(mappedBy = "user",orphanRemoval = true)
-	private List <Article> article;
-		
+	@OneToMany(mappedBy = "user")
+	private Set<Article> articles = new HashSet();
+
+    public User(String nom, String prenom, int typeUser, String motDePasse, String pseudo, String adresse, String mail, String codePostal, LocalDate dateInscription)
+	{
+    	this.nom = nom;
+    	this.prenom = prenom;
+    	this.typeUser = typeUser;
+    	this.motDePasse = motDePasse;
+    	this.pseudo = pseudo;
+    	this.adresse = adresse;
+    	this.mail = mail;
+    	this.codePostal = codePostal;
+    	this.dateInscription = dateInscription;
+    }
+
+	public void addUser(Article article)
+	{
+		articles.add(article);
+	}
 }

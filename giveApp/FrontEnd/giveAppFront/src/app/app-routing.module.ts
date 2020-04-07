@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {DonObjetsComponent} from "./don-objets/don-objets.component";
+import {Route, RouterModule} from '@angular/router';
+import { DonObjetsComponent } from "./don-objets/don-objets.component";
+import { AccueilComponent } from "./accueil/accueil.component";
 
 
-const routes: Routes = [
+const APP_ROUTE: Route[] = [
+  { path: '', component: AccueilComponent },
   { path: 'don-objets', component: DonObjetsComponent }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+
+export const AppRoutingModule = RouterModule.forRoot(APP_ROUTE);

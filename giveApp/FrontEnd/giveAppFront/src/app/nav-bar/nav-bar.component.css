@@ -1,10 +1,14 @@
 /* header */
+
 .logo {
-  position: fixed;
+  position: absolute;
   width: 420px;
   height: 184px;
   left: 0px;
   top: 0px;
+}
+.head{
+  height: 184px;
 }
 /* Donner */
 #donner{
