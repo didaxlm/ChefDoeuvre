@@ -15,8 +15,8 @@ export class Article
   nomArticle: string;
   etatArticle: string;
   dateDepot: Date;
-  user: User;
-  ville: Ville;
+  user: User[];
+  ville: Ville[];
   categorie: Categorie;
-  photo: Photo;
+  photo: Photo[];
 }

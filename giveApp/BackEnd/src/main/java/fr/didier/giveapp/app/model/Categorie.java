@@ -1,6 +1,8 @@
 package fr.didier.giveapp.app.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,14 +26,23 @@ import lombok.Setter;
 public class Categorie 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrï¿½ment
 	private int id;	
 	private String typeCategorie;
 	
-	@JsonBackReference// évite les boucles d'appel dans le json
-	// une catégorie a plusieurs objets
+	@JsonBackReference// ï¿½vite les boucles d'appel dans le json
+	// une catï¿½gorie a plusieurs objets
 	@OneToMany(mappedBy = "categorie",
 			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	private List<Article> article;
+	private Set<Article> articles = new HashSet();
 
+	public Categorie(String typeCategorie)
+	{
+		this.typeCategorie = typeCategorie;
+	}
+
+	public void addCategorie(Article article)
+	{
+		articles.add(article);
+	}
 }

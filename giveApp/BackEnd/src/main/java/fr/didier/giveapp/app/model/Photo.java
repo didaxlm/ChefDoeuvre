@@ -29,6 +29,9 @@ public class Photo
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn( name="article", referencedColumnName = "id")
 	private Article article;
-	
 
+
+	public Photo(String urlPhoto) {
+		this.urlPhoto = urlPhoto;
+	}
 }

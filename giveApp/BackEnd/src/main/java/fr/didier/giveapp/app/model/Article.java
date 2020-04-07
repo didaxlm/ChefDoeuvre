@@ -1,27 +1,18 @@
 package fr.didier.giveapp.app.model;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,7 +29,7 @@ public class Article
 	private String etatArticle;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
-	private Date dateDepot;
+	private LocalDate dateDepot;
 	
 	// plusieurs objets ont un utilisateur
 	@ManyToOne() 
@@ -56,12 +47,20 @@ public class Article
 	
 	@JsonBackReference // �vite les boucles d'appel dans le json
 	// un objet d�tient plusieurs photos
-	@OneToMany(mappedBy = "article",
-			   cascade = { CascadeType.REFRESH, CascadeType.REMOVE }) 
-	private List<Photo> photo; 
-	
-	// methode qui g�n�re la date lors de l'appel de l'objet
-	public void dateInit() {
-		this.dateDepot = new Date();
+	@OneToMany(mappedBy = "article",orphanRemoval = true)
+	private Set<Photo> photos = new HashSet();
+
+	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle)
+	{
+		this.dateDepot = dateDepot;
+		this.nomArticle = nomArticle;
+		this.etatArticle = etatArticle;
+		this.quantiteArticle = quantiteArticle;
 	}
+
+	public void addArticle(Photo photo)
+	{
+		photos.add(photo);
+	}
+
 }

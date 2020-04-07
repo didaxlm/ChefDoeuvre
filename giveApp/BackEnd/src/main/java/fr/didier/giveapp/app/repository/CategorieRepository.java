@@ -1,15 +1,13 @@
 package fr.didier.giveapp.app.repository;
 
-import java.util.Optional;
-
+import fr.didier.giveapp.app.model.Categorie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import fr.didier.giveapp.app.model.Article;
-import fr.didier.giveapp.app.model.Categorie;
+import java.util.Optional;
 
 @Repository
 public interface CategorieRepository extends JpaRepository<Categorie, Integer> 
 {
-	Optional<Article> findByTypeCategorie(String typeCategorie);
+	Optional<Categorie> findByTypeCategorie(String typeCategorie);
 }
