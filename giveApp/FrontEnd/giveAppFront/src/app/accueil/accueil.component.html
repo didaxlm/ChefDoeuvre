@@ -6,7 +6,9 @@
   <div class="row h-100 text">
     <div *ngFor="let article of articles">
       <h1 class="liste" id="titrePageAccueil">Liste des objets</h1>
-      <p class="article" >{{ articles }}</p>
+      <p class="article" >{{ article.nomArticle }}</p>
+      <p class="article" >{{ article.etatArticle }}</p>
+      <p class="article" >{{ article.dateDepot }}</p>
     </div>
   </div>
 </section>

@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.didier.giveapp.app.model.Photo;
 
+import java.util.Optional;
+
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo, Integer> {}
