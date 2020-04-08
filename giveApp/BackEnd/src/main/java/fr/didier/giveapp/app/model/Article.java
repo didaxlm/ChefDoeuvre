@@ -47,7 +47,7 @@ public class Article
 	
 	@JsonBackReference // �vite les boucles d'appel dans le json
 	// un objet d�tient plusieurs photos
-	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+	@OneToMany(mappedBy = "article", orphanRemoval = true)
 	private Set<Photo> photos = new HashSet();
 
 	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle, Categorie categorie, User user, Ville ville)

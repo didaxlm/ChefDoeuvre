@@ -3,7 +3,6 @@ import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
 import {Article} from "../models/article";
 
 /**

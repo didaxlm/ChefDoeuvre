@@ -51,7 +51,7 @@ public class User
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
-	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", orphanRemoval = true)
 	private Set<Article> articles = new HashSet();
 
     public User(String nom, String prenom, int typeUser, String motDePasse, String pseudo, String adresse, String mail, String codePostal, LocalDate dateInscription)
