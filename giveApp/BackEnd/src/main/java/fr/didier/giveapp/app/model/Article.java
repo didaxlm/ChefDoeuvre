@@ -32,35 +32,32 @@ public class Article
 	private LocalDate dateDepot;
 	
 	// plusieurs objets ont un utilisateur
-	@ManyToOne() 
+	@ManyToOne (fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne // plusieurs objets sont associ�es � une ville
+	@ManyToOne (fetch = FetchType.EAGER) // plusieurs objets sont associ�es � une ville
 	@JoinColumn( name="ville", referencedColumnName = "id")
 	private Ville ville;
 	
-	@ManyToOne // plusieurs objets appartiennent � une cat�gorie
+	@ManyToOne (fetch = FetchType.EAGER)// plusieurs objets appartiennent � une cat�gorie
 	@JoinColumn( name="categorie", referencedColumnName = "id")
 	private Categorie categorie;
 	
 	@JsonBackReference // �vite les boucles d'appel dans le json
 	// un objet d�tient plusieurs photos
-	@OneToMany(mappedBy = "article",orphanRemoval = true)
+	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
 	private Set<Photo> photos = new HashSet();
 
-	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle)
+	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle, Categorie categorie, User user, Ville ville)
 	{
 		this.dateDepot = dateDepot;
 		this.nomArticle = nomArticle;
 		this.etatArticle = etatArticle;
 		this.quantiteArticle = quantiteArticle;
+		this.categorie = categorie;
+		this.user = user;
+		this.ville = ville;
 	}
-
-	public void addArticle(Photo photo)
-	{
-		photos.add(photo);
-	}
-
 }

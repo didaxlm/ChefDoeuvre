@@ -1,12 +1,6 @@
 package fr.didier.giveapp.app.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,12 +20,13 @@ public class Photo
 	private String urlPhoto;
 	
 	// plusieurs photos détiennent un objet
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn( name="article", referencedColumnName = "id")
 	private Article article;
 
-
-	public Photo(String urlPhoto) {
+	public Photo(String urlPhoto, Article article)
+	{
 		this.urlPhoto = urlPhoto;
+		this.article = article;
 	}
 }

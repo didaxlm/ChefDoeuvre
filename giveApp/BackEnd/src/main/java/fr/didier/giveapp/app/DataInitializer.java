@@ -23,7 +23,11 @@ public class DataInitializer
     private VilleRepository villeDepot;
     private HistoriqueRepository historiqueDepot;
 
-    public static LocalDate parseDate(String date) {
+    /*
+     * Formate la date
+     */
+    public static LocalDate parseDate(String date)
+    {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(date, formatter);
     }
@@ -60,25 +64,15 @@ public class DataInitializer
             Ville nantes = new Ville("Nantes");
             Ville bordeaux = new Ville("Bordeaux");
 
-            Article table = new Article(parseDate("01/04/2020"), "Table", "Neuf", 1);
-            ameublement.addCategorie(table);
-            jean.addUser(table);
-            paris.addVille(table);
-            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état", 2);
-            loisir.addCategorie(raquette);
-            stephanie.addUser(raquette);
-            nantes.addVille(raquette);
-            Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen", 2);
-            outillage.addCategorie(marteau);
-            jerry.addUser(marteau);
-            bordeaux.addVille(marteau);
+            Article table = new Article(parseDate("01/04/2020"), "Table", "Neuf", 1, ameublement, jean, paris);
+            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état", 2, loisir, stephanie, nantes);
+            Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen", 2, outillage, jerry, bordeaux);
+            Article clou = new Article(parseDate("04/04/2020"), "Clou", "Neuf", 10, outillage, jerry, nantes);
 
-            Photo photo1 = new Photo("https://www.dropbox.com/s/z7en8i65a156d2l/table.jpg?dl=0");
-            table.addArticle(photo1);
-            Photo photo2 = new Photo("https://www.dropbox.com/s/2z0vy2xdhw8g7gb/raquette.jpg?dl=0");
-            raquette.addArticle(photo2);
-            Photo photo3 = new Photo("https://www.dropbox.com/s/4qs94brm9vmxg9r/marteau.jpg?dl=0");
-            marteau.addArticle(photo3);
+            Photo photo1 = new Photo("https://www.dropbox.com/s/z7en8i65a156d2l/table.jpg?dl=0", table);
+            Photo photo2 = new Photo("https://www.dropbox.com/s/2z0vy2xdhw8g7gb/raquette.jpg?dl=0", raquette);
+            Photo photo3 = new Photo("https://www.dropbox.com/s/4qs94brm9vmxg9r/marteau.jpg?dl=0", marteau);
+            Photo photo4 = new Photo("https://www.dropbox.com/s/i0iawpaliyu6cc2/clou.jpg?dl=0", clou);
 
             Historique histo1 = new Historique(parseDate("05/04/2020"));
             Historique histo2 = new Historique(parseDate("06/04/2020"));
@@ -97,10 +91,10 @@ public class DataInitializer
                 villeDepot.saveAll(Arrays.asList(paris, nantes, bordeaux));
             }
             if (!articleDepot.findAll().iterator().hasNext()){
-                articleDepot.saveAll(Arrays.asList(table, raquette, marteau));
+                articleDepot.saveAll(Arrays.asList(table, raquette, marteau, clou));
             }
             if (!photoDepot.findAll().iterator().hasNext()){
-                photoDepot.saveAll(Arrays.asList(photo1, photo2, photo3));
+                photoDepot.saveAll(Arrays.asList(photo1, photo2, photo3, photo4));
             }
             if (!historiqueDepot.findAll().iterator().hasNext()){
                 historiqueDepot.saveAll(Arrays.asList(histo1, histo2, histo3));

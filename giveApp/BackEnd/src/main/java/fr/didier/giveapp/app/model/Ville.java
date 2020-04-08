@@ -34,16 +34,11 @@ public class Ville
 	
 	@JsonBackReference// �vite les boucles d'appel dans le json
 	// une ville a plusieurs objets
-	@OneToMany(mappedBy = "ville")
+	@OneToMany(mappedBy = "ville", cascade = CascadeType.MERGE)
 	private Set<Article> articles = new HashSet();
 
 	public Ville(String nomVille)
 	{
 		this.nomVille = nomVille;
-	}
-
-	public void addVille(Article article)
-	{
-		articles.add(article);
 	}
 }

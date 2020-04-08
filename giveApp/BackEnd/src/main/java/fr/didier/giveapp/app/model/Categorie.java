@@ -32,17 +32,11 @@ public class Categorie
 	
 	@JsonBackReference// �vite les boucles d'appel dans le json
 	// une cat�gorie a plusieurs objets
-	@OneToMany(mappedBy = "categorie",
-			   cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(mappedBy = "categorie", cascade = CascadeType.MERGE)
 	private Set<Article> articles = new HashSet();
 
 	public Categorie(String typeCategorie)
 	{
 		this.typeCategorie = typeCategorie;
-	}
-
-	public void addCategorie(Article article)
-	{
-		articles.add(article);
 	}
 }

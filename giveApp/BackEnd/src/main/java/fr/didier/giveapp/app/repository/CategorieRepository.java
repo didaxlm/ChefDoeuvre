@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CategorieRepository extends JpaRepository<Categorie, Integer> 
-{
-	Optional<Categorie> findByTypeCategorie(String typeCategorie);
-}
+public interface CategorieRepository extends JpaRepository<Categorie, Integer> {}
