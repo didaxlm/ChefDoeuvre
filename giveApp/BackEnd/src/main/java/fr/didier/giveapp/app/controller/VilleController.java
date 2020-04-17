@@ -3,19 +3,14 @@ package fr.didier.giveapp.app.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import fr.didier.giveapp.app.model.Ville;
 import fr.didier.giveapp.app.repository.VilleRepository;
 
 @RequestMapping("/villes")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class VilleController 
 {
 	@Autowired
@@ -29,8 +24,8 @@ public class VilleController
 	}
 	
 	/*
-	 * ajoute une ville à la liste
-	 * @param villeData: correspond aux données de la ville passée dans le Json
+	 * ajoute une ville Ã  la liste
+	 * @param villeData: correspond aux donnÃ©es de la ville passÃ©e dans le Json
 	 * @return
 	 */
 	@PostMapping
@@ -39,15 +34,5 @@ public class VilleController
 	{
 		return villeDepot.saveAndFlush(villeData);
 	}
-	
-	/*
-	 * supprime une ville de la BDD
-	 * @param villeData: correspond aux données de la ville passé dans le Json
-	 * @return
-	 */
-	@DeleteMapping
-	public void supprimerVille(@RequestBody Ville villeData) 
-	{
-		villeDepot.delete(villeData);
-	}
+
 }

@@ -1,31 +1,19 @@
 <!--   -->
 
-<!-- Section visuelle de la page d'accueil -->
+<!-- Affichage des objets -->
 
-<section class="w-100 p-3 image" id="image1">
+<section id="articles">
   <div class="row h-100 text">
     <div *ngFor="let article of articles">
-      <h1 class="liste" id="titrePageAccueil">Liste des objets</h1>
-      <p class="article" >{{ article.nomArticle }}</p>
-      <p class="article" >{{ article.etatArticle }}</p>
-      <p class="article" >{{ article.dateDepot }}</p>
+      <h1 class="liste" id="titrePageAccueil">{{ article.nomArticle }}</h1>
+      <div *ngFor="let photo of photos">
+        <img [src]="photo.urlPhoto">
+      </div>
+      <p class="article" >{{ article.etatArticle }} {{ article.dateDepot }}</p>
     </div>
   </div>
 </section>
 
-<!-- Image de présentation -->
 
-<div class="image" id="image2"></div>
 
-<!-- Affichage des objets -->
 
-<div>
-  <div >
-    <div>
-      <div >
-        <span class="material-icons overlay">machin truc</span>
-
-      </div>
-    </div>
-  </div>
-</div>

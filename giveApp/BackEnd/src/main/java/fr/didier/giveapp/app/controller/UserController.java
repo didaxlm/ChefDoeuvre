@@ -1,27 +1,28 @@
 package fr.didier.giveapp.app.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
-import fr.didier.giveapp.app.model.Article;
+import ch.qos.logback.core.net.SyslogOutputStream;
+import fr.didier.giveapp.app.exceptions.NotFoundException;
+import fr.didier.giveapp.app.model.JsonWebToken;
 import fr.didier.giveapp.app.model.User;
 import fr.didier.giveapp.app.repository.UserRepository;
+import fr.didier.giveapp.app.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/users")
+import java.util.List;
+
 @RestController
+@RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController 
 {
 	@Autowired
 	private UserRepository userDepot;
+
+	@Autowired
+	private UserService userService;
 	
 	//affiche la liste des utilisateurs
 	@GetMapping
@@ -32,24 +33,33 @@ public class UserController
 	
 	/*
 	 * ajoute un utilisateur dans la BDD
-	 * @param userData: correspond aux données du user passées dans le Json
+	 * @param user: correspond aux donnÃ©es du user passÃ©es dans le Json
 	 * @return
 	 */
-	@PostMapping
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public User ajouterUser(@RequestBody User userData) 
+	@PostMapping("/sign-up")
+	public ResponseEntity<User> signUp(@RequestBody User user)
 	{
-		return userDepot.saveAndFlush(userData);
+		return ResponseEntity.status(HttpStatus.CREATED).body(userService.signUp(user));
+	}
+
+	@PostMapping("/sign-in")
+	public ResponseEntity<JsonWebToken> signIn(@RequestBody User user)
+	{
+		System.out.println("dodo");
+		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
 	
 	/*
 	 * supprime un utilisateur de la BDD
-	 * @param userData: correspond aux données du user passées dans le json
+	 * @param userData: correspond aux donnÃ©es du user passÃ©es dans le json
 	 * @return
 	 */
-	@DeleteMapping 
-	public void	supprimerUser(@RequestBody User userData) 
-	{
-		userDepot.delete(userData);
+	@DeleteMapping("{userId}")
+	public void	supprimerUser(@PathVariable int userId) throws NotFoundException {
+		if (userDepot.existsById(userId)){
+			userDepot.deleteById(userId);
+		} else {
+			throw new NotFoundException();
+		}
 	}
 }

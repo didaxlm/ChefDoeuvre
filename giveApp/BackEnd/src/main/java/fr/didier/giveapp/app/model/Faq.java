@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Faq 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrÃ©ment
 	private int id;
 	
 	private String question;

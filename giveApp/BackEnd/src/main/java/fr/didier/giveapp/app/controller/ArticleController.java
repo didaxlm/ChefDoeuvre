@@ -1,13 +1,13 @@
 package fr.didier.giveapp.app.controller;
 
-import java.util.List;
-
+import fr.didier.giveapp.app.exceptions.NotFoundException;
+import fr.didier.giveapp.app.model.Article;
+import fr.didier.giveapp.app.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import fr.didier.giveapp.app.model.Article;
-import fr.didier.giveapp.app.repository.ArticleRepository;
+import java.util.List;
 
 @RequestMapping("/articles")
 @RestController
@@ -25,8 +25,8 @@ public class ArticleController
 	}
 	
 	/*
-	 * ajoute un article à la liste
-	 * @param dataArticle: correspond aux données de l'article passées dans le Json
+	 * ajoute un article Ã  la liste
+	 * @param dataArticle: correspond aux donnÃ©es de l'article passÃ©es dans le Json
 	 * @return
 	 */
 	@PostMapping
@@ -37,15 +37,17 @@ public class ArticleController
 	}
 	
 	/*
-	 * supprime un objet de la BDD
-	 * @param articleData: correspond aux données de l'article passé dans le json
+	 * supprime un article de la BDD
+	 * @param articleId: correspond aux donnÃ©es de l'article passÃ©es dans l'url'
 	 * @return
 	 */
-	@DeleteMapping
-	public void supprimerArticle(@RequestBody Article articleData) 
+	@DeleteMapping("{articleId}")
+	public void supprimerArticle(@PathVariable int articleId) throws Exception
 	{
-		//TODO gerer le statut quand on supprime un article qui n'existe pas et verif si photo supprimée
-		articleDepot.delete(articleData);
-		
+		if (articleDepot.existsById(articleId)){
+		articleDepot.deleteById(articleId);
+		} else {
+			throw new NotFoundException();
+		}
 	}
 }

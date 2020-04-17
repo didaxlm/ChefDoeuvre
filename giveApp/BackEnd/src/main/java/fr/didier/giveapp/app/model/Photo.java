@@ -17,11 +17,11 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Photo 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrÃ©ment
 	private int id;	
 	private String urlPhoto;
 	
-	// plusieurs photos détiennent un objet
+	// plusieurs photos dÃ©tiennent un objet
 	@ManyToOne
 	@JoinColumn( name="article", referencedColumnName = "id")
 	private Article article;

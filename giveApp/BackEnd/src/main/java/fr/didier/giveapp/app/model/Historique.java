@@ -22,7 +22,7 @@ import lombok.Setter;
 public class Historique 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrÃ©ment
 	private int id;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy")

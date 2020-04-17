@@ -28,13 +28,13 @@ import lombok.Setter;
 public class Ville 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incr�ment
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int id;	
 	private String nomVille;
 	
-	@JsonBackReference// �vite les boucles d'appel dans le json
+	@JsonBackReference// évite les boucles d'appel dans le json
 	// une ville a plusieurs objets
-	@OneToMany(mappedBy = "ville", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "ville")
 	private Set<Article> articles = new HashSet();
 
 	public Ville(String nomVille)

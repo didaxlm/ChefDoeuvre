@@ -1,8 +1,5 @@
 /* première image de la page d'accueil */
-#image1{
-  background-image: url("src/assets/don2.jpg");
-  height: 768px;
-}
+
 
 /* Titre */
 #titrePageAccueil
@@ -19,6 +16,24 @@
 
 .article{
   color: #0bc5ef;
+  border: 1px solid black;
+  padding: 20px 20px 20px 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#articles{
+  border: 1px solid black;
+}
+
+p{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.text{
+  margin-left: 0px;
 }
 
 

@@ -2,16 +2,18 @@ package fr.didier.giveapp.app;
 
 import fr.didier.giveapp.app.model.*;
 import fr.didier.giveapp.app.repository.*;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-
+@AllArgsConstructor
 @Component
-public class DataInitializer
+public class DataInitializer implements CommandLineRunner
 {
     private final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
 
@@ -32,47 +34,36 @@ public class DataInitializer
         return LocalDate.parse(date, formatter);
     }
 
-    public DataInitializer(final ArticleRepository articleDepot, final CategorieRepository categorieDepot, final FaqRepository faqDepot, final PhotoRepository photoDepot, final UserRepository userDepot, final VilleRepository villeDepot, final HistoriqueRepository historiqueDepot)
-    {
-        this.articleDepot = articleDepot;
-        this.categorieDepot = categorieDepot;
-        this.faqDepot = faqDepot;
-        this.photoDepot = photoDepot;
-        this.userDepot = userDepot;
-        this.villeDepot = villeDepot;
-        this.historiqueDepot = historiqueDepot;
-    }
-
-    //Création de la BDD
+    //CrÃ©ation de la BDD
     public void initData()
     {
         try
         {
-            Faq regle = new Faq("Comment ça marche ? ", "Comme ça ...");
-            Faq poster = new Faq("Comment je poste un objet ? ", "Tu fais ça ...");
-            Faq supprimer = new Faq("Comment je supprime mon compte ? ", "Tu lèves le doigt ...");
+            Faq regle = new Faq("Comment Ã§a marche ? ", "Comme Ã§a ...");
+            Faq poster = new Faq("Comment je poste un objet ? ", "Tu fais Ã§a ...");
+            Faq supprimer = new Faq("Comment je supprime mon compte ? ", "Tu lÃ¨ves le doigt ...");
 
             Categorie ameublement = new Categorie("Ameublement");
             Categorie loisir = new Categorie("Loisir");
             Categorie outillage = new Categorie("Outillage");
 
-            User jean = new User("Dupont", "Jean", 1, "jeanot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
-            User stephanie = new User("Raleuse", "Stephanie", 1, "stephie1975", "stephie", "33 rue Raleuse", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
-            User jerry = new User("Chaton", "Jerry", 0, "jerry1980", "jerry75", "10 rue de Beaune", "jerry.chat@yahoo.fr", "75019", parseDate("03/04/2020"));
+            User jean = new User("Dupont", "Jean", "utilisateur", "jeanot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
+            User stephanie = new User("Raleuse", "Stephanie", "utilisateur", "stephie1975", "stephie", "33 rue Raleuse", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
+            User jerry = new User("Chaton", "Jerry", "administrateur", "jerry1980", "jerry75", "10 rue de Beaune", "jerry.chat@yahoo.fr", "75019", parseDate("03/04/2020"));
 
             Ville paris = new Ville("Paris");
             Ville nantes = new Ville("Nantes");
             Ville bordeaux = new Ville("Bordeaux");
 
             Article table = new Article(parseDate("01/04/2020"), "Table", "Neuf", 1, ameublement, jean, paris);
-            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état", 2, loisir, stephanie, nantes);
+            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon Ã©tat", 2, loisir, stephanie, nantes);
             Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen", 2, outillage, jerry, bordeaux);
             Article clou = new Article(parseDate("04/04/2020"), "Clou", "Neuf", 10, outillage, jerry, nantes);
 
-            Photo photo1 = new Photo("https://www.dropbox.com/s/z7en8i65a156d2l/table.jpg?dl=0", table);
-            Photo photo2 = new Photo("https://www.dropbox.com/s/2z0vy2xdhw8g7gb/raquette.jpg?dl=0", raquette);
-            Photo photo3 = new Photo("https://www.dropbox.com/s/4qs94brm9vmxg9r/marteau.jpg?dl=0", marteau);
-            Photo photo4 = new Photo("https://www.dropbox.com/s/i0iawpaliyu6cc2/clou.jpg?dl=0", clou);
+            Photo photo1 = new Photo("https://zupimages.net/up/20/16/1fbq.jpg", table);
+            Photo photo2 = new Photo("https://zupimages.net/up/20/16/xwg4.jpg", raquette);
+            Photo photo3 = new Photo("https://zupimages.net/up/20/16/ruir.jpg", marteau);
+            Photo photo4 = new Photo("https://zupimages.net/up/20/16/vwum.jpg", clou);
 
             Historique histo1 = new Historique(parseDate("05/04/2020"));
             Historique histo2 = new Historique(parseDate("06/04/2020"));
@@ -101,7 +92,16 @@ public class DataInitializer
             }
 
         } catch (final Exception ex) {
-            logger.error("Exception lors de l'insertion de données fictives {}", ex);
+            logger.error("Exception lors de l'insertion de donnÃ©es fictives {}", ex);
         }
+    }
+    public void run(String... args) throws Exception
+    {
+        logger.info(
+                "\n ******** Initializing Data ********");
+        initData();
+
+        logger.info(
+                "\n ******** Data initialized ********");
     }
 }

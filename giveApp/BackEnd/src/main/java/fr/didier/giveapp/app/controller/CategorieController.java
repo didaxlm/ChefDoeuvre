@@ -1,23 +1,16 @@
 package fr.didier.giveapp.app.controller;
 
-import java.util.List;
-
+import fr.didier.giveapp.app.model.Categorie;
+import fr.didier.giveapp.app.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import fr.didier.giveapp.app.model.Categorie;
-import fr.didier.giveapp.app.model.Ville;
-import fr.didier.giveapp.app.repository.CategorieRepository;
+import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategorieController 
 {
 	@Autowired
@@ -31,8 +24,8 @@ public class CategorieController
 	}
 	
 	/*
-	 * ajoute une catégorie à la liste
-	 * @param categorieData: correspond aux données de la catégorie passées dans le Json
+	 * ajoute une catÃ©gorie Ã  la liste
+	 * @param categorieData: correspond aux donnÃ©es de la catÃ©gorie passÃ©es dans le Json
 	 * @return
 	 */
 	@PostMapping
@@ -43,8 +36,8 @@ public class CategorieController
 	}
 	
 	/*
-	 * supprime une catégorie de la BDD
-	 * @param categorieData: correspond aux données de la catégorie passées dans le Json
+	 * supprime une catÃ©gorie de la BDD
+	 * @param categorieData: correspond aux donnÃ©es de la catÃ©gorie passÃ©es dans le Json
 	 * @return
 	 */
 	@DeleteMapping
