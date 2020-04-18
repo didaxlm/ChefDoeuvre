@@ -1,19 +1,32 @@
 /* header */
 
 .logo {
-  position: absolute;
-  width: 420px;
-  height: 184px;
+  position: sticky;
   left: 0px;
   top: 0px;
+
 }
+
 .head{
   height: 184px;
+  border: 2px solid black;
+  margin: 0 auto;
+  padding: 0px 20px 20px 20px;
 }
-/* Donner */
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px 20px 20px 20px;
+}
+li{
+  position: sticky;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid black;
+}
+
 #donner{
-  position: absolute;
-  width: 228px;
+  position: sticky;
   height: 43px;
   left: 606px;
   top: 85px;
@@ -23,16 +36,15 @@
   font-weight: normal;
   font-size: 30px;
   line-height: 35px;
-  text-align: center;
+  text-align: initial;
 
   color: #F90000;
 
-  border: 1px solid #FFFFFF;
 }
-/* Se Connecter */
+
 #connecter{
-  position: absolute;
-  width: 228px;
+  position: sticky;
+
   height: 43px;
   left: 1035px;
   top: 85px;
@@ -46,12 +58,11 @@
 
   color: #000000;
 
-  border: 1px solid #FFFFFF;
 }
-/* faq */
+
 #faq{
-  position: absolute;
-  width: 228px;
+  position: sticky;
+
   height: 43px;
   left: 1221px;
   top: 85px;
@@ -61,10 +72,9 @@
   font-weight: normal;
   font-size: 30px;
   line-height: 35px;
-  text-align: center;
+  text-align: end;
 
   color: #000000;
 
-  border: 1px solid #FFFFFF;
 }
 

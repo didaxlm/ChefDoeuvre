@@ -10,5 +10,5 @@ import fr.didier.giveapp.app.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>
 {
-	Optional<User> findByPseudo(String pseudo);
+    Optional<User> findByPseudo (String pseudo);
 }

@@ -1,40 +1,36 @@
-							package fr.didier.giveapp.app.model;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+package fr.didier.giveapp.app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User 
+public class User implements UserDetails
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrÃ©ment
 	private int id;
-	private int typeUser;
+
+	private String role;
 	private String nom ;
 	private String prenom;
 	
@@ -49,16 +45,16 @@ public class User
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private LocalDate dateInscription;
 	
-	@JsonBackReference // évite les boucles d'appel dans le json
+	@JsonBackReference // Ã©vite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
-	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "user", orphanRemoval = true)
 	private Set<Article> articles = new HashSet();
 
-    public User(String nom, String prenom, int typeUser, String motDePasse, String pseudo, String adresse, String mail, String codePostal, LocalDate dateInscription)
+    public User(String nom, String prenom, String role, String motDePasse, String pseudo, String adresse, String mail, String codePostal, LocalDate dateInscription)
 	{
     	this.nom = nom;
     	this.prenom = prenom;
-    	this.typeUser = typeUser;
+    	this.role = role;
     	this.motDePasse = motDePasse;
     	this.pseudo = pseudo;
     	this.adresse = adresse;
@@ -66,4 +62,41 @@ public class User
     	this.codePostal = codePostal;
     	this.dateInscription = dateInscription;
     }
+
+	@Override
+	@JsonIgnore
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority(this.role));
+	}
+
+	@Override
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	public String getPassword() {
+		return motDePasse;
+	}
+
+	@Override
+	public String getUsername() {
+		return pseudo;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

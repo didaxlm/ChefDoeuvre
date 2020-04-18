@@ -22,7 +22,7 @@ import java.util.Set;
 public class Article 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incr�ment
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int id;
 	private int quantiteArticle;
 	private String nomArticle;
@@ -31,23 +31,23 @@ public class Article
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private LocalDate dateDepot;
 	
-	// plusieurs objets ont un utilisateur
-	@ManyToOne (fetch = FetchType.EAGER)
+
+	@ManyToOne // plusieurs objets ont un utilisateur
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne (fetch = FetchType.EAGER) // plusieurs objets sont associ�es � une ville
+	@ManyToOne  // plusieurs objets sont associées à une ville
 	@JoinColumn( name="ville", referencedColumnName = "id")
 	private Ville ville;
 	
-	@ManyToOne (fetch = FetchType.EAGER)// plusieurs objets appartiennent � une cat�gorie
+	@ManyToOne // plusieurs objets appartiennent à une catégorie
 	@JoinColumn( name="categorie", referencedColumnName = "id")
 	private Categorie categorie;
 	
-	@JsonBackReference // �vite les boucles d'appel dans le json
-	// un objet d�tient plusieurs photos
-	@OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+	@JsonBackReference // évite les boucles d'appel dans le json
+	// un objet détient plusieurs photos
+	@OneToMany(mappedBy = "article", orphanRemoval = true)
 	private Set<Photo> photos = new HashSet();
 
 	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle, Categorie categorie, User user, Ville ville)

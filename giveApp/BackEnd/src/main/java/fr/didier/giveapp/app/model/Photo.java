@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -15,12 +17,12 @@ import lombok.Setter;
 public class Photo 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrÃ©ment
 	private int id;	
 	private String urlPhoto;
 	
-	// plusieurs photos détiennent un objet
-	@ManyToOne(fetch = FetchType.EAGER)
+	// plusieurs photos dÃ©tiennent un objet
+	@ManyToOne
 	@JoinColumn( name="article", referencedColumnName = "id")
 	private Article article;
 

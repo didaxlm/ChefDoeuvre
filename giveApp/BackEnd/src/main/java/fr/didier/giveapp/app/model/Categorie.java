@@ -26,13 +26,12 @@ import lombok.Setter;
 public class Categorie 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incr�ment
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int id;	
 	private String typeCategorie;
 	
-	@JsonBackReference// �vite les boucles d'appel dans le json
-	// une cat�gorie a plusieurs objets
-	@OneToMany(mappedBy = "categorie", cascade = CascadeType.MERGE)
+	@JsonBackReference// évite les boucles d'appel dans le json
+	@OneToMany(mappedBy = "categorie") // une catégorie a plusieurs objets
 	private Set<Article> articles = new HashSet();
 
 	public Categorie(String typeCategorie)
