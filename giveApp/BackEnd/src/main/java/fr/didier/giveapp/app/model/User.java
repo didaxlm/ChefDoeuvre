@@ -30,7 +30,9 @@ public class User implements UserDetails
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
 	private int id;
 
-	private String role;
+	@JsonIgnore
+	private String role = "Utilisateur";
+
 	private String nom ;
 	private String prenom;
 	
