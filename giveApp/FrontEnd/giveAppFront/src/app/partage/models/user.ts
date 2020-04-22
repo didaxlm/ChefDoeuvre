@@ -6,7 +6,7 @@ import { Article } from './article';
 export class User
 {
   id: number;
-  typeUser: number;
+  role: string;
   nom: string;
   prenom: string;
   motDePasse: string;
@@ -16,4 +16,5 @@ export class User
   pseudo: string;
   dateInscription: Date;
   article: Article;
+
 }

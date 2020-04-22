@@ -26,7 +26,10 @@ export class ArticleService extends RequestServices
    */
   getArticle(): Observable<any>
   {
-    return this.http
-      .get<Article[]>(this.url);
+    return this.getGiveApp(this.url);
+  }
+
+  postArticle(newArticle: Article): Observable<any>{
+    return this.postGiveApp(this.url, newArticle);
   }
 }

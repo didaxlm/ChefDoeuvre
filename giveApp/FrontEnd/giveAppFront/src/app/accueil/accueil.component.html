@@ -5,7 +5,7 @@
 <section id="articles">
   <div class="row h-100 text">
     <div *ngFor="let article of articles">
-      <h1 class="liste" id="titrePageAccueil">{{ article.nomArticle }}</h1>
+      <h1 class="liste" id="liste">{{ article.nomArticle }}</h1>
       <div *ngFor="let photo of photos">
         <img [src]="photo.urlPhoto">
       </div>

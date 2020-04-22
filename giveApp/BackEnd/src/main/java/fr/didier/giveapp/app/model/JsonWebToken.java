@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class JsonWebToken
 {
-    private final String token;
+    private final String access_token;
 }
