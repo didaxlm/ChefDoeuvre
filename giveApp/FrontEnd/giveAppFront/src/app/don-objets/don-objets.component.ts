@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Article} from "../partage/models/article";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-don-objets',
@@ -12,9 +13,9 @@ export class DonObjetsComponent implements OnInit
 {
 
   // attributs de formulaire
-  formArticleNom = new FormControl();
-  formArticleCategorie = new FormControl();
-  formArticleLieu = new FormControl();
+  formArticleNom = new FormControl('', Validators.required);
+  formArticleCategorie = new FormControl('', Validators.required);
+  formArticleLieu = new FormControl('', Validators.required);
 
   //attributs des datas
   private nomArticle: string = "";
@@ -23,14 +24,22 @@ export class DonObjetsComponent implements OnInit
 
   article: Article = new Article();
 
-  //constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit()
   {
-    //this.redirect();
+    this.getData();
   }
 
   /**
-   * renvoie vers la
+   * récupère les informations du formulaire
    */
+  getData()
+  {
+    this.nomArticle = this.formArticleNom.value;
+    this.articleCategorie = this.formArticleCategorie.value;
+    this.lieuArticle = this.formArticleLieu.value;
+  }
+
+  
 }

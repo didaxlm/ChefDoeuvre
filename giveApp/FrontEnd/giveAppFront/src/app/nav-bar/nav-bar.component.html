@@ -3,7 +3,7 @@
   <div class="head">
     <ul>
       <div>
-        <img src="../assets/logo.png" class="logo" alt="logo" />
+        <a [routerLink]="['']"><img src="../assets/logo.png" class="logo" alt="logo" /></a>
       </div>
 
       <li>
@@ -13,7 +13,7 @@
       </li>
 
       <li>
-        <a class="nav-link active" id="connecter">
+        <a class="nav-link active" id="connecter" [routerLink]="['/connexion']">
           Se Connecter
         </a>
       </li>

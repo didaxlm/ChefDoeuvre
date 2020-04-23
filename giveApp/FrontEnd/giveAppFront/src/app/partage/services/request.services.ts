@@ -19,4 +19,14 @@ export class RequestServices
   {
     return this.http.get<any>(apiUrl);
   }
+
+  /**
+   * effectue une requete Post
+   * @param apiUrl : endpoint à joindre
+   * @param addObjet : article à envoyer
+   */
+  public postGiveApp(apiUrl: string, addObjet: any): Observable<any>
+  {
+    return this.http.post<any>(apiUrl, addObjet, this.dataService.httpOptions);
+  }
 }

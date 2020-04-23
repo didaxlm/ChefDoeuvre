@@ -1,0 +1,30 @@
+<form (ngSubmit)="redirection()" [formGroup]="connexionForm">
+
+  <!-- champs du pseudo -->
+
+  <input formControlName="pseudo"
+    type="text"
+    name="login"
+    id="login"
+    maxlength="30"
+    minlength="4"
+    class="form-control"
+    placeholder="Entrez vôtre pseudo" required>
+
+  <!-- champs du password -->
+
+  <input formControlName="password"
+    type="password"
+    id="password"
+    maxlength="255"
+    minlength="6"
+    name="login"
+    class="form-control"
+    placeholder="Entrez vôtre mot de passe" required>
+
+
+
+  <!-- bouton connexion -->
+
+  <button type="submit" class="btn btn-primary" id="connexion-button">Se Connecter</button>
+</form>

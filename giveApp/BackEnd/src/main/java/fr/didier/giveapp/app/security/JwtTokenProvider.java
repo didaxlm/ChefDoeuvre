@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider
 {
-    //on recupere le secret dans le fichier propertie
+    //on recupere la secret-key dans le fichier propertie
     @Value("${security.jwt.token.secret:ceciestlacléquipermetdehasherladonnée}")
     private String secretKey;
 
-    //ici met la valeur par defaut
+    //on détermine le temps par défaut de la validité du token
     @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds = 3600000; //1h
 
@@ -46,8 +46,11 @@ public class JwtTokenProvider
      * methode qui créer un token :
      * "sub" pour pseudo
      * "auth" pour roles
-     * "iat" pour date du jour
+     * "dat" pour date du jour
      * "exp" pour date du jour + validityTime
+     * @param pseudo le user pseudo
+     * @param roles le user roles
+     * @return créer le jwt comme string
      */
     public String createToken(String pseudo, Collection<? extends  GrantedAuthority> roles)
     {
@@ -66,16 +69,18 @@ public class JwtTokenProvider
     }
 
     /**
-     * methode qui obtient le pseudo depuis jwt
+     * methode qui retourne le user authentication basé sur un jwt
      * @param token le token utilisé pour l'authentification
-     * @return
+     * @return l'objet authentifié si pseudo trouvé
      */
     public String extractPseudo(String token)
     {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
     /**
-     * methode qui retourne
+     * methode qui obtient le pseudo depuis le jwt
+     * @param token analyse du token
+     * @return le user pseudo comme string
      */
     public Authentication getAuthentication(String token)
     {
@@ -84,20 +89,26 @@ public class JwtTokenProvider
     }
 
     /**
-     *
+     * methode qui résout un jwt depuis un HTTP request
+     * le header devrait contenir un champs Autorisation où jwt devrait être ajouté après "Bearer "
+     * @param req requete à checker
+     * @return le jwt depuis le HTTP header
      */
     public String resolveToken(HttpServletRequest req)
     {
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer "))
         {
-            return bearerToken.substring(7); // si "toto " alors 5
+            return bearerToken.substring(7); // si "toto " alors 5 (espace après toto)
         }
         return null;
     }
 
     /**
-     *
+     * methode qui check que le jwt est valide
+     * la signature devrait être correcte et le temps d'expiration devrait être après "now"
+     * @param token le token à valider
+     * @return true si le token est valide
      */
     public boolean validateToken(String token) throws Exception
     { //TODO mettre InvalidJWTException dans package exceptions
