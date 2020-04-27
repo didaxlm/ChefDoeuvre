@@ -1,19 +1,45 @@
-<!--   -->
-
-<!-- Affichage des objets -->
-
-<section id="articles">
-  <div class="row h-100 text">
-    <div *ngFor="let article of articles">
-      <h1 class="liste" id="liste">{{ article.nomArticle }}</h1>
-      <div *ngFor="let photo of photos">
-        <img [src]="photo.urlPhoto">
-      </div>
-      <p class="article" >{{ article.etatArticle }} {{ article.dateDepot }}</p>
-    </div>
+<!-- Affichage des articles -->
+<div>
+  <div>
+    <ul id="articles" *ngFor="let article of articles">
+      <li >
+<!--        <div>-->
+<!--          <div>-->
+<!--            <div>-->
+<!--              <span>(envoiCategorie)="envoiCategorie($event)"-->
+<!--                <svg></svg>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <a class="dim_img" >
+          <div>
+            <span>
+              <div class="imgarticle" *ngFor="let photo of photos">
+                <img class="taille_img" *ngIf="article.id == photo.article.id " [src]="photo.urlPhoto">
+              </div>
+            </span>
+<!--            <span>-->
+<!--              <span name="camera">-->
+<!--                <svg>-->
+<!--                  <path d="un truc"></path>-->
+<!--                </svg>-->
+<!--              </span>-->
+<!--            </span>-->
+          </div>
+          <section class="textSection" >
+            <div>
+              <p class="tailleText">{{ article.nomArticle }}</p>
+            </div>
+            <div>
+              <p>{{ article.etatArticle }}</p>
+              <p>{{ article.ville["nomVille"] }}</p>
+              <p>{{ article.user["pseudo"] }}</p>
+              <p>{{ article.dateDepot }}</p>
+            </div>
+          </section>
+        </a>
+      </li>
+    </ul>
   </div>
-</section>
-
-
-
-
+</div>

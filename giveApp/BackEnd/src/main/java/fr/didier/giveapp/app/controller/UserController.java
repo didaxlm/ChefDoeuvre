@@ -1,6 +1,5 @@
 package fr.didier.giveapp.app.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import fr.didier.giveapp.app.exceptions.NotFoundException;
 import fr.didier.giveapp.app.model.JsonWebToken;
 import fr.didier.giveapp.app.model.User;
@@ -23,16 +22,21 @@ public class UserController
 
 	@Autowired
 	private UserService userService;
-	
-	//affiche la liste des utilisateurs
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui affiche la liste des utilisateurs
+	 * @return toute la liste
+	 */
 	@GetMapping
 	public List<User> afficherListeUser() 
 	{
 		return userDepot.findAll();
 	}
-	
-	/*
-	 * ajoute un utilisateur dans la BDD
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui ajoute un utilisateur dans la BDD
 	 * @param user: correspond aux données du user passées dans le Json
 	 * @return
 	 */
@@ -42,17 +46,23 @@ public class UserController
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.signUp(user));
 	}
 
+	/** TODO affiner le commentaire
+	 * Méthode qui identifie un utilisateur
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/sign-in")
 	public ResponseEntity<JsonWebToken> signIn(@RequestBody User user)
 	{
 		System.out.println("dodo");
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
-	
-	/*
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
 	 * supprime un utilisateur de la BDD
-	 * @param userData: correspond aux données du user passées dans le json
-	 * @return
+	 * @param userId: précisé dans l'url (ex : /users/2)
+	 * @throws Exception l'utilisateur n'existe pas
 	 */
 	@DeleteMapping("{userId}")
 	public void	supprimerUser(@PathVariable int userId) throws NotFoundException {

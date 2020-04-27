@@ -3,7 +3,7 @@ import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
-import {Ville} from "../models/ville";
+import {VilleModel} from "../models/villeModel";
 
 @Injectable({ providedIn: 'root'})
 export class VilleServices extends RequestServices
@@ -20,6 +20,6 @@ export class VilleServices extends RequestServices
 
   getVille(): Observable<any>{
     return this.http
-      .get<Ville[]>(this.url);
+      .get<VilleModel[]>(this.url);
   }
 }

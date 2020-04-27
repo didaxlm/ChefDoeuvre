@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {Article} from "../partage/models/article";
+import {ArticleModel} from "../partage/models/articleModel";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 
@@ -22,7 +22,7 @@ export class DonObjetsComponent implements OnInit
   private articleCategorie: string = "";
   private lieuArticle: string = "";
 
-  article: Article = new Article();
+  article: ArticleModel = new ArticleModel();
 
   constructor(private fb: FormBuilder) { }
 
@@ -41,5 +41,5 @@ export class DonObjetsComponent implements OnInit
     this.lieuArticle = this.formArticleLieu.value;
   }
 
-  
+
 }

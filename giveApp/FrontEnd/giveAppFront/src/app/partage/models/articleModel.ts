@@ -1,22 +1,20 @@
-import {User} from "./user";
-import {Ville} from "./ville";
-import {Categorie} from "./categorie";
-import {Photo} from "./photo";
+import {UserModel} from "./userModel";
+import {VilleModel} from "./villeModel";
+import {CategorieModel} from "./categorieModel";
 
 /**
  * objet article, possède des relations avec plusieurs objets:
  * n - 1 avec user, ville et categorie
  * 1 - n avec photo
  */
-export class Article
+export class ArticleModel
 {
   id: number;
   quantiteArticle: number;
   nomArticle: string;
   etatArticle: string;
   dateDepot: Date;
-  user: User[];
-  ville: Ville[];
-  categorie: Categorie;
-  photo: Photo[];
+  user: UserModel[];
+  ville: VilleModel[];
+  categorie: CategorieModel;
 }

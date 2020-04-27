@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Article} from "../partage/models/article";
+import {Component, Input, OnInit} from '@angular/core';
+import {ArticleModel} from "../partage/models/articleModel";
 import {ArticleService} from "../partage/services/article.services";
-import {Photo} from "../partage/models/photo";
+import {PhotoModel} from "../partage/models/photoModel";
 import {PhotoServices} from "../partage/services/photo.services";
+import {CategorieModel} from "../partage/models/categorieModel";
 
 @Component({
   selector: 'app-accueil',
@@ -11,19 +12,26 @@ import {PhotoServices} from "../partage/services/photo.services";
 })
 export class AccueilComponent implements OnInit {
 
-  articles: Article[];
-  photos: Photo[];
+  articles: ArticleModel[];
+  photos: PhotoModel[];
+  @Input()
+  categories: CategorieModel;
 
-  constructor(private articleService: ArticleService, private photoService: PhotoServices) { }
+  // onEnvoiCategorie() {
+  //   this.categories.emit(this.categories);
+  // }
+  constructor(private articleService: ArticleService,
+              private photoService: PhotoServices) { }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.articleService.getArticle().subscribe(articles => {
       this.articles = articles;
     });
-    this.photoService.getPhoto().subscribe(photos => {
+    this.photoService.getPhotoArticle().subscribe(photos => {
       this.photos = photos;
-    })
+    });
   }
 }
 /*

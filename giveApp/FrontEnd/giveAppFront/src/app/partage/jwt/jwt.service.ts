@@ -55,6 +55,15 @@ export class JwtService
     );
   }
 
+  logout()
+  {
+    if (this.isLogged())
+    {
+      this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
+      JwtService.clearToken();
+      this.route.navigate(['']);
+    }
+  }
   // TODO add a register form
   register(pseudo: string, password: string)
   {
@@ -65,14 +74,6 @@ export class JwtService
     }));
   }
 
-  logout()
-  {
-    if (this.isLogged())
-    {
-      this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
-      JwtService.clearToken();
-    }
-  }
 
   private static getToken(): string
   {

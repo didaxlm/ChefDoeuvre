@@ -15,18 +15,23 @@ public class CategorieController
 {
 	@Autowired
 	private CategorieRepository categorieDepot;
-	
-	//affiche la liste des villes
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui affiche la liste des catégories
+	 * @return toute la liste
+	 */
 	@GetMapping
 	public List<Categorie> afficherListeCategorie()
 	{
 		return categorieDepot.findAll();
 	}
-	
-	/*
-	 * ajoute une catégorie à la liste
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui ajoute une catégorie à la liste
 	 * @param categorieData: correspond aux données de la catégorie passées dans le Json
-	 * @return
+	 * @return la nouvelle catégorie sauvegardée
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -34,11 +39,11 @@ public class CategorieController
 	{
 		return categorieDepot.saveAndFlush(categorieData);
 	}
-	
-	/*
-	 * supprime une catégorie de la BDD
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui supprime une catégorie de la BDD
 	 * @param categorieData: correspond aux données de la catégorie passées dans le Json
-	 * @return
 	 */
 	@DeleteMapping
 	public void supprimerCategorie(@RequestBody Categorie categorieData) 
