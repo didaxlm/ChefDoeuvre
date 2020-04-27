@@ -1,9 +1,9 @@
-import { Article } from './article';
+import { ArticleModel } from './articleModel';
 
 /**
  * objet user, possède une relation 1 - n avec article
  */
-export class User
+export class UserModel
 {
   id: number;
   role: string;
@@ -15,6 +15,6 @@ export class User
   codePostal: string;
   pseudo: string;
   dateInscription: Date;
-  article: Article;
+  article: ArticleModel;
 
 }

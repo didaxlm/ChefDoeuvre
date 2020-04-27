@@ -23,16 +23,23 @@ public class PhotoController
 
 	@Autowired
 	private ArticleRepository articleDepot;
-	
-	//affiche la liste des url des photos
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui affiche la liste des url des photos
+	 * @return toute la liste
+	 */
 	@GetMapping
 	public List<Photo> afficherLiensPhotos() 
 	{
 		return photoDepot.findAll();
 	}
-	
-	/*
-	 * methode qui recupere une liste de photo en fonction de l'id de l'article
+
+	/**
+	 * Methode qui récupère une liste de photo en fonction de l'id de l'article
+	 * @param articleId précisé dans l'url (ex : /articles/1)
+	 * @return la ou les photos de l'article
+	 * @throws Exception si l'article de la photo n'existe pas
 	 */
 	@GetMapping("/articles/{articleId}")
 	public Set<Photo> afficherPhotoArticle(@PathVariable int articleId) throws Exception
@@ -47,10 +54,11 @@ public class PhotoController
 		}
 		return retourPhoto;
 	}
-	/*
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
 	 * ajoute une URL à la liste
 	 * @param urlPhoto: correspond à l'URL de la photo passée dans le Json
-	 * @return
+	 * @return l'url ajouté
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -58,16 +66,19 @@ public class PhotoController
 	{
 		return photoDepot.saveAndFlush(urlPhoto);
 	}
-
-	/*
-	 * supprime une URL de la photo de la BDD
-	 * @param idPhoto: correspond aux données de l'article passé dans le json
-	 * @return
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui supprime l'URL d'une photo de la BDD
+	 * @param photoId: correspond aux données de l'article passé dans le json
+	 * @throws Exception la photo n'existe pas
 	 */
-	@DeleteMapping
-	public void supprimerPhoto(@RequestBody Photo idPhoto)
+	@DeleteMapping("{photoId}")
+	public void supprimerPhoto(@PathVariable int photoId) throws Exception
 	{
-		photoDepot.delete(idPhoto);
+		if (photoDepot.existsById(photoId)){
+			photoDepot.deleteById(photoId);
+		} else {
+			throw new NotFoundException();
+		}
 	}
-
 }

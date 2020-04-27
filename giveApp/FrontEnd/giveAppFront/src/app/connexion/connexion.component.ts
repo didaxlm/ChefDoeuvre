@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {User} from "../partage/models/user";
+import {UserModel} from "../partage/models/userModel";
 import {JwtService} from "../partage/jwt/jwt.service";
 import {Router} from "@angular/router";
 
@@ -14,7 +14,7 @@ export class ConnexionComponent implements OnInit
   connexionForm: FormGroup;
   submitted: false;
 
-  user: User = new User();
+  user: UserModel = new UserModel();
 
   constructor(private fb: FormBuilder, private auth: JwtService, private router: Router) { }
 
@@ -30,4 +30,5 @@ export class ConnexionComponent implements OnInit
   this.auth.login(this.connexionForm.get("pseudo").value, this.connexionForm.get("password").value)
     .subscribe(data =>console.log(data));
   }
+
 }

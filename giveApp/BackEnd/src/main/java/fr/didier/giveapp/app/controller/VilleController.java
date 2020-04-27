@@ -15,15 +15,20 @@ public class VilleController
 {
 	@Autowired
 	private VilleRepository villeDepot;
-	
-	//affiche la liste des villes
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Méthode qui affiche la liste des villes
+	 * @return toute la liste
+	 */
 	@GetMapping
 	public List<Ville> afficherListeVille()
 	{
 		return villeDepot.findAll();
 	}
-	
-	/*
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
 	 * ajoute une ville à la liste
 	 * @param villeData: correspond aux données de la ville passée dans le Json
 	 * @return

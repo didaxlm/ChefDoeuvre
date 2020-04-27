@@ -3,7 +3,7 @@ import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
-import {Photo} from "../models/photo";
+import {PhotoModel} from "../models/photoModel";
 
 @Injectable({ providedIn: 'root' })
 export class PhotoServices extends RequestServices
@@ -18,8 +18,8 @@ export class PhotoServices extends RequestServices
     super(http, data);
   }
 
-  getPhoto(): Observable<any>{
+  getPhotoArticle(): Observable<any>{
     return this.http
-      .get<Photo[]>(this.url);
+      .get<PhotoModel[]>(this.url);
   }
 }

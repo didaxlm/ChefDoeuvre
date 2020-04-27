@@ -3,7 +3,7 @@ import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
-import {Article} from "../models/article";
+import {ArticleModel} from "../models/articleModel";
 
 /**
  * service qui gère les interactions de article avec l'api rest
@@ -29,7 +29,7 @@ export class ArticleService extends RequestServices
     return this.getGiveApp(this.url);
   }
 
-  postArticle(newArticle: Article): Observable<any>{
+  postArticle(newArticle: ArticleModel): Observable<any>{
     return this.postGiveApp(this.url, newArticle);
   }
 }

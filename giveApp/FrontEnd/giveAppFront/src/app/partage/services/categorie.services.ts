@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {RequestServices} from "./request.services";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
-import  {Categorie} from "../models/categorie";
+import  {CategorieModel} from "../models/categorieModel";
 
 @Injectable({ providedIn: 'root' })
 export class CategorieService extends RequestServices
@@ -20,6 +20,6 @@ export class CategorieService extends RequestServices
 
   getCategorie(): Observable<any>{
     return  this.http
-      .get<Categorie[]>(this.url);
+      .get<CategorieModel[]>(this.url);
   }
 }

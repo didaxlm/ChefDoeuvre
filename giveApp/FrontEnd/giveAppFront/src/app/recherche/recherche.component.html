@@ -2,9 +2,9 @@
   <div class="filter">
     <div>
       <label id="category" class="category">Que recherchez-vous ?
-      <select id="category-select" class="category">
+      <select id="category-select" class="category" >
         <option>-- Catégories --</option>
-        <option *ngFor="let categorie of categories">{{ categorie.typeCategorie }}</option>
+        <option *ngFor="let categorie of categories" >{{ categorie.typeCategorie }}</option>
       </select>
       </label>
     </div>
