@@ -1,0 +1,60 @@
+/* partie générale */
+ul{
+  margin: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+
+  padding: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+
+  list-style-type: none;
+}
+li{
+  margin: 50px;
+  box-shadow: 1px 1px 8px 1px black;
+}
+
+#articles{
+  border: 1px solid black;
+  display: inline;
+}
+
+/* partie photos */
+
+.imgarticle {
+  float: left;
+}
+.dim_img{
+  padding-left: 200px;
+}
+.taille_img{
+  border: 2px solid red;
+}
+
+/* partie description */
+
+p{
+  font-style: normal;
+  font-family: Roboto;
+  font-size: 300%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.textSection{
+  margin-left: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.tailleText{
+  margin: 10px;
+  font-style: italic;
+  text-align: center;
+}

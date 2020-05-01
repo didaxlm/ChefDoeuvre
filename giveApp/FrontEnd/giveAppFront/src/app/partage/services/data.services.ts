@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders } from "@angular/common/http";
 
-/*
+/**
  * stocke les données utilisées par les autres services
  */
 @Injectable({ providedIn: 'root' })

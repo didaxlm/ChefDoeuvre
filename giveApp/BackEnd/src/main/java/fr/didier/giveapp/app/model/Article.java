@@ -43,8 +43,7 @@ public class Article
 	private Categorie categorie;
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
-	// un objet détient plusieurs photos
-	@OneToMany(mappedBy = "article", orphanRemoval = true)
+	@OneToMany(mappedBy = "article", orphanRemoval = true)// un objet détient plusieurs photos
 	private Set<Photo> photos = new HashSet();
 
 	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle, Categorie categorie, User user, Ville ville)

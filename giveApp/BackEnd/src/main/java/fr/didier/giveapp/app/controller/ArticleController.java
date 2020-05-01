@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RequestMapping("/articles")
 @RestController
@@ -35,7 +33,7 @@ public class ArticleController
 	 * @return toute la liste
 	 */
 	@GetMapping
-	public List<Article> afficherListeArticle() 
+	public List<Article> afficherListeArticles()
 	{
 		return articleDepot.findAll();
 	}
@@ -46,11 +44,15 @@ public class ArticleController
 	 * @return l'article précisé
 	 */
 	@GetMapping("{nomArticle}")
-	public Optional<Article> afficherArticles(@PathVariable String nomArticle)
+	public Optional<Article> afficherArticle(@PathVariable String nomArticle)
 	{
 		return articleDepot.findByNomArticle(nomArticle);
 	}
 
+//	@RequestMapping(value = "/details/", params = {"nomArticle","quantiteArticle","etatArticle"})
+//	public Article afficherDetailsPrincipaux(String nomArticle, int quantiteArticle, String etatArticle){
+//		Article articleDetail = new Article(nomArticle, quantiteArticle, etatArticle);
+//	}
 	/**
 	 * Méthode qui affiche une liste d'article en fonction de l'id de la catégorie
 	 * @param categorieId : précisé dans l'url (ex : /categories/1)
@@ -58,7 +60,7 @@ public class ArticleController
 	 * @throws Exception si la catégorie de l'article n'existe pas
 	 */
 	@GetMapping("/categories/{categorieId}")
-	public Set<Article> afficherArticleByCategorie(@PathVariable int categorieId) throws Exception
+	public Set<Article> afficherArticlesByCategorie(@PathVariable int categorieId) throws Exception
 	{
 		Set<Article> retourArticle ;
 		Optional<Categorie> categorieFound = categorieDepot.findById(categorieId);
@@ -78,7 +80,7 @@ public class ArticleController
 	 * @throws Exception si la ville de l'article n'existe pas
 	 */
 	@GetMapping("/villes/{villeId}")
-	public Set<Article> afficherArticleByVille(@PathVariable int villeId) throws Exception
+	public Set<Article> afficherArticlesByVille(@PathVariable int villeId) throws Exception
 	{
 		Set<Article> retourArticle ;
 		Optional<Ville> villeFound = villeDepot.findById(villeId);

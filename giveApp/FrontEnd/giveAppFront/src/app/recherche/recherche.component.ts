@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategorieModel} from "../partage/models/categorieModel";
 import {CategorieService} from "../partage/services/categorie.services";
 import {VilleModel} from "../partage/models/villeModel";
@@ -14,25 +14,32 @@ export class RechercheComponent implements OnInit {
   categories: CategorieModel[];
   villes: VilleModel[];
 
-  @Output('envoiCategorie')
-  envoiCategorieEmitter = new EventEmitter<any>();
-
-  envoiCategorie() {
-    this.envoiCategorieEmitter.emit(this.categories);
-  }
+  // @Output('envoiCategorie')
+  // envoiCategorieEmitter = new EventEmitter<any>();
+  //
+  // public envoiCategorie() : void {
+  //   this.envoiCategorieEmitter.emit(this.categories);
+  // }
 
   constructor(private categorieService: CategorieService, private villeService: VilleServices) { }
 
-  ngOnInit(): void
+  afficherCategorie()
   {
     this.categorieService.getCategorie().subscribe(categories => {
       this.categories = categories;
     });
-    this.envoiCategorieEmitter.emit('categories');
+  }
+  afficherVille()
+  {
     this.villeService.getVille().subscribe(villes => {
       this.villes = villes;
     });
-    this.envoiCategorie();
+  }
+
+  ngOnInit(): void
+  {
+    this.afficherCategorie();
+    this.afficherVille();
   }
 }
 /*

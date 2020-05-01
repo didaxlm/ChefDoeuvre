@@ -1,21 +1,21 @@
 <!-- Affichage des articles -->
 <div>
   <div>
-    <ul id="articles" *ngFor="let article of articles">
-      <li >
+    <ul id="articles" *ngFor="let article of articleDetail" >
+      <li>
 <!--        <div>-->
 <!--          <div>-->
 <!--            <div>-->
 <!--              <span>(envoiCategorie)="envoiCategorie($event)"-->
-<!--                <svg></svg>-->
+<!--                <svg>[afficherCategorie]="afficherArticle()"</svg>-->
 <!--              </span>-->
-<!--            </div>-->
+<!--            </div (click)="afficherUnArticle()">-->
 <!--          </div>-->
 <!--        </div>-->
-        <a class="dim_img" >
+        <a [routerLink]="['/article-details']" class="dim_img" (click)="afficherUnArticle()">
           <div>
             <span>
-              <div class="imgarticle" *ngFor="let photo of photos">
+              <div class="imgarticle" *ngFor="let photo of photoDetail" >
                 <img class="taille_img" *ngIf="article.id == photo.article.id " [src]="photo.urlPhoto">
               </div>
             </span>

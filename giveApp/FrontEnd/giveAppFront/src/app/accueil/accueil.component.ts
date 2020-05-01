@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ArticleModel} from "../partage/models/articleModel";
 import {ArticleService} from "../partage/services/article.services";
 import {PhotoModel} from "../partage/models/photoModel";
 import {PhotoServices} from "../partage/services/photo.services";
-import {CategorieModel} from "../partage/models/categorieModel";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-accueil',
@@ -12,28 +13,44 @@ import {CategorieModel} from "../partage/models/categorieModel";
 })
 export class AccueilComponent implements OnInit {
 
-  articles: ArticleModel[];
-  photos: PhotoModel[];
-  @Input()
-  categories: CategorieModel;
+  articleDetail: ArticleModel[];
+  photoDetail: PhotoModel[];
+  //@Input() index: number=ArticleModel[0];
+  //nom: string = ArticleModel["nomArticle"];
+  // @Output() categories: EventEmitter<ArticleModel> = new EventEmitter();
+  nom = this.route.snapshot.paramMap.get('nomArticle');
 
-  // onEnvoiCategorie() {
-  //   this.categories.emit(this.categories);
-  // }
   constructor(private articleService: ArticleService,
-              private photoService: PhotoServices) { }
+              private photoService: PhotoServices,
+              private route: ActivatedRoute) { }
 
-
-  ngOnInit(): void
+  afficherArticles()
   {
     this.articleService.getArticle().subscribe(articles => {
-      this.articles = articles;
-    });
-    this.photoService.getPhotoArticle().subscribe(photos => {
-      this.photos = photos;
+      this.articleDetail = articles;
     });
   }
+
+  afficherUnArticle()
+  {
+    this.articleService.getUnArticle(this.nom).subscribe(articles => {
+      this.articleDetail = articles;
+      console.log(articles);
+    });
+  }
+  afficherPhotos()
+  {
+    this.photoService.getPhotoArticle().subscribe(photos => {
+      this.photoDetail = photos;
+    });
+  }
+  ngOnInit(): void
+  {
+    this.afficherArticles();
+    this.afficherPhotos();
+  }
 }
+
 /*
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TypeService} from '../../service/type.service';
@@ -73,5 +90,11 @@ export class FiltreProjetsComponent implements OnInit {
         }
       });
     this.typesChangeEmitter.emit('Tous');
+      afficherUnArticle()
+  {
+    this.articleService.getUnArticle("table").subscribe(unArticle => {
+      this.articleDetail = unArticle;
+    });
+  }
   }
  */

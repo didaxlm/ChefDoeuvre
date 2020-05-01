@@ -5,10 +5,12 @@ import {ConnexionComponent} from "./connexion/connexion.component";
 import {UserGuard} from "./partage/guards/user.guard";
 import {AdminGuard} from "./partage/guards/admin.guard";
 import {CompteComponent} from "./compte/compte.component";
+import {ArticleDetailsComponent} from "./article-details/article-details.component";
 
 
 const APP_ROUTE: Route[] = [
   { path: '', component: AccueilComponent },
+  { path: 'article-details', component: ArticleDetailsComponent },
   { path: 'don-objets', component: DonObjetsComponent },
   { path: 'connexion', component: ConnexionComponent},
   { path: 'compte', component: CompteComponent },
