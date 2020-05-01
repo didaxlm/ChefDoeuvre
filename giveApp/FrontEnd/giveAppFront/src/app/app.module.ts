@@ -11,8 +11,9 @@ import { RechercheComponent } from './recherche/recherche.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import {environment} from "../environments/environment";
 import {JwtModule} from '@auth0/angular-jwt';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CompteComponent } from './compte/compte.component';
+import { ArticleDetailsComponent } from './article-details/article-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CompteComponent } from './compte/compte.component';
     AccueilComponent,
     RechercheComponent,
     ConnexionComponent,
-    CompteComponent
+    CompteComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     BrowserModule,

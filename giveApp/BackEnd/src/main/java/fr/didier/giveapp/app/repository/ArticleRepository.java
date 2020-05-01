@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface ArticleRepository extends JpaRepository<Article, Integer>
 {
     Optional<Article> findByNomArticle(String nomArticle);
+    //Optional<Article> findByQuantiteArticle(int quantiteArticle);
 }

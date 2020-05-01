@@ -1,0 +1,26 @@
+<!--<ul *ngFor="let article of articleDetail">-->
+<!--  <div>-->
+<!--    <span>-->
+<!--      <div class="imgarticle" *ngFor="let photo of photoArticle">-->
+<!--        <img class="taille_img" *ngIf="article.id == photo.article.id " [src]="photo.urlPhoto">-->
+<!--      </div>-->
+<!--    </span>-->
+<!--  </div>-->
+<!--  <section class="textSection" >-->
+<!--    <div>-->
+<!--      <h1 class="tailleText">{{ article.nomArticle }}</h1>-->
+<!--      <h2>{{ article.categorie["typeCategorie"]}}</h2>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <h3>{{ article.etatArticle }}</h3>-->
+<!--      <h4>Quantité : {{ article.quantiteArticle }}</h4>-->
+<!--      <h5>Localisation : {{ article.ville["nomVille"] }}</h5>-->
+<!--      <h6>Propriétaire : {{ article.user["pseudo"] }}</h6>-->
+<!--      <p>Date de mise en ligne : {{ article.dateDepot }}</p>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--</ul>-->
+<div *ngIf="articleDetail">
+
+<p>{{ articleDetail.nomArticle}}</p>
+</div>
