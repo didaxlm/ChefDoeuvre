@@ -1,22 +1,26 @@
 import {Route, RouterModule} from '@angular/router';
-import { DonObjetsComponent } from "./don-objets/don-objets.component";
+import { DonArticlesComponent } from "./articles/don-articles/don-articles.component";
 import { AccueilComponent } from "./accueil/accueil.component";
 import {ConnexionComponent} from "./connexion/connexion.component";
 import {UserGuard} from "./partage/guards/user.guard";
 import {AdminGuard} from "./partage/guards/admin.guard";
-import {CompteComponent} from "./compte/compte.component";
-import {ArticleDetailsComponent} from "./article-details/article-details.component";
+import {CompteComponent} from "./connexion/compte/compte.component";
+import {ArticleDetailsComponent} from "./articles/article-details/article-details.component";
+import {ArticlesComponent} from "./articles/articles.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 
 const APP_ROUTE: Route[] = [
   { path: '', component: AccueilComponent },
-  { path: 'article-details', component: ArticleDetailsComponent },
-  { path: 'don-objets', component: DonObjetsComponent },
+  { path: 'articles', component: ArticlesComponent },
+  { path: 'articles/:id', component: ArticleDetailsComponent },
+  { path: 'don-articles', component: DonArticlesComponent },
   { path: 'connexion', component: ConnexionComponent},
   { path: 'compte', component: CompteComponent },
-  //{ path: '', redirectTo: '/post', pathMatch: 'full'},
   { path: 'post', component: ConnexionComponent, canActivate: [UserGuard]},
-  { path: 'admin', component: ConnexionComponent, canActivate: [AdminGuard]}
+  { path: 'admin', component: ConnexionComponent, canActivate: [AdminGuard]},
+  //{ path: '', redirectTo: '/post', pathMatch: 'full'},
+  { path: '**', component: NotFoundComponent }
 ];
 
 

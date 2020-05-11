@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CategorieModel} from "../partage/models/categorieModel";
-import {CategorieService} from "../partage/services/categorie.services";
-import {VilleModel} from "../partage/models/villeModel";
-import {VilleServices} from "../partage/services/ville.services";
+import {CategorieServices} from "../partage/services/categorie.services";
+import {ArticleServices} from "../partage/services/article.services";
+import {ArticleModel} from "../partage/models/articleModel";
 
 @Component({
   selector: 'app-recherche',
@@ -12,74 +12,28 @@ import {VilleServices} from "../partage/services/ville.services";
 export class RechercheComponent implements OnInit {
 
   categories: CategorieModel[];
-  villes: VilleModel[];
+  articles: ArticleModel[];
 
-  // @Output('envoiCategorie')
-  // envoiCategorieEmitter = new EventEmitter<any>();
-  //
-  // public envoiCategorie() : void {
-  //   this.envoiCategorieEmitter.emit(this.categories);
-  // }
-
-  constructor(private categorieService: CategorieService, private villeService: VilleServices) { }
+  constructor(private categorieService: CategorieServices,
+              private articleService: ArticleServices) { }
 
   afficherCategorie()
   {
-    this.categorieService.getCategorie().subscribe(categories => {
+    this.categorieService.getAllCategories().subscribe(categories => {
       this.categories = categories;
     });
   }
-  afficherVille()
+  afficherVilles()
   {
-    this.villeService.getVille().subscribe(villes => {
-      this.villes = villes;
+    this.articleService.getArticleByLieux(this.articles["lieuArticle"]).subscribe(villes => {
+      this.articles = villes;
     });
   }
 
   ngOnInit(): void
   {
     this.afficherCategorie();
-    this.afficherVille();
+    //this.afficherVilles();
   }
 }
-/*
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {TypeService} from '../../service/type.service';
-import {take} from 'rxjs/operators';
-import {Type} from '../../model/type';
 
-@Component({
-  selector: 'app-filtre-projets',
-  templateUrl: './filtre-projets.component.html',
-  styleUrls: ['./filtre-projets.component.css']
-})
-export class FiltreProjetsComponent implements OnInit {
-  // public types = new FormControl();
-  typeList: Type[] = [];
-  @Output() typesChangeEmitter = new EventEmitter<any>();
-  readonly ITEM_ALL = 'Tous les projets';
-
-  // private subscription: Subscription = null;
-
-  constructor(private typeService: TypeService) {
-  }
-
-  // public ngOnDestroy(): void {
-  //   this.subscription.unsubscribe();
-  // }
-
-  public ngOnInit(): void {
-    this.typeService.getAllTypes().pipe(take(1)).subscribe(
-      {
-        next: data => {
-          this.typeList = data;
-        },
-        error: (data) => {
-          console.log(data);
-        },
-        complete: () => {
-        }
-      });
-    this.typesChangeEmitter.emit('Tous');
-  }
- */

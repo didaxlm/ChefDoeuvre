@@ -22,11 +22,12 @@ public class DataInitializer implements CommandLineRunner
     private FaqRepository faqDepot;
     private PhotoRepository photoDepot;
     private UserRepository userDepot;
-    private VilleRepository villeDepot;
     private HistoriqueRepository historiqueDepot;
 
-    /*
-     * Formate la date
+    /**
+     * Méthode qui formate la date
+     * @param date date non formatée
+     * @return la date formatée
      */
     public static LocalDate parseDate(String date)
     {
@@ -34,7 +35,9 @@ public class DataInitializer implements CommandLineRunner
         return LocalDate.parse(date, formatter);
     }
 
-    //Création de la BDD
+    /**
+     * Méthode qui enrichie la base de donnée
+     */
     public void initData()
     {
         try
@@ -51,19 +54,16 @@ public class DataInitializer implements CommandLineRunner
             Categorie loisir = new Categorie("Loisir");
             Categorie bureau = new Categorie("Matériel de bureau");
             Categorie vehicule = new Categorie("Véhicule");
+            Categorie divers = new Categorie("Divers");
 
             User jean = new User("Dupont", "Jean", "utilisateur", "jeanot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
             User stephanie = new User("Raleuse", "Stephanie", "utilisateur", "stephie1975", "stephie", "33 rue Raleuse", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
             User jerry = new User("Chaton", "Jerry", "administrateur", "jerry1980", "jerry75", "10 rue de Beaune", "jerry.chat@yahoo.fr", "75019", parseDate("03/04/2020"));
 
-            Ville paris = new Ville("Paris");
-            Ville nantes = new Ville("Nantes");
-            Ville bordeaux = new Ville("Bordeaux");
-
-            Article table = new Article(parseDate("01/04/2020"), "Table", "Neuf", 1, ameublement, jean, paris);
-            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état", 2, loisir, stephanie, nantes);
-            Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen", 2, accessoire, jerry, bordeaux);
-            Article clou = new Article(parseDate("04/04/2020"), "Clou", "Neuf", 10, accessoire, jerry, nantes);
+            Article table = new Article(parseDate("01/04/2020"), "Table", "Neuf","paris", 1, ameublement, jean);
+            Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état","nantes", 2, loisir, stephanie);
+            Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen","bordeaux", 2, accessoire, jerry);
+            Article clou = new Article(parseDate("04/04/2020"), "Clou", "Neuf","nantes", 10, accessoire, jerry);
 
             Photo photo1 = new Photo("https://zupimages.net/up/20/16/1fbq.jpg", table);
             Photo photo2 = new Photo("https://zupimages.net/up/20/16/xwg4.jpg", raquette);
@@ -78,13 +78,10 @@ public class DataInitializer implements CommandLineRunner
                 faqDepot.saveAll(Arrays.asList(regle, poster, supprimer));
             }
             if (!categorieDepot.findAll().iterator().hasNext()){
-                categorieDepot.saveAll(Arrays.asList(accessoire, ameublement, bricolage, electromenager, habillement, loisir, bureau, vehicule));
+                categorieDepot.saveAll(Arrays.asList(accessoire, ameublement, bricolage, electromenager, habillement, loisir, bureau, vehicule, divers));
             }
             if (!userDepot.findAll().iterator().hasNext()){
                 userDepot.saveAll(Arrays.asList(jean, stephanie, jerry));
-            }
-            if (!villeDepot.findAll().iterator().hasNext()){
-                villeDepot.saveAll(Arrays.asList(paris, nantes, bordeaux));
             }
             if (!articleDepot.findAll().iterator().hasNext()){
                 articleDepot.saveAll(Arrays.asList(table, raquette, marteau, clou));

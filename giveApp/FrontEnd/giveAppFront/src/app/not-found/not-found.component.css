@@ -1,0 +1,14 @@
+h1{
+  background-image: url('src/assets/error404.jpg');
+  background-position: center;
+  height: 1000px;
+  text-align: center;
+}
+.back-btn{
+  border-radius: 20px;
+  background-color: #F90000;
+  margin-top: 700px;
+  box-shadow: 1px 1px 8px 1px #F90000;
+  font-family: cursive;
+  position: inherit;
+}
