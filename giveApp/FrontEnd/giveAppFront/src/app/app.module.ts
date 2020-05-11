@@ -5,27 +5,31 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { DonObjetsComponent } from './don-objets/don-objets.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { RechercheComponent } from './recherche/recherche.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import {environment} from "../environments/environment";
 import {JwtModule} from '@auth0/angular-jwt';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { CompteComponent } from './compte/compte.component';
-import { ArticleDetailsComponent } from './article-details/article-details.component';
+import { CompteComponent } from './connexion/compte/compte.component';
+import { ArticleDetailsComponent } from './articles/article-details/article-details.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { DonArticlesComponent } from './articles/don-articles/don-articles.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavBarComponent,
-    DonObjetsComponent,
     AccueilComponent,
     RechercheComponent,
     ConnexionComponent,
     CompteComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    ArticlesComponent,
+    DonArticlesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

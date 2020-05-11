@@ -5,21 +5,38 @@ import {DataService} from "./data.services";
 import {Observable} from "rxjs";
 import {PhotoModel} from "../models/photoModel";
 
+/**
+ * service qui gère les intéractions de photo avec l'api rest
+ */
 @Injectable({ providedIn: 'root' })
 export class PhotoServices extends RequestServices
 {
-  url = this.data.baseUrl + '/photos';
+  url = this.data.baseUrl + '/photos/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   };
 
-  constructor(public http: HttpClient, private data: DataService) {
+  constructor(public http: HttpClient,
+              private data: DataService)
+  {
     super(http, data);
   }
 
-  getPhotoArticle(): Observable<any>{
-    return this.http
-      .get<PhotoModel[]>(this.url);
+  /**
+   * récupère la liste des url des photos
+   */
+  getPhotosArticles(): Observable<any>
+  {
+    return this.getGiveApp(this.url);
+  }
+
+  /**
+   * récupère les photos d'un article
+   * @param id : endpoint correspondant à l'id de l'article
+   */
+  getPhotosArticle(id: number): Observable<any>
+  {
+    return this.getGiveApp(this.url + "articles/" + id);
   }
 }

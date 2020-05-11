@@ -24,6 +24,7 @@ public class Article
 	private int quantiteArticle;
 	private String nomArticle;
 	private String etatArticle;
+	private String lieuArticle;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private LocalDate dateDepot;
@@ -34,9 +35,9 @@ public class Article
 	@JoinColumn( name="user", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne  // plusieurs objets sont associées à une ville
-	@JoinColumn( name="ville", referencedColumnName = "id")
-	private Ville ville;
+//	@ManyToOne  // plusieurs objets sont associées à une ville
+//	@JoinColumn( name="ville", referencedColumnName = "id")
+//	private Ville ville;
 	
 	@ManyToOne // plusieurs objets appartiennent à une catégorie
 	@JoinColumn( name="categorie", referencedColumnName = "id")
@@ -46,7 +47,7 @@ public class Article
 	@OneToMany(mappedBy = "article", orphanRemoval = true)// un objet détient plusieurs photos
 	private Set<Photo> photos = new HashSet();
 
-	public Article(LocalDate dateDepot, String nomArticle, String etatArticle, int quantiteArticle, Categorie categorie, User user, Ville ville)
+	public Article(LocalDate dateDepot, String nomArticle, String etatArticle,String lieuArticle, int quantiteArticle, Categorie categorie, User user)
 	{
 		this.dateDepot = dateDepot;
 		this.nomArticle = nomArticle;
@@ -54,6 +55,6 @@ public class Article
 		this.quantiteArticle = quantiteArticle;
 		this.categorie = categorie;
 		this.user = user;
-		this.ville = ville;
+		this.lieuArticle = lieuArticle;
 	}
 }

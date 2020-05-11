@@ -1,27 +1,29 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ArticleModel} from "../partage/models/articleModel";
 import {ArticleServices} from "../partage/services/article.services";
 import {PhotoModel} from "../partage/models/photoModel";
 import {PhotoServices} from "../partage/services/photo.services";
 import {ActivatedRoute} from "@angular/router";
 
-
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.css']
+  selector: 'app-articles',
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.css']
 })
-export class AccueilComponent implements OnInit {
+export class ArticlesComponent implements OnInit {
 
   articlesDetails: ArticleModel[];
-  unArticle: ArticleModel[] = [];
   photosDetail: PhotoModel[];
-
-  //@Output() articleDetail = new EventEmitter();
 
   constructor(private articleService: ArticleServices,
               private photoService: PhotoServices,
               private route: ActivatedRoute) { }
+
+  ngOnInit(): void
+  {
+    this.afficherArticles();
+    this.afficherPhotos();
+  }
 
   afficherArticles()
   {
@@ -35,11 +37,6 @@ export class AccueilComponent implements OnInit {
     this.photoService.getPhotosArticles().subscribe(photos => {
       this.photosDetail = photos;
     });
-  }
-  ngOnInit(): void
-  {
-    this.afficherArticles();
-    this.afficherPhotos();
   }
 }
 // ##################################################################

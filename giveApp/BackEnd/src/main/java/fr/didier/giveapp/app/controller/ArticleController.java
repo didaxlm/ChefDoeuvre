@@ -3,15 +3,17 @@ package fr.didier.giveapp.app.controller;
 import fr.didier.giveapp.app.exceptions.NotFoundException;
 import fr.didier.giveapp.app.model.Article;
 import fr.didier.giveapp.app.model.Categorie;
-import fr.didier.giveapp.app.model.Ville;
+import fr.didier.giveapp.app.model.User;
 import fr.didier.giveapp.app.repository.ArticleRepository;
 import fr.didier.giveapp.app.repository.CategorieRepository;
-import fr.didier.giveapp.app.repository.VilleRepository;
+import fr.didier.giveapp.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RequestMapping("/articles")
 @RestController
@@ -25,7 +27,7 @@ public class ArticleController
 	private CategorieRepository categorieDepot;
 
 	@Autowired
-	private VilleRepository villeDepot;
+	private UserRepository userDepot;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
@@ -37,62 +39,66 @@ public class ArticleController
 	{
 		return articleDepot.findAll();
 	}
-
 	/**
-	 * Méthode qui récupère un article en particulier
-	 * @param nomArticle : précisé dans l'url (ex : /articles/table)
+	 * Méthode qui récupère un article en particulier en fonction de l'id de l'article
+	 * @param articleId : précisé dans l'url (ex : articles/id/1)
 	 * @return l'article précisé
 	 */
-	@GetMapping("{nomArticle}")
-	public Optional<Article> afficherArticle(@PathVariable String nomArticle)
+	@GetMapping("id/{articleId}")
+	public Optional<Article> afficherArticle(@PathVariable int articleId)
 	{
-		return articleDepot.findByNomArticle(nomArticle);
+		return articleDepot.findById(articleId);
 	}
-
-//	@RequestMapping(value = "/details/", params = {"nomArticle","quantiteArticle","etatArticle"})
-//	public Article afficherDetailsPrincipaux(String nomArticle, int quantiteArticle, String etatArticle){
-//		Article articleDetail = new Article(nomArticle, quantiteArticle, etatArticle);
-//	}
 	/**
-	 * Méthode qui affiche une liste d'article en fonction de l'id de la catégorie
-	 * @param categorieId : précisé dans l'url (ex : /categories/1)
+	 * Méthode qui affiche une liste d'articles en fonction de la localisation
+	 * @param ville : précisé dans l'url (ex: articles/nantes)
+	 * @return une liste d'articles
+	 */
+	@RequestMapping(value = "{ville}",method = RequestMethod.GET)
+	public List<Article> afficherArticlesByLieu(@PathVariable String ville)
+	{
+		return articleDepot.findByLieuArticle(ville);
+	}
+	/**
+	 * Méthode qui affiche une liste d'articles en fonction de l'id de la catégorie
+	 * @param categorieId : précisé dans l'url (ex : articles/categorie/1)
 	 * @return le ou les articles de la catégorie
 	 * @throws Exception si la catégorie de l'article n'existe pas
 	 */
-	@GetMapping("/categories/{categorieId}")
+	@GetMapping("categorie/{categorieId}")
 	public Set<Article> afficherArticlesByCategorie(@PathVariable int categorieId) throws Exception
 	{
-		Set<Article> retourArticle ;
+		Set<Article> retourArticle;
 		Optional<Categorie> categorieFound = categorieDepot.findById(categorieId);
 
-		if (categorieFound.isPresent()){
+		if (categorieFound.isPresent())
+		{
 			retourArticle = categorieFound.get().getArticles();
 		} else {
 			throw new NotFoundException();
 		}
 		return retourArticle;
 	}
-
 	/**
-	 * Méthode qui affiche les articles par ville
-	 * @param villeId : précisé dans l'url (ex : /villes/2)
-	 * @return le ou les articles de la ville
-	 * @throws Exception si la ville de l'article n'existe pas
+	 * Méthode qui affiche une liste d'articles en fonction de l'id de l'utilisateur
+	 * @param userId : précisé dans l'url (ex : articles/user/2)
+	 * @return le ou les articles associé(s) à l'utilisateur
+	 * @throws Exception si l'utilisateur n'existe pas
 	 */
-	@GetMapping("/villes/{villeId}")
-	public Set<Article> afficherArticlesByVille(@PathVariable int villeId) throws Exception
+	@GetMapping("user/{userId}")
+	public Set<Article> afficherArticlesByUser(@PathVariable int userId) throws Exception
 	{
-		Set<Article> retourArticle ;
-		Optional<Ville> villeFound = villeDepot.findById(villeId);
+		Set<Article> retourArticle;
+		Optional<User> userFound = userDepot.findById(userId);
 
-		if (villeFound.isPresent()){
-			retourArticle = villeFound.get().getArticles();
+		if (userFound.isPresent())
+		{
+			retourArticle = userFound.get().getArticles();
 		} else {
 			throw new NotFoundException();
 		}
 		return retourArticle;
 	}
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui ajoute un article à la liste
@@ -101,11 +107,10 @@ public class ArticleController
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Article ajouterArticle(@RequestBody Article dataArticle) 
+	public Article ajouterArticle(@RequestBody Article dataArticle)
 	{
 		return articleDepot.saveAndFlush(dataArticle);
 	}
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui supprime un article de la BDD

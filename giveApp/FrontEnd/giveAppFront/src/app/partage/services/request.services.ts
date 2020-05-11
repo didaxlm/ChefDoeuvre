@@ -1,15 +1,16 @@
 import { Injectable } from "@angular/core";
-import { HttpHeaders, HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { DataService } from "./data.services";
 
 /**
- * parent des autres services qui communoque avec l'api
+ * parent des autres services qui communique avec l'api
  */
 @Injectable({ providedIn: 'root' })
 export class RequestServices
 {
-  constructor(public http: HttpClient, public dataService: DataService) { }
+  constructor(public http: HttpClient,
+              public dataService: DataService) { }
 
   /**
    * effectue une requete Get

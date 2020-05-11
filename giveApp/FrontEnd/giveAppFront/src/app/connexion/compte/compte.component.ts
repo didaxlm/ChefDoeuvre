@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {JwtService} from "../partage/jwt/jwt.service";
+import {JwtService} from "../../partage/jwt/jwt.service";
 
 @Component({
   selector: 'app-compte',
