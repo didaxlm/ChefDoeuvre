@@ -12,8 +12,8 @@
                  #nomArticle="ngModel"
                  (change)="saisie(nomArticle)"
                  type="text" id="nomArticle" class="nomArticle">
-          <div class="alert alert-danger"
-               *ngIf="nomArticle.touched && !nomArticle.valid">Un nom d'article est requis
+          <div class="alert alert-danger" *ngIf="nomArticle.touched && !nomArticle.valid">
+            <div *ngIf="nomArticle.errors.required">Un nom d'article est requis</div>
             <div *ngIf="nomArticle.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
@@ -24,21 +24,21 @@
                  #state="ngModel"
                  (change)="saisie(state)"
                  type="text" id="state" class="state">
-          <div class="alert alert-danger"
-               *ngIf="state.touched && !state.valid">Un état de l'article est requis
+          <div class="alert alert-danger" *ngIf="state.touched && !state.valid">
+            <div *ngIf="state.errors.required">Un état de l'article est requis</div>
             <div *ngIf="state.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
         <!-- Champs de la saisie de la quantité de l'article -->
         <div class="group">
           <label for="quantity">Quantité </label>
-          <input required min="1" [(ngModel)]="newProduit.quantiteArticle" name="quantity"
+          <input required [(ngModel)]="newProduit.quantiteArticle" name="quantity"
                  #quantity="ngModel"
                  (change)="saisie(quantity)"
-                 type="number" id="quantity" class="quantity">
-          <div class="alert alert-danger"
-               *ngIf="quantity.touched && !quantity.valid">Une quantité est requise
-            <div *ngIf="quantity.errors.min">La quantité ne peut pas être nulle</div>
+                 type="text" id="quantity" class="quantity">
+          <div class="alert alert-danger" *ngIf="quantity.touched && !quantity.valid">
+            <div *ngIf="quantity.errors.required">Une quantité est requise</div>
+            <div *ngIf="quantity.errors.valeurNonNull">La quantité ne peut pas être nulle</div>
           </div>
         </div>
         <!-- Champs de la saisie du lieu de l'article -->
@@ -48,8 +48,8 @@
                  #town="ngModel"
                  (change)="saisie(town)"
                  type="text" id="town" class="town">
-          <div class="alert alert-danger"
-               *ngIf="town.touched && !town.valid">Une localisation est requise
+          <div class="alert alert-danger" *ngIf="town.touched && !town.valid">
+            <div *ngIf="town.errors.required">Une localisation est requise</div>
             <div *ngIf="town.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
@@ -90,3 +90,11 @@
     <button id="btn" type="submit" [disabled]="f.invalid">Submit</button>
   </div>
 </form>
+
+<!--    <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">-->
+<!--      <div *ngIf="pseudo.errors.required">Vous devez entrer un pseudo.</div>-->
+<!--      <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>-->
+<!--      <div *ngIf="pseudo.errors.maxlength">Vôtre pseudo ne doit pas dépasser {{ pseudo.errors.maxlength.requiredLength}} caractères.</div>-->
+<!--      <div *ngIf="pseudo.errors.nePeutContenirEspace">Vôtre pseudo ne peut contenir d'espace.</div>-->
+<!--      <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>-->
+<!--    </div>-->

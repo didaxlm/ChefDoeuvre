@@ -50,8 +50,7 @@ export class JwtService
         JwtService.setToken(res.access_token);
         this.feedbackService.info.next(`${pseudo} connected`);
         this.route.navigate(['/compte']);
-      }),
-      catchError(this.feedbackService.handleError<{ access_token: string }>('login'))
+      })
     );
   }
 
@@ -61,7 +60,7 @@ export class JwtService
     {
       this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
       JwtService.clearToken();
-      this.route.navigate(['']);
+      this.route.navigate(['/connexion']);
     }
   }
   // TODO add a register form

@@ -29,7 +29,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ArticleDetailsComponent,
     ArticlesComponent,
     DonArticlesComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

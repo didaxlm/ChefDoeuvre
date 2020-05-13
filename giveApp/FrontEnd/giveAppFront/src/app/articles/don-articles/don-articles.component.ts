@@ -18,8 +18,7 @@ export class DonArticlesComponent implements OnInit
   articles: ArticleModel[];
   newProduit: ArticleModel = new ArticleModel();
 
-  constructor(private fb: FormBuilder,
-              private articleService: ArticleServices,
+  constructor(private articleService: ArticleServices,
               private categorieService: CategorieServices){
   }
 
@@ -38,7 +37,6 @@ export class DonArticlesComponent implements OnInit
 
   afficherCategorie()
   {
-
     this.categorieService.getAllCategories().subscribe(categories => {
       this.categories = categories;
     });
@@ -46,10 +44,11 @@ export class DonArticlesComponent implements OnInit
 
   ajouterArticle()
   {
-    this.articleService.postArticle(this.newProduit, this.newProduit.dateDepot).subscribe(maj => {
+    this.articleService.postArticle(this.newProduit).subscribe(maj => {
       this.articleService.getAllArticles().subscribe((articles: ArticleModel[]) => {
         this.articles = articles
       });
     });
   }
 }
+//set User = currentUser

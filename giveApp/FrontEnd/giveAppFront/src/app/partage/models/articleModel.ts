@@ -14,6 +14,6 @@ export class ArticleModel
   etatArticle: string;
   lieuArticle: string;
   dateDepot: Date;
-  user: UserModel[];
+  user: UserModel;
   categorie: CategorieModel[];
 }

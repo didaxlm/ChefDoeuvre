@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -103,12 +104,13 @@ public class ArticleController
 	/**
 	 * Méthode qui ajoute un article à la liste
 	 * @param dataArticle: correspond aux données de l'article passées dans le Json
-	 * @return le nouvel article sauvegardé
+	 * @return le nouvel article sauvegardé avec la date du jour
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Article ajouterArticle(@RequestBody Article dataArticle)
 	{
+		dataArticle.setDateDepot(LocalDate.now());
 		return articleDepot.saveAndFlush(dataArticle);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////

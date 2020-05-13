@@ -1,30 +1,75 @@
-<form (ngSubmit)="redirection()" [formGroup]="connexionForm">
-
+<form (ngSubmit)="login()" [formGroup]="formulaireDeConnexion">
+  <div *ngIf="formulaireDeConnexion.errors" class="alert alert-danger">
+    Le pseudo ou le mot de passe est incorrect.
+  </div>
   <!-- champs du pseudo -->
-
-  <input formControlName="pseudo"
-    type="text"
-    name="login"
-    id="login"
-    maxlength="30"
-    minlength="4"
-    class="form-control"
-    placeholder="Entrez vôtre pseudo" required>
-
+  <div class="form-group">
+    <label for="login">Pseudo</label>
+    <input formControlName="pseudo"
+           type="text"
+           name="login"
+           id="login"
+           class="form-control"
+           placeholder="Entrez vôtre pseudo">
+    <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
+      <div *ngIf="pseudo.errors.required">Vous devez entrer un pseudo.</div>
+      <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
+      <div *ngIf="pseudo.errors.nePeutContenirEspace">Vôtre pseudo ne peut contenir d'espace.</div>
+    </div>
+  </div>
   <!-- champs du password -->
-
-  <input formControlName="password"
-    type="password"
-    id="password"
-    maxlength="255"
-    minlength="6"
-    name="login"
-    class="form-control"
-    placeholder="Entrez vôtre mot de passe" required>
-
-
-
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input formControlName="password"
+           type="password"
+           name="login"
+           id="password"
+           class="form-control"
+           placeholder="Entrez vôtre mot de passe">
+    <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+      <div *ngIf="password.errors.required">Vous devez saisir un mot de passe.</div>
+      <div *ngIf="password.errors.minlength">Vôtre mot de passe doit contenir au moins {{ password.errors.minlength.requiredLength}} caractères.</div>
+    </div>
+  </div>
   <!-- bouton connexion -->
-
-  <button type="submit" class="btn btn-primary" id="connexion-button">Se Connecter</button>
+  <button class="btn btn-primary">Se Connecter</button>
 </form>
+
+<!--////////////////////////////////////////////////////////////////////////////-->
+<!--<form class="article-container" #f="ngForm" (ngSubmit)="onSubmit(f)">-->
+<!--  &lt;!&ndash; Champs saisie de la connexion &ndash;&gt;-->
+<!--  <div class="articleText-container" id="formContent">-->
+<!--    <h1>Formulaire de connexion</h1>-->
+<!--    <div class="formText">-->
+<!--      <div ngModelGroup="identifiant" #identifiant="ngModelGroup">-->
+<!--        <div id="alert" *ngIf="identifiant.invalid">(Veuillez remplir tous les champs ci-dessous)</div>-->
+<!--        &lt;!&ndash; Champs de la saisie du pseudo &ndash;&gt;-->
+<!--        <div class="group">-->
+<!--          <label for="pseudo">Nom de l'article</label>-->
+<!--          <input required pattern="^[a-zA-Z\u00C0-\u017F-_ ]*" ngModel="" name="pseudo"-->
+<!--                 #pseudo="ngModel"-->
+<!--                 (change)="saisie(pseudo)"-->
+<!--                 type="text" id="pseudo" class="pseudo">-->
+<!--          <div class="alert alert-danger" *ngIf="pseudo.touched && !pseudo.valid">-->
+<!--            <div *ngIf="pseudo.errors.required">Un nom d'article est requis</div>-->
+<!--            <div *ngIf="pseudo.errors.pattern">Caractères spéciaux non autorisés</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Champs de la saisie du password &ndash;&gt;-->
+<!--        <div class="group">-->
+<!--          <label for="password">Etat </label>-->
+<!--          <input required pattern="^[a-zA-Z\u00C0-\u017F-_0-9* ]*" ngModel="" name="password"-->
+<!--                 #password="ngModel"-->
+<!--                 (change)="saisie(password)"-->
+<!--                 type="text" id="password" class="password">-->
+<!--          <div class="alert alert-danger" *ngIf="password.touched && !password.valid">-->
+<!--            <div *ngIf="password.errors.required">Un état de l'article est requis</div>-->
+<!--            <div *ngIf="password.errors.pattern">Caractères spéciaux non autorisés</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; Bouton submit de l'ensemble des identifiants&ndash;&gt;-->
+<!--  <button class="saved" type="submit" [disabled]="f.invalid" >Publier</button>-->
+

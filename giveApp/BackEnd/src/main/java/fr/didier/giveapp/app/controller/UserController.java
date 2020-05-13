@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -43,6 +44,7 @@ public class UserController
 	@PostMapping("/sign-up")
 	public ResponseEntity<User> signUp(@RequestBody User user)
 	{
+		user.setDateInscription(LocalDate.now());
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.signUp(user));
 	}
 
@@ -54,7 +56,6 @@ public class UserController
 	@PostMapping("/sign-in")
 	public ResponseEntity<JsonWebToken> signIn(@RequestBody User user)
 	{
-		System.out.println("dodo");
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
 
