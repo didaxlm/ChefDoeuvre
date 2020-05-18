@@ -12,8 +12,8 @@
                  #nomArticle="ngModel"
                  (change)="saisie(nomArticle)"
                  type="text" id="nomArticle" class="nomArticle">
-          <div class="alert alert-danger"
-               *ngIf="nomArticle.touched && !nomArticle.valid">Un nom d'article est requis
+          <div class="alert alert-danger" *ngIf="nomArticle.touched && !nomArticle.valid">
+            <div *ngIf="nomArticle.errors.required">Un nom d'article est requis</div>
             <div *ngIf="nomArticle.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
@@ -24,21 +24,21 @@
                  #state="ngModel"
                  (change)="saisie(state)"
                  type="text" id="state" class="state">
-          <div class="alert alert-danger"
-               *ngIf="state.touched && !state.valid">Un état de l'article est requis
+          <div class="alert alert-danger" *ngIf="state.touched && !state.valid">
+            <div *ngIf="state.errors.required">Un état de l'article est requis</div>
             <div *ngIf="state.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
         <!-- Champs de la saisie de la quantité de l'article -->
         <div class="group">
           <label for="quantity">Quantité </label>
-          <input required min="1" [(ngModel)]="newProduit.quantiteArticle" name="quantity"
+          <input required [(ngModel)]="newProduit.quantiteArticle" name="quantity"
                  #quantity="ngModel"
                  (change)="saisie(quantity)"
-                 type="number" id="quantity" class="quantity">
-          <div class="alert alert-danger"
-               *ngIf="quantity.touched && !quantity.valid">Une quantité est requise
-            <div *ngIf="quantity.errors.min">La quantité ne peut pas être nulle</div>
+                 type="text" id="quantity" class="quantity">
+          <div class="alert alert-danger" *ngIf="quantity.touched && !quantity.valid">
+            <div *ngIf="quantity.errors.required">Une quantité est requise</div>
+            <div *ngIf="quantity.errors.valeurNonNull">La quantité ne peut pas être nulle</div>
           </div>
         </div>
         <!-- Champs de la saisie du lieu de l'article -->
@@ -48,8 +48,8 @@
                  #town="ngModel"
                  (change)="saisie(town)"
                  type="text" id="town" class="town">
-          <div class="alert alert-danger"
-               *ngIf="town.touched && !town.valid">Une localisation est requise
+          <div class="alert alert-danger" *ngIf="town.touched && !town.valid">
+            <div *ngIf="town.errors.required">Une localisation est requise</div>
             <div *ngIf="town.errors.pattern">Caractères spéciaux non autorisés</div>
           </div>
         </div>
@@ -68,25 +68,33 @@
                *ngIf="category.touched && !category.valid">Une catégorie est requise
           </div>
         </div>
-        <p>
-          {{ f.value | json }}
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- Bouton submit de l'ensemble de l'article-->
-  <button class="saved" type="submit" [disabled]="f.invalid" >Publier</button>
-  <!-- Partie upload des photos -->
-  <div class="articleImg-container" id="imgContent">
-    <h1>Photos de l'article</h1>
-    <div class="cadrePhoto">
-      <div class="photo">
-        <div class="cadre">
-
+        <!-- Champs de la saisie de l'url de la photo -->
+        <div class="group">
+          <label for="photo">Url photo </label>
+          <input required [(ngModel)]="newPhoto.urlPhoto" name="photo"
+                 #photo="ngModel"
+                 (change)="saisie(photo)"
+                 type="text" id="photo" class="photo">
+          <div class="alert alert-danger" *ngIf="photo.touched && !photo.valid">
+            <div *ngIf="photo.errors.required">Ce champs ne peut être vide</div>
+            <div *ngIf="photo.errors.pattern">Caractères spéciaux non autorisés</div>
+          </div>
         </div>
+        <!-- Bouton submit de l'ensemble de l'article-->
+        <button class="saved" type="submit" [disabled]="f.invalid" >Publier</button>
       </div>
     </div>
-    <!-- Bouton submit photos-->
-    <button id="btn" type="submit" [disabled]="f.invalid">Submit</button>
   </div>
 </form>
+<!-- Partie upload des photos -->
+<!--  <div class="articleImg-container" id="imgContent">-->
+<!--    <h1>Photos de l'article</h1>-->
+<!--    <div class="cadrePhoto">-->
+<!--      <div class="photo">-->
+<!--        <div class="cadre">-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button id="btn" type="submit" [disabled]="f.invalid">Submit</button>-->
+<!--  </div>-->

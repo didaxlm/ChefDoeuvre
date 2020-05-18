@@ -56,7 +56,7 @@ public class DataInitializer implements CommandLineRunner
             Categorie vehicule = new Categorie("Véhicule");
             Categorie divers = new Categorie("Divers");
 
-            User jean = new User("Dupont", "Jean", "utilisateur", "jeanot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
+            User jean = new User("Dupont", "Jean", "utilisateur", "janot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
             User stephanie = new User("Raleuse", "Stephanie", "utilisateur", "stephie1975", "stephie", "33 rue Raleuse", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
             User jerry = new User("Chaton", "Jerry", "administrateur", "jerry1980", "jerry75", "10 rue de Beaune", "jerry.chat@yahoo.fr", "75019", parseDate("03/04/2020"));
 

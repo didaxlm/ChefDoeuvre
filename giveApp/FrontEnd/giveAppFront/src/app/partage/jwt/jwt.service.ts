@@ -41,6 +41,15 @@ export class JwtService
 
   //////////////////////////////////////////////////////////////////////////////
 
+  logout()
+  {
+    if (this.isLogged())
+    {
+      this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
+      JwtService.clearToken();
+      this.route.navigate(['/connexion']);
+    }
+  }
   login(pseudo: string, password: string)
   {
     const user = {pseudo, motDePasse: password};
@@ -50,26 +59,16 @@ export class JwtService
         JwtService.setToken(res.access_token);
         this.feedbackService.info.next(`${pseudo} connected`);
         this.route.navigate(['/compte']);
-      }),
-      catchError(this.feedbackService.handleError<{ access_token: string }>('login'))
+      })
     );
   }
 
-  logout()
-  {
-    if (this.isLogged())
-    {
-      this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
-      JwtService.clearToken();
-      this.route.navigate(['']);
-    }
-  }
   // TODO add a register form
-  register(pseudo: string, password: string)
+  register(pseudo: string, password: string, mail: string, codePostal: string, adresse: string, nom: string, prenom: string)
   {
-    const user = {name: pseudo, password: password};
+    const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
-    this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/sign-up`, user).pipe(tap(_ => {
+    return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-up`, user).pipe(tap(_ => {
       this.login(pseudo, password);
     }));
   }

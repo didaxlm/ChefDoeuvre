@@ -14,7 +14,7 @@ import {ActivatedRoute} from "@angular/router";
 export class ArticleDetailsComponent implements OnInit {
 
   idArticle: number;
-  articleDetails : ArticleModel[];
+  articleDetails : ArticleModel;
   photosDetail: PhotoModel[];
 
   constructor(private route: ActivatedRoute,

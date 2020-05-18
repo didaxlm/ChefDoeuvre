@@ -1,13 +1,11 @@
 package fr.didier.giveapp.app.model;
 
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -25,6 +23,10 @@ public class Photo
 	@ManyToOne
 	@JoinColumn( name="article", referencedColumnName = "id")
 	private Article article;
+
+	public Photo(String urlPhoto) {
+		this.urlPhoto = urlPhoto;
+	}
 
 	public Photo(String urlPhoto, Article article)
 	{

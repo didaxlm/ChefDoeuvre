@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
 import {ArticleModel} from "../models/articleModel";
+import {formatDate} from "@angular/common";
 
 /**
  * service qui gère les intéractions de article avec l'api rest
@@ -38,7 +39,6 @@ export class ArticleServices extends RequestServices
   {
     return this.getGiveApp(this.url+ "id/" + id);
   }
-
   /**
    * Récupère la liste des articles en fonction des villes
    * @param ville : endpoint à joindre
@@ -47,12 +47,14 @@ export class ArticleServices extends RequestServices
   {
     return this.getGiveApp(this.url + ville);
   }
+
 // ###############################################################
   /**
    * Méthode qui permet de poster un nouvel article
    * @param newArticle
    */
-  postArticle(newArticle: ArticleModel, newDate: Date): Observable<any>{
+  postArticle(newArticle: ArticleModel): Observable<any>
+  {
     return this.postGiveApp(this.url, newArticle);
   }
 }

@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     /**
-     *
+     * TODO : séparer les cors csrf .... collé en commentaire à la fin de cette page
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception
@@ -48,17 +48,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/users").permitAll()//mettre les endpoint exemple : /api/user/sign-in
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/","/users","/users/compte").permitAll()//mettre les endpoint exemple : /api/user/sign-in
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                /**
+                 * TODO : modifier le dernier antMatchers
+                 */
                 .antMatchers("/**").permitAll()//mettre les endpoint exemple : /api/user/sign-up
                 //Disallow everything else...
                 .anyRequest().authenticated();
         //Apply Jwt
         http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.headers().frameOptions().disable();
     }
 
     /**
-     *
+     *TODO : ressources n'existe pas
      */
     @Override
     public void configure(WebSecurity web) throws Exception
@@ -89,3 +94,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         return new BCryptPasswordEncoder();
     }
 }
+/////////////////////////////////////////////////////////////
+//@Override
+//protected void configure(HttpSecurity http) throws Exception {
+//
+//    http.cors();
+//
+//    // Disable CSRF (cross site request forgery as our token will be stored in session storage)
+//    http.csrf().disable();
+//
+//    // No session will be created or used by spring security
+//    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//    // Entry points
+//    http.authorizeRequests()//
+//            .antMatchers("/api/sign-in", "/api/sign-up").permitAll()//
+//            .antMatchers("/api/init").permitAll()//
+//            .antMatchers(HttpMethod.GET, "/api/posts").permitAll()//
+//            .antMatchers("/h2-console/**").permitAll()
+//            .antMatchers("/v2/api-docs", "/webjars/**", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html/**").permitAll()
+////                .antMatchers("/").permitAll() // TODO ajouter une page racine
+////                .antMatchers("/csrf").permitAll()
+//
+//            // Disallow everything else...
+//            .anyRequest().authenticated();
+//
+//    // Apply JWT
+//    http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+//
+//    http.headers().frameOptions().disable();
+//
+//}

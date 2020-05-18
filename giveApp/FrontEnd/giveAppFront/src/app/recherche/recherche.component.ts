@@ -12,10 +12,8 @@ import {ArticleModel} from "../partage/models/articleModel";
 export class RechercheComponent implements OnInit {
 
   categories: CategorieModel[];
-  articles: ArticleModel[];
 
-  constructor(private categorieService: CategorieServices,
-              private articleService: ArticleServices) { }
+  constructor(private categorieService: CategorieServices) { }
 
   afficherCategorie()
   {
@@ -23,17 +21,10 @@ export class RechercheComponent implements OnInit {
       this.categories = categories;
     });
   }
-  afficherVilles()
-  {
-    this.articleService.getArticleByLieux(this.articles["lieuArticle"]).subscribe(villes => {
-      this.articles = villes;
-    });
-  }
 
   ngOnInit(): void
   {
     this.afficherCategorie();
-    //this.afficherVilles();
   }
 }
 

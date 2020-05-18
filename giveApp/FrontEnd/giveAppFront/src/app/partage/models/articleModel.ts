@@ -1,5 +1,6 @@
 import {UserModel} from "./userModel";
 import {CategorieModel} from "./categorieModel";
+import {PhotoModel} from "./photoModel";
 
 /**
  * objet article, possède des relations avec plusieurs objets:
@@ -8,12 +9,13 @@ import {CategorieModel} from "./categorieModel";
  */
 export class ArticleModel
 {
-  id: number;
-  quantiteArticle: number;
-  nomArticle: string;
-  etatArticle: string;
-  lieuArticle: string;
-  dateDepot: Date;
-  user: UserModel[];
-  categorie: CategorieModel[];
+  id?: number;
+  quantiteArticle?: number;
+  nomArticle?: string;
+  etatArticle?: string;
+  lieuArticle?: string;
+  dateDepot?: Date;
+  user?: UserModel;
+  categorie?: CategorieModel[];
+  photos?: PhotoModel[];
 }

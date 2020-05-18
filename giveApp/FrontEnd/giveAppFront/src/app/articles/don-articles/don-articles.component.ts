@@ -4,6 +4,8 @@ import {CategorieServices} from "../../partage/services/categorie.services";
 import {ArticleModel} from "../../partage/models/articleModel";
 import {ArticleServices} from "../../partage/services/article.services";
 import {FormBuilder} from "@angular/forms";
+import {PhotoModel} from "../../partage/models/photoModel";
+import {PhotoServices} from "../../partage/services/photo.services";
 
 @Component({
   selector: 'app-don-articles',
@@ -13,14 +15,15 @@ import {FormBuilder} from "@angular/forms";
 
 export class DonArticlesComponent implements OnInit
 {
-
+  photos: PhotoModel[];
   categories: CategorieModel[];
   articles: ArticleModel[];
   newProduit: ArticleModel = new ArticleModel();
+  newPhoto: PhotoModel = new PhotoModel();
 
-  constructor(private fb: FormBuilder,
-              private articleService: ArticleServices,
-              private categorieService: CategorieServices){
+  constructor(private articleService: ArticleServices,
+              private categorieService: CategorieServices,
+              private photoService: PhotoServices){
   }
 
   ngOnInit() {
@@ -33,12 +36,17 @@ export class DonArticlesComponent implements OnInit
   onSubmit(f)
   {
     console.log(f);
-    this.ajouterArticle()
+
+    // this.newProduit.photos = [];
+    // this.newPhoto = {"urlPhoto": this.newPhoto.urlPhoto};
+    // this.newProduit.photos.push(this.newPhoto);
+    console.log(this.newProduit);
+    this.ajouterArticle();
+
   }
 
   afficherCategorie()
   {
-
     this.categorieService.getAllCategories().subscribe(categories => {
       this.categories = categories;
     });
@@ -46,10 +54,20 @@ export class DonArticlesComponent implements OnInit
 
   ajouterArticle()
   {
-    this.articleService.postArticle(this.newProduit, this.newProduit.dateDepot).subscribe(maj => {
+    this.articleService.postArticle(this.newProduit).subscribe(maj => {
       this.articleService.getAllArticles().subscribe((articles: ArticleModel[]) => {
-        this.articles = articles
+        this.articles = articles;
       });
     });
   }
+  // ajouterPhoto(){
+  //   this.newPhoto.article = {'id': this.newProduit.id}
+  //   this.photoService.postPhoto(this.newPhoto).subscribe(maj => {
+  //     console.log(maj);
+  //     this.photoService.getPhotosArticles().subscribe((photos: PhotoModel[]) => {
+  //       this.photos = photos;
+  //     });
+  //   });
+  // }
 }
+//set User = currentUser

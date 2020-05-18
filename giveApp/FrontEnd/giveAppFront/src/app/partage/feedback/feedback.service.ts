@@ -13,7 +13,7 @@ export class FeedbackService
   constructor() { }
 
   /**
-   * Handle Http poeration that failed
+   * Handle Http operation that failed
    * permet à l'app de continuer
    * @param operation - nom de l'opération qui échoue
    * @param result - valeur optionelle qui retourne le résultat observable

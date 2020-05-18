@@ -78,6 +78,7 @@ public class User implements UserDetails
 	}
 
 	@Override
+	@JsonBackReference
 	public String getUsername() {
 		return pseudo;
 	}

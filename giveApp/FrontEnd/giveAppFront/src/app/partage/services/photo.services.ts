@@ -39,4 +39,14 @@ export class PhotoServices extends RequestServices
   {
     return this.getGiveApp(this.url + "articles/" + id);
   }
+
+  // ###############################################################
+  /**
+   * Méthode qui permet de poster une nouvelle url de photo
+   * @param newPhoto
+   */
+  postPhoto(newPhoto: PhotoModel): Observable<any>
+  {
+    return this.postGiveApp(this.url, newPhoto);
+  }
 }
