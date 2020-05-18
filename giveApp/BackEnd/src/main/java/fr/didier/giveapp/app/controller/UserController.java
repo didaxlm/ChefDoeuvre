@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = "http://localhost:4200")
-public class UserController 
+public class UserController
 {
 	@Autowired
 	private UserRepository userDepot;
@@ -34,7 +34,16 @@ public class UserController
 	{
 		return userDepot.findAll();
 	}
-
+	/**
+	 * Méthode qui récupère un utilisateur en particulier en fonction de son id
+	 * @param userId : précisé dans l'url (ex : users/id/1)
+	 * @return le user précisé
+	 */
+	@GetMapping("id/{userId}")
+	public Optional<User> afficherUser(@PathVariable int userId)
+	{
+		return userDepot.findById(userId);
+	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui ajoute un utilisateur dans la BDD
@@ -45,9 +54,9 @@ public class UserController
 	public ResponseEntity<User> signUp(@RequestBody User user)
 	{
 		user.setDateInscription(LocalDate.now());
+		System.out.println(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.signUp(user));
 	}
-
 	/** TODO affiner le commentaire
 	 * Méthode qui identifie un utilisateur
 	 * @param user
@@ -58,7 +67,6 @@ public class UserController
 	{
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * supprime un utilisateur de la BDD

@@ -1,48 +1,156 @@
-<form (ngSubmit)="login()" [formGroup]="formulaireDeConnexion">
-  <div *ngIf="formulaireDeConnexion.errors" class="alert alert-danger">
-    Le pseudo ou le mot de passe est incorrect.
-  </div>
-  <!-- champs du pseudo -->
-  <div class="form-group">
-    <label for="login">Pseudo</label>
-    <input formControlName="pseudo"
-           type="text"
-           name="login"
-           id="login"
-           class="form-control"
-           placeholder="Entrez vôtre pseudo">
-    <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
-      <div *ngIf="pseudo.errors.required">Vous devez entrer un pseudo.</div>
-      <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
-      <div *ngIf="pseudo.errors.nePeutContenirEspace">Vôtre pseudo ne peut contenir d'espace.</div>
+<!--////////////////// Partie Connexion ///////////////////////////////////-->
+
+<form class="user-connect" (ngSubmit)="signIn()" [formGroup]="formulaireDeConnexion">
+    <div id="formConnection">
+      <h1>Connexion</h1>
+      <div *ngIf="formulaireDeConnexion.errors" class="alert alert-danger">Le pseudo ou le mot de passe est incorrect.</div>
+      <div id="alertConnection" *ngIf="formulaireDeConnexion.invalid">(Veuillez remplir tous les champs ci-dessous)</div>
+      <!-- champs du pseudo -->
+      <div class="form-group">
+        <label for="identifiant">Pseudo</label>
+        <input formControlName="identifiant"
+               type="text"
+               name="identifiant"
+               id="identifiant"
+               class="form-control"
+               placeholder="Entrez vôtre pseudo">
+        <div *ngIf="identifiant.touched && identifiant.invalid" class="alert alert-danger">
+          <div *ngIf="identifiant.errors.required">Vous devez entrer un pseudo.</div>
+          <div *ngIf="identifiant.errors.minlength">Vôtre pseudo doit contenir au moins {{ identifiant.errors.minlength.requiredLength}} caractères.</div>
+          <div *ngIf="identifiant.errors.nePeutContenirEspace">Vôtre pseudo ne peut contenir d'espace.</div>
+        </div>
+      </div>
+      <!-- champs du password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password"
+               type="password"
+               name="password"
+               id="password"
+               class="form-control"
+               placeholder="Entrez vôtre mot de passe">
+        <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+          <div *ngIf="password.errors.required">Vous devez saisir un mot de passe.</div>
+          <div *ngIf="password.errors.minlength">Vôtre mot de passe doit contenir au moins {{ password.errors.minlength.requiredLength}} caractères.</div>
+        </div>
+      </div>
+      <!-- bouton connexion -->
+      <button class="btn btn-primary">Se Connecter</button>
     </div>
-  </div>
-  <!-- champs du password -->
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input formControlName="password"
-           type="password"
-           name="login"
-           id="password"
-           class="form-control"
-           placeholder="Entrez vôtre mot de passe">
-    <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
-      <div *ngIf="password.errors.required">Vous devez saisir un mot de passe.</div>
-      <div *ngIf="password.errors.minlength">Vôtre mot de passe doit contenir au moins {{ password.errors.minlength.requiredLength}} caractères.</div>
-    </div>
-  </div>
-  <!-- bouton connexion -->
-  <button class="btn btn-primary">Se Connecter</button>
 </form>
 
-<!--////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////// Partie Inscription /////////////////////////////////-->
 
-<form>
-  <div>
-    Le pseudo est déjà pris.
-  </div>
-  <div>
-    <label>Pseudo</label>
+<form class="user-inscription" (ngSubmit)="signUp()" [formGroup]="formulaireDinscription">
+  <div id="formInscription">
+    <h1>S'inscrire</h1>
+    <div *ngIf="formulaireDinscription.errors" class="alert alert-danger">Erreur, formulaire invalide.</div>
+    <div id="alertInscription" *ngIf="formulaireDinscription.invalid">(Veuillez remplir tous les champs ci-dessous)</div>
+    <!-- champs du nom -->
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input formControlName="nom"
+             type="text"
+             name="nom"
+             id="nom"
+             class="form-control"
+             placeholder="Entrez vôtre nom">
+      <div *ngIf="nom.touched && nom.invalid" class="alert alert-danger">
+        <div *ngIf="nom.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="nom.errors.minlength">Vôtre pseudo doit contenir au moins {{ nom.errors.minlength.requiredLength}} caractères.</div>
+      </div>
+    </div>
+    <!-- champs du prénom -->
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input formControlName="prenom"
+             type="text"
+             name="prenom"
+             id="prenom"
+             class="form-control"
+             placeholder="Entrez vôtre prénom">
+      <div *ngIf="prenom.touched && prenom.invalid" class="alert alert-danger">
+        <div *ngIf="prenom.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="prenom.errors.minlength">Vôtre prénom doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
+        <div *ngIf="prenom.errors.maxlength">Vôtre prénom doit contenir au maximum {{ pseudo.errors.maxlength.requiredLength}} caractères.</div>
+      </div>
+    </div>
+    <!-- champs du pseudo -->
+    <div class="form-group">
+      <label for="pseudo">Pseudo</label>
+      <input formControlName="pseudo"
+             type="text"
+             name="pseudo"
+             id="pseudo"
+             class="form-control"
+             placeholder="Entrez vôtre pseudo">
+      <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
+        <div *ngIf="pseudo.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
+        <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>
+      </div>
+    </div>
+    <!-- champs adresse -->
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <input formControlName="adresse"
+             type="text"
+             name="adresse"
+             id="adresse"
+             class="form-control"
+             placeholder="Entrez vôtre adresse">
+      <div *ngIf="adresse.touched && adresse.invalid" class="alert alert-danger">
+        <div *ngIf="adresse.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="adresse.errors.minlength">Vôtre adresse doit contenir au moins {{ adresse.errors.minlength.requiredLength}} caractères.</div>
+        <div *ngIf="adresse.errors.maxlength">Vôtre adresse doit contenir au maximum {{ adresse.errors.maxlength.requiredLength}} caractères.</div>
+      </div>
+    </div>
+    <!-- champs du code postal -->
+    <div class="form-group">
+      <label for="codePostal">Code Postal</label>
+      <input formControlName="codePostal"
+             type="text"
+             name="codePostal"
+             id="codePostal"
+             class="form-control"
+             placeholder="Entrez vôtre codePostal">
+      <div *ngIf="codePostal.touched && codePostal.invalid" class="alert alert-danger">
+        <div *ngIf="codePostal.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="codePostal.errors.minlength">Vôtre codePostal doit contenir au moins {{ codePostal.errors.minlength.requiredLength}} caractères.</div>
+        <div *ngIf="codePostal.errors.maxlength">Vôtre codePostal doit contenir au maximum {{ codePostal.errors.maxlength.requiredLength}} caractères.</div>
+        <div *ngIf="codePostal.errors.nePeutContenirEspace">Vôtre codePostal ne peut contenir d'espace.</div>
+      </div>
+    </div>
+    <!-- champs du mail -->
+    <div class="form-group">
+      <label for="mail">Mail</label>
+      <input formControlName="mail"
+             type="text"
+             name="mail"
+             id="mail"
+             class="form-control"
+             placeholder="Entrez vôtre mail">
+      <div *ngIf="mail.touched && mail.invalid" class="alert alert-danger">
+        <div *ngIf="mail.errors.required">Ce champs ne peut être vide.</div>
+        <div *ngIf="mail.errors.minlength">Vôtre mail doit contenir au moins {{ mail.errors.minlength.requiredLength}} caractères.</div>
+        <div *ngIf="mail.errors.nePeutContenirEspace">Vôtre mail ne peut contenir d'espace.</div>
+      </div>
+    </div>
+    <!-- champs du mot de passe -->
+    <div class="form-group">
+      <label for="motDePasse">Mot de Passe</label>
+      <input formControlName="motDePasse"
+             type="text"
+             name="motDePasse"
+             id="motDePasse"
+             class="form-control"
+             placeholder="Entrez vôtre mot de passe">
+      <div *ngIf="motDePasse.touched && motDePasse.invalid" class="alert alert-danger">
+        <div *ngIf="motDePasse.errors.required">Ce champs ne peut être vide.</div>
+              <div *ngIf="motDePasse.errors.minlength">Vôtre motDePasse doit contenir au moins {{ motDePasse.errors.minlength.requiredLength}} caractères.</div>
+      </div>
+    </div>
+    <!-- bouton inscription -->
+    <button class="btn btn-primary">S'inscrire</button>
   </div>
 </form>
-

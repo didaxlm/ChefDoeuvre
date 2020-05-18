@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "giveapp-eca3a": {
+      "hosting": {
+        "giveAppFront": [
+          "giveapp-eca3a"
+        ]
+      }
+    }
+  }
+}

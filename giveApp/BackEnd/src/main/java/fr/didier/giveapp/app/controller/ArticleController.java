@@ -18,7 +18,6 @@ import java.util.Set;
 
 @RequestMapping("/articles")
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
 public class ArticleController
 {
 	@Autowired

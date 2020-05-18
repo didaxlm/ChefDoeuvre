@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "giveAppFront",
+      "public": "dist/giveAppFront",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -15,61 +15,102 @@ export class ConnexionComponent
   constructor(private auth: JwtService) { }
 
   formulaireDeConnexion = new FormGroup({
-    pseudo: new FormControl("", [
+    identifiant: new FormControl("", [
       Validators.required,
       Validators.minLength(3),
-      IdentificationValidation.nePeutContenirEspace,
+      IdentificationValidation.nePeutContenirEspace
     ]),
     password: new FormControl("", [
       Validators.required,
       Validators.minLength(6),])
   });
 
-  get pseudo() {
-    return this.formulaireDeConnexion.get('pseudo');
+  get identifiant() {
+    return this.formulaireDeConnexion.get('identifiant');
   }
-
   get password() {
     return this.formulaireDeConnexion.get('password');
   }
-
-  login() {
-    this.auth.login(this.formulaireDeConnexion.get("pseudo").value, this.formulaireDeConnexion.get("password").value)
+  signIn()
+  {
+    this.auth.login(this.formulaireDeConnexion.get("identifiant").value, this.formulaireDeConnexion.get("password").value)
       .subscribe(
         data => console.log(data),
         () => this.formulaireDeConnexion.setErrors({invalidLogin: true})
-        );
+      );
+  }
+
+//######################################################################################
+
+  formulaireDinscription = new FormGroup({
+    nom: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    prenom: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    pseudo: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2),
+      IdentificationValidation.doitEtreUnique
+    ]),
+    adresse: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    codePostal: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(5),
+      IdentificationValidation.nePeutContenirEspace
+    ]),
+    mail: new FormControl("",[
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    motDePasse: new FormControl("",[
+      Validators.required,
+      Validators.minLength(6)
+    ]),
+  });
+
+  get nom(){
+    return this.formulaireDinscription.get('nom');
+  }
+  get prenom(){
+    return this.formulaireDinscription.get('prenom');
+  }
+  get pseudo() {
+    return this.formulaireDinscription.get("pseudo");
+  }
+  get adresse(){
+    return this.formulaireDinscription.get('adresse');
+  }
+  get codePostal(){
+    return this.formulaireDinscription.get('codePostal');
+  }
+  get mail(){
+    return this.formulaireDinscription.get('mail');
+  }
+  get motDePasse(){
+    return this.formulaireDinscription.get('motDePasse');
+  }
+  signUp()
+  {
+    console.log(this.formulaireDinscription)
+    this.auth.register(
+      this.formulaireDinscription.get("pseudo").value,
+      this.formulaireDinscription.get("motDePasse").value,
+      this.formulaireDinscription.get("mail").value,
+      this.formulaireDinscription.get("codePostal").value,
+      this.formulaireDinscription.get("adresse").value,
+      this.formulaireDinscription.get("nom").value,
+      this.formulaireDinscription.get("prenom").value)
+      .subscribe(
+        data => console.log(data),
+        () => this.formulaireDinscription.setErrors({invalidLogin: true})
+      );
   }
 }
-
-// //////////////////////////////////////////////////////////////////
-// export class ConnexionComponent implements OnInit
-// {
-//   connexionForm: FormGroup;
-//   submitted: false;
-//
-//   user: UserModel = new UserModel();
-//
-//   constructor(private fb: FormBuilder, private auth: JwtService, private router: Router) { }
-//
-//   ngOnInit(): void {
-//     this.connexionForm = this.fb.group({
-//       pseudo: "",
-//       password: ""
-//     });
-//   }
-//   saisie(arg){
-//     console.log(arg);
-//   }
-//
-//   onSubmit(f){
-//     console.log(f)
-//     this.redirection();
-//   }
-//   redirection()
-//   {
-//     this.auth.login(this.connexionForm.get("pseudo").value, this.connexionForm.get("password").value)
-//       .subscribe(data =>console.log(data));
-//   }
-//
-// }

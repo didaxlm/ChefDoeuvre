@@ -15,8 +15,7 @@ import java.util.Set;
 
 @RequestMapping("/photos")
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-public class PhotoController 
+public class PhotoController
 {
 	@Autowired
 	private PhotoRepository photoDepot;
@@ -34,7 +33,6 @@ public class PhotoController
 	{
 		return photoDepot.findAll();
 	}
-
 	/**
 	 * Methode qui récupère une liste de photo en fonction de l'id de l'article
 	 * @param articleId précisé dans l'url (ex : /articles/1)
@@ -64,6 +62,7 @@ public class PhotoController
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Photo ajouterPhoto(@RequestBody Photo urlPhoto)
 	{
+
 		return photoDepot.saveAndFlush(urlPhoto);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////

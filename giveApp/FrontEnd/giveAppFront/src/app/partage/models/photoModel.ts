@@ -5,7 +5,7 @@ import {ArticleModel} from "./articleModel";
  */
 export class PhotoModel
 {
-  id: number;
-  urlPhoto: string;
-  article: ArticleModel;
+  id?: number;
+  urlPhoto?: string;
+  article?: ArticleModel;
 }

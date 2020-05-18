@@ -11,6 +11,11 @@ export class IdentificationValidation {
       return { nePeutContenirEspace: true };
     return null;
   }
+  static caractereSpeciaux(control: AbstractControl) : ValidationErrors | null{
+    if ((control.value as string).indexOf('<>') >= 0)
+      return {caractereSpeciaux: true};
+    return null;
+  }
 
   static doitEtreUnique(control: AbstractControl) : Promise<ValidationErrors | null>
   {

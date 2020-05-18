@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .and()
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/users").permitAll()//mettre les endpoint exemple : /api/user/sign-in
+                .antMatchers("/","/users","/users/compte").permitAll()//mettre les endpoint exemple : /api/user/sign-in
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 /**
                  * TODO : modifier le dernier antMatchers
