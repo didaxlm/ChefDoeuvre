@@ -3,6 +3,7 @@ package fr.didier.giveapp.app.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -48,13 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/","/users","/users/compte").permitAll()//mettre les endpoint exemple : /api/user/sign-in
+                .antMatchers("/h2-console/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/sign-in","/users/sign-up","/connexion").permitAll()
+                .antMatchers("/articles/","/articles/id/**","/categories/**","/photos/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
-                /**
-                 * TODO : modifier le dernier antMatchers
-                 */
-                .antMatchers("/**").permitAll()//mettre les endpoint exemple : /api/user/sign-up
+                .antMatchers("/**").permitAll()
                 //Disallow everything else...
                 .anyRequest().authenticated();
         //Apply Jwt
@@ -62,18 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         http.headers().frameOptions().disable();
     }
 
-    /**
-     *TODO : ressources n'existe pas
-     */
     @Override
     public void configure(WebSecurity web) throws Exception
     {
         web.ignoring().antMatchers("/resources/**");
     }
 
-    /**
-     *
-     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         final CorsConfiguration configuration = new CorsConfiguration();

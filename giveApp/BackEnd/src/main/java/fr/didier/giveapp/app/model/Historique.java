@@ -27,6 +27,5 @@ public class Historique
 	private LocalDate dateTransaction;
 
 	public Historique(LocalDate dateTransaction) {
-		this.dateTransaction = dateTransaction;
 	}
 }

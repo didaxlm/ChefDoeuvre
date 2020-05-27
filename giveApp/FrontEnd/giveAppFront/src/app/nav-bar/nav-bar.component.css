@@ -45,8 +45,9 @@ li{
   color: #F90000;
 }
 
-#connecter{
+.connecter{
   position: sticky;
+  cursor: pointer;
 
   height: 43px;
   left: 1035px;

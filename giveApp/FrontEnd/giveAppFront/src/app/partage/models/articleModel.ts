@@ -4,8 +4,7 @@ import {PhotoModel} from "./photoModel";
 
 /**
  * objet article, possède des relations avec plusieurs objets:
- * n - 1 avec user et categorie
- * 1 - n avec photo
+ * n - 1 avec user, categorie et photo
  */
 export class ArticleModel
 {
@@ -17,5 +16,5 @@ export class ArticleModel
   dateDepot?: Date;
   user?: UserModel;
   categorie?: CategorieModel[];
-  photos?: PhotoModel[];
+  photo?: PhotoModel;
 }

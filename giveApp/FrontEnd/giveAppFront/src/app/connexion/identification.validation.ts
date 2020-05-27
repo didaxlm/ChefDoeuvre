@@ -3,7 +3,7 @@ import {UserModel} from "../partage/models/userModel";
 
 export class IdentificationValidation {
 
-  users:  UserModel[];
+  users:  UserModel;
 
   static nePeutContenirEspace(control: AbstractControl) : ValidationErrors | null
   {
@@ -21,7 +21,7 @@ export class IdentificationValidation {
   {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (control.value === 'toto')
+        if (control.value === 'todo')
           resolve({ doitEtreUnique: true });
         else resolve(null);
       }, 2000);

@@ -1,12 +1,15 @@
 <ul >
   <li class="tailleSection">
     <h1>{{articleDetails?.nomArticle}}</h1>
-    <div class="imgarticle" *ngFor="let photo of photosDetail">
-      <img class="taille_img" *ngIf="idArticle == photo.article.id" [src]="photo.urlPhoto">
+    <div class="imgarticle" >
+      <img class="taille_img" [src]="articleDetails?.photo?.urlPhoto">
     </div>
     <p>Quantité : {{articleDetails?.quantiteArticle}}</p>
     <p>{{articleDetails?.etatArticle}}</p>
     <p>Déposé le : {{articleDetails?.dateDepot}}</p>
+    <section>
+      <i *ngIf="jwt.isLogged()" (click)="supprimerArticle()" class="far fa-trash-alt"></i>
+    </section>
   </li>
 </ul>
 

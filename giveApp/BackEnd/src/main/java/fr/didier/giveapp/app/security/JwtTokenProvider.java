@@ -1,5 +1,6 @@
 package fr.didier.giveapp.app.security;
 
+import fr.didier.giveapp.app.model.User;
 import fr.didier.giveapp.app.services.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -48,15 +49,14 @@ public class JwtTokenProvider
      * "auth" pour roles
      * "dat" pour date du jour
      * "exp" pour date du jour + validityTime
-     * @param pseudo le user pseudo
-     * @param roles le user roles
+     * @param user le User
      * @return créer le jwt comme string
      */
-    public String createToken(String pseudo, Collection<? extends  GrantedAuthority> roles)
+    public String createToken(User user)
     {
-        Claims claims = Jwts.claims().setSubject(pseudo);
-        claims.put("auth", roles.stream().map(s -> s.getAuthority()).filter(Objects::nonNull).collect(Collectors.toList()));
-
+        Claims claims = Jwts.claims().setSubject(user.getPseudo());
+        claims.put("id", user.getId());
+        claims.put("auth", user.getAuthorities().stream().map(s -> s.getAuthority()).filter(Objects::nonNull).collect(Collectors.toList()));
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
 

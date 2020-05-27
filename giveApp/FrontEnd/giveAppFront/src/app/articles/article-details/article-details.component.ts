@@ -4,6 +4,7 @@ import {ArticleServices} from "../../partage/services/article.services";
 import {PhotoModel} from "../../partage/models/photoModel";
 import {PhotoServices} from "../../partage/services/photo.services";
 import {ActivatedRoute} from "@angular/router";
+import {JwtService} from "../../partage/jwt/jwt.service";
 
 
 @Component({
@@ -15,11 +16,11 @@ export class ArticleDetailsComponent implements OnInit {
 
   idArticle: number;
   articleDetails : ArticleModel;
-  photosDetail: PhotoModel[];
+  produit: ArticleModel[];
 
   constructor(private route: ActivatedRoute,
               private articleService: ArticleServices,
-              private photoService: PhotoServices) { }
+              public jwt: JwtService) { }
 
   ngOnInit() {
     let params = this.route.snapshot.paramMap;
@@ -27,8 +28,13 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.getUnArticle(this.idArticle).subscribe(article => {
       this.articleDetails = article;
     });
-    this.photoService.getPhotosArticle(this.idArticle).subscribe(photos => {
-      this.photosDetail = photos;
+  }
+  supprimerArticle()
+  {
+    this.articleService.deleteArticle(this.idArticle).subscribe(maj => {
+      this.articleService.getAllArticles().subscribe((articles: ArticleModel[]) => {
+        this.produit = articles;
+      });
     });
   }
 

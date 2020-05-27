@@ -30,4 +30,13 @@ export class RequestServices
   {
     return this.http.post<any>(apiUrl, addObjet, this.dataService.httpOptions);
   }
+
+  /**
+   * effectue une requete Delete
+   * @param apiUrl : endpoint à joindre
+   */
+  public delGiveApp(apiUrl: string): Observable<any>
+  {
+    return this.http.delete<any>(apiUrl);
+  }
 }

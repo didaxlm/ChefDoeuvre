@@ -1,5 +1,5 @@
-<div>
-  <img src="../assets/logo.png" class="logo" alt="" />
-</div>
-
-<button (click)="deconnexion()" >Se Déconnecter</button>
+<ul>
+  <li *ngIf="userDetails">
+    <h1>{{userDetails.pseudo}}</h1>
+  </li>
+</ul>

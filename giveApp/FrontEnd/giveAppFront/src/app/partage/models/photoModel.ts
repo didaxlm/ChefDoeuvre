@@ -1,7 +1,7 @@
 import {ArticleModel} from "./articleModel";
 
 /**
- * objet photo, possède une relation n - 1 avec article
+ * objet photo, possède une relation 1 - n avec article
  */
 export class PhotoModel
 {

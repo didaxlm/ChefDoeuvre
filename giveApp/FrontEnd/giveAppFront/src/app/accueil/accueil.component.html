@@ -8,12 +8,12 @@
         <a class="dim_img" id="dim_img" [routerLink]="['/articles', article.id]">
           <div>
             <span>
-              <div class="imgarticle" *ngFor="let photo of photosDetail" >
-                <img class="taille_img" *ngIf="article.id == photo.article.id " [src]="photo.urlPhoto">
+              <div class="imgarticle"  >
+                <img class="taille_img" [src]="article?.photo?.urlPhoto">
               </div>
             </span>
           </div>
-          <section class="textSection" >
+          <section class="textSection">
             <div >
               <p>{{ article?.etatArticle }}</p>
               <p>{{ article?.lieuArticle }}</p>

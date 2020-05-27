@@ -72,3 +72,10 @@ h1{
   font-style: italic;
   text-align: center;
 }
+.far{
+  font-weight: 400;
+  font-size: xx-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

@@ -48,24 +48,35 @@ public class UserController
 	/**
 	 * Méthode qui ajoute un utilisateur dans la BDD
 	 * @param user: correspond aux données du user passées dans le Json
-	 * @return
+	 * @return le user créé sous form d'une hash
 	 */
 	@PostMapping("/sign-up")
 	public ResponseEntity<User> signUp(@RequestBody User user)
 	{
 		user.setDateInscription(LocalDate.now());
-		System.out.println(user);
-		return ResponseEntity.status(HttpStatus.CREATED).body(userService.signUp(user));
+		user = userService.signUp(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(user);
 	}
 	/** TODO affiner le commentaire
 	 * Méthode qui identifie un utilisateur
 	 * @param user
-	 * @return
+	 * @return le jwt
 	 */
 	@PostMapping("/sign-in")
 	public ResponseEntity<JsonWebToken> signIn(@RequestBody User user)
 	{
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@PutMapping
+	public ResponseEntity<User> modifierUser(@RequestBody User userData)
+	{
+		Optional<User> user = userDepot.findById(userData.getId());
+		if (user.isPresent())
+		{
+			userDepot.saveAndFlush(userData);
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body((userDepot.save(userData)));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**

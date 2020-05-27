@@ -13,7 +13,7 @@ export class UserModel
   mail: string;
   adresse: string;
   codePostal: string;
-  pseudo: string;
+  pseudo?: string;
   dateInscription: Date;
   article: ArticleModel;
 
