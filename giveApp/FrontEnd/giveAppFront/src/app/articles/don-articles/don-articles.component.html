@@ -71,7 +71,7 @@
         <!-- Champs de la saisie de l'url de la photo -->
         <div class="group">
           <label for="photo">Url photo </label>
-          <input required [(ngModel)]="newPhoto.urlPhoto" name="photo"
+          <input required [(ngModel)]="newProduit.photo" name="photo"
                  #photo="ngModel"
                  (change)="saisie(photo)"
                  type="text" id="photo" class="photo">
@@ -86,15 +86,4 @@
     </div>
   </div>
 </form>
-<!-- Partie upload des photos -->
-<!--  <div class="articleImg-container" id="imgContent">-->
-<!--    <h1>Photos de l'article</h1>-->
-<!--    <div class="cadrePhoto">-->
-<!--      <div class="photo">-->
-<!--        <div class="cadre">-->
 
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <button id="btn" type="submit" [disabled]="f.invalid">Submit</button>-->
-<!--  </div>-->

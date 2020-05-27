@@ -15,15 +15,12 @@ import {PhotoServices} from "../../partage/services/photo.services";
 
 export class DonArticlesComponent implements OnInit
 {
-  photos: PhotoModel[];
   categories: CategorieModel[];
   articles: ArticleModel[];
   newProduit: ArticleModel = new ArticleModel();
-  newPhoto: PhotoModel = new PhotoModel();
 
   constructor(private articleService: ArticleServices,
-              private categorieService: CategorieServices,
-              private photoService: PhotoServices){
+              private categorieService: CategorieServices){
   }
 
   ngOnInit() {
@@ -36,13 +33,9 @@ export class DonArticlesComponent implements OnInit
   onSubmit(f)
   {
     console.log(f);
-
-    // this.newProduit.photos = [];
-    // this.newPhoto = {"urlPhoto": this.newPhoto.urlPhoto};
-    // this.newProduit.photos.push(this.newPhoto);
     console.log(this.newProduit);
     this.ajouterArticle();
-
+    f.reset();
   }
 
   afficherCategorie()
@@ -60,14 +53,5 @@ export class DonArticlesComponent implements OnInit
       });
     });
   }
-  // ajouterPhoto(){
-  //   this.newPhoto.article = {'id': this.newProduit.id}
-  //   this.photoService.postPhoto(this.newPhoto).subscribe(maj => {
-  //     console.log(maj);
-  //     this.photoService.getPhotosArticles().subscribe((photos: PhotoModel[]) => {
-  //       this.photos = photos;
-  //     });
-  //   });
-  // }
 }
 //set User = currentUser

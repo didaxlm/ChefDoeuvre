@@ -6,15 +6,22 @@
         <a [routerLink]="['']"><img src="../assets/logo.png" class="logo" alt="logo" /></a>
       </div>
 
-      <li>
+      <li *ngIf="jwt.isLogged()">
         <a class="nav-link active" id="donner" [routerLink]="['/don-articles']">
           Donner un Objet
         </a>
       </li>
 
       <li>
-        <a class="nav-link active" id="connecter" [routerLink]="['/connexion']">
+        <a *ngIf="!jwt.isLogged(); else connected" class="nav-link active connecter"  [routerLink]="['/connexion']">
           Se Connecter
+        </a>
+        <ng-template #connected><a (click)="jwt.logout()" class="nav-link active connecter" >déconnecter</a></ng-template>
+      </li>
+
+      <li *ngIf="jwt.isLogged()">
+        <a  class="nav-link active connecter"  [routerLink]="['/compte']">
+          Mon Compte
         </a>
       </li>
 

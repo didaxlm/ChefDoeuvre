@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
 import {RequestServices} from "./request.services";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {DataService} from "./data.services";
 import {Observable} from "rxjs";
 import {ArticleModel} from "../models/articleModel";
-import {formatDate} from "@angular/common";
 
 /**
  * service qui gère les intéractions de article avec l'api rest
@@ -14,9 +13,6 @@ export class ArticleServices extends RequestServices
 {
   url = this.data.baseUrl + '/articles/';
 
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type' : 'application/json'})
-  };
   constructor(public http: HttpClient,
               private data: DataService)
   {
@@ -56,5 +52,10 @@ export class ArticleServices extends RequestServices
   postArticle(newArticle: ArticleModel): Observable<any>
   {
     return this.postGiveApp(this.url, newArticle);
+  }
+// ###############################################################
+  deleteArticle(id: number): Observable<any>
+  {
+    return this.delGiveApp(this.url + id);
   }
 }

@@ -11,21 +11,33 @@ import {Router} from "@angular/router";
 })
 export class JwtService
 {
+  idUser :number;
 
-  constructor(private httpClient: HttpClient, private feedbackService: FeedbackService, private route: Router) { }
+  constructor(private httpClient: HttpClient,
+              private feedbackService: FeedbackService,
+              private route: Router) { }
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
   isLogged(): boolean
   {
-    return Boolean(JwtService.getToken());
+    return Boolean(this.getToken());
+  }
+
+  isAdmin(): boolean
+  {
+    if (!this.isLogged()){
+      return false;
+    } else if (this.getRole() == 'ADMIN'){
+      return true;
+    } else return false;
   }
 
   getPseudo(): string
   {
     if (this.isLogged())
     {
-      return JwtService.userFromToken(JwtService.getToken()).pseudo;
+      return this.userFromToken(this.getToken()).pseudo;
     }
     return undefined;
   }
@@ -34,7 +46,7 @@ export class JwtService
   {
     if (this.isLogged())
     {
-      return JwtService.userFromToken(JwtService.getToken()).role;
+      return this.userFromToken(this.getToken()).role;
     }
     return undefined;
   }
@@ -45,9 +57,10 @@ export class JwtService
   {
     if (this.isLogged())
     {
+      console.log(this.getPseudo());
       this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
-      JwtService.clearToken();
-      this.route.navigate(['/connexion']);
+      this.clearToken();
+      this.route.navigate(['/']);
     }
   }
   login(pseudo: string, password: string)
@@ -56,7 +69,7 @@ export class JwtService
 
     return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-in`, user).pipe(
       tap(res => {
-        JwtService.setToken(res.access_token);
+        this.setToken(res.access_token);
         this.feedbackService.info.next(`${pseudo} connected`);
         this.route.navigate(['/compte']);
       })
@@ -68,28 +81,38 @@ export class JwtService
   {
     const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
-    return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-up`, user).pipe(tap(_ => {
+    return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-up`, user).pipe(tap(res => {
+      this.route.navigate(['/connexion']);
+    }));
+  }
+
+  update(pseudo: string, password: string, mail: string, codePostal: string, adresse: string, nom: string, prenom: string)
+  {
+    const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
+
+    return this.httpClient.put<{ access_token: string }>(`${environment.apiUrl}/users`, user).pipe(tap(_ => {
       this.login(pseudo, password);
     }));
   }
 
 
-  private static getToken(): string
+  getToken(): string
   {
     return sessionStorage.getItem('access_token');
   }
 
-  private static setToken(token: string)
+  setToken(token: string)
   {
     sessionStorage.setItem('access_token', token);
   }
 
-  private static clearToken()
+  clearToken()
   {
     sessionStorage.removeItem('access_token');
+    console.log("bizarre");
   }
 
-  private static userFromToken(token: string): { role: string; pseudo: string; }
+  userFromToken(token: string): { role: string; pseudo: string; }
   {
     const decodedToken = jwt_decode(token);
 
@@ -99,6 +122,14 @@ export class JwtService
     });
 
     return { pseudo: name, role: roles[0]};
+  }
+  getUserId(){
+    if (this.isLogged()){
+    const token = sessionStorage.getItem('access_token');
+    const decodedToken = jwt_decode(token);
+
+    return decodedToken.id;
+    }
   }
 
 }

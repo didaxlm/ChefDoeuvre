@@ -17,18 +17,11 @@ h1{
 .formText{
   width: 500px;
 }
-#imgContent{
-  border: 1px solid black;
-  margin: 20px 15% 10% 15%;
-  box-shadow: 1px 1px 8px 1px black;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-}
+
 #alert{
   text-align: center;
 }
-#nomArticle,#state,#quantity,#town,#category{
+#nomArticle,#state,#quantity,#town,#category,#photo{
   width: 280px;
   height: 60px;
   border-radius: 20px;
@@ -47,7 +40,7 @@ h1{
 .group{
   text-align: center;
 }
-.nomArticle,.state,.quantity,.town,.category{
+.nomArticle,.state,.quantity,.town,.category,.photo{
   display: block;
 }
 
@@ -55,7 +48,6 @@ h1{
 #btn{
   margin-top: 40%;
   margin-left: 120px;
-  /*margin-bottom: 50px;*/
   width: 200px;
   height: 40px;
   border-radius: 20px;
@@ -78,45 +70,5 @@ h1{
   font-size: 30px;
   background-color: #F90000;
 }
-.cadre{
-  border: 1px solid black;
-  border-radius: 100px;
-  margin-left: 120px;
-  /*margin-top: 100px;*/
-  width: 200px;
-  height: 200px;
-}
-.cadrePhoto{
-  border: 1px solid black;
-  background-color: gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-top: 10%;
-  width: 435px;
-  height: 400px;
-}
-/* mediaqueries */
-/*@media screen and (min-width: 350px) and (max-width:519.9px) {*/
 
-/*  #login, #password*/
-/*  {*/
-/*    left: 10px;*/
-/*  }*/
-/*  #connexion-button*/
-/*  {*/
-/*    position: relative;*/
-/*    left: 15px;*/
-/*  }*/
-/*}*/
 
-/*@media screen and (max-width:349px) {*/
-
-/*  #login, #password*/
-/*  {*/
-/*    left: -5px;*/
-/*  }*/
-/*  #connexion-button*/
-/*  {*/
-/*  }*/
-/*}*/

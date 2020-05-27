@@ -54,7 +54,7 @@ export class ConnexionComponent
     pseudo: new FormControl("",[
       Validators.required,
       Validators.minLength(2),
-      IdentificationValidation.doitEtreUnique
+      //IdentificationValidation.doitEtreUnique
     ]),
     adresse: new FormControl("",[
       Validators.required,
@@ -68,7 +68,8 @@ export class ConnexionComponent
     ]),
     mail: new FormControl("",[
       Validators.required,
-      Validators.minLength(2)
+      Validators.minLength(2),
+      IdentificationValidation.nePeutContenirEspace
     ]),
     motDePasse: new FormControl("",[
       Validators.required,
@@ -112,5 +113,6 @@ export class ConnexionComponent
         data => console.log(data),
         () => this.formulaireDinscription.setErrors({invalidLogin: true})
       );
+    this.formulaireDinscription.reset();
   }
 }

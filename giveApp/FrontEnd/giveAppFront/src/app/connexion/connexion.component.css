@@ -1,4 +1,7 @@
 /* Partie générale */
+.all-form{
+  display: flex;
+}
 .form-group{
   text-align: center;
 }
@@ -8,11 +11,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: 10%;
 }
 #formConnection{
   border: 1px solid black;
   box-shadow: 1px 1px 8px 1px black;
-  border-radius: 20px;
+  border-radius: 10px;
   margin: 20px 10% 10% 15%;
   display: flex;
   flex-direction: column;
@@ -25,12 +29,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: 30%;
 }
 #formInscription{
   border: 1px solid black;
   margin: 20px 15% 10% 15%;
   box-shadow: 1px 1px 8px 1px black;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   width: 500px;

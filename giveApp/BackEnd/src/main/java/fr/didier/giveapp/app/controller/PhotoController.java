@@ -33,25 +33,7 @@ public class PhotoController
 	{
 		return photoDepot.findAll();
 	}
-	/**
-	 * Methode qui récupère une liste de photo en fonction de l'id de l'article
-	 * @param articleId précisé dans l'url (ex : /articles/1)
-	 * @return la ou les photos de l'article
-	 * @throws Exception si l'article de la photo n'existe pas
-	 */
-	@GetMapping("/articles/{articleId}")
-	public Set<Photo> afficherPhotoArticle(@PathVariable int articleId) throws Exception
-	{
-		Set<Photo> retourPhoto ;
-		Optional<Article> articleFound = articleDepot.findById(articleId);
 
-		if (articleFound.isPresent()){
-			retourPhoto = articleFound.get().getPhotos();
-		} else {
-			throw new NotFoundException();
-		}
-		return retourPhoto;
-	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * ajoute une URL à la liste
@@ -62,7 +44,6 @@ public class PhotoController
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Photo ajouterPhoto(@RequestBody Photo urlPhoto)
 	{
-
 		return photoDepot.saveAndFlush(urlPhoto);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////

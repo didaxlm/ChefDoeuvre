@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService
         try
         {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(pseudo, motDePasse));
-            return jwtTokenProvider.createToken(pseudo, userDepot.findByPseudo(pseudo).get().getAuthorities());
+            return jwtTokenProvider.createToken(userDepot.findByPseudo(pseudo).get());
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("login invalide");
         }
