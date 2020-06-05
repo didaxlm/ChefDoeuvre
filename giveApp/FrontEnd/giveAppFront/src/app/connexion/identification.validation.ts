@@ -7,9 +7,11 @@ export class IdentificationValidation {
 
   static nePeutContenirEspace(control: AbstractControl) : ValidationErrors | null
   {
-    if ((control.value as string).indexOf(' ') >= 0)
-      return { nePeutContenirEspace: true };
+    if (control.value){
+      if ((control.value as string).indexOf(' ') >= 0)
+        return { nePeutContenirEspace: true };
     return null;
+    }
   }
   static caractereSpeciaux(control: AbstractControl) : ValidationErrors | null{
     if ((control.value as string).indexOf('<>') >= 0)

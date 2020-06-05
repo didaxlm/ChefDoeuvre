@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categories")
@@ -24,6 +25,15 @@ public class CategorieController
 	public List<Categorie> afficherListeCategorie()
 	{
 		return categorieDepot.findAll();
+	}
+	/**
+	 * Méthode qui affiche une catégorie en particulier en fonction de l'id de la catégorie
+	 * @param categorieId précisé dans l'url (ex : categories/id/2)
+	 * @return la catégorie précisée
+	 */
+	@GetMapping("id/{categorieId}")
+	public Optional<Categorie> afficherCategorie(@PathVariable int categorieId){
+		return categorieDepot.findById(categorieId);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////

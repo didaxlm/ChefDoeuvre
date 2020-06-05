@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleModel} from "../partage/models/articleModel";
 import {ArticleServices} from "../partage/services/article.services";
 import {PhotoModel} from "../partage/models/photoModel";

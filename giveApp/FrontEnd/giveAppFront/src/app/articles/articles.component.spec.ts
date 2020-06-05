@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticlesComponent } from './articles.component';
+import {ActivatedRoute} from "@angular/router";
+import {ArticleServices} from "../partage/services/article.services";
+import {JwtService} from "../partage/jwt/jwt.service";
 
-describe('ArticlesComponent', () => {
+describe('ArticlesComponent', () =>
+{
   let component: ArticlesComponent;
   let fixture: ComponentFixture<ArticlesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArticlesComponent ]
+      declarations: [ ArticlesComponent ],
+      imports: [],
+      providers: [ActivatedRoute, ArticleServices, JwtService]
     })
     .compileComponents();
   }));
@@ -23,3 +29,4 @@ describe('ArticlesComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

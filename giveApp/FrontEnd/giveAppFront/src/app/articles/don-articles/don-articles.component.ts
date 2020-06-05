@@ -3,9 +3,6 @@ import {CategorieModel} from "../../partage/models/categorieModel";
 import {CategorieServices} from "../../partage/services/categorie.services";
 import {ArticleModel} from "../../partage/models/articleModel";
 import {ArticleServices} from "../../partage/services/article.services";
-import {FormBuilder} from "@angular/forms";
-import {PhotoModel} from "../../partage/models/photoModel";
-import {PhotoServices} from "../../partage/services/photo.services";
 
 @Component({
   selector: 'app-don-articles',
@@ -54,4 +51,3 @@ export class DonArticlesComponent implements OnInit
     });
   }
 }
-//set User = currentUser

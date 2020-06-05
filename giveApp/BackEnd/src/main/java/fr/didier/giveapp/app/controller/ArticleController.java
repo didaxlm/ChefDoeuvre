@@ -30,9 +30,6 @@ public class ArticleController
 	@Autowired
 	private UserRepository userDepot;
 
-	@Autowired
-	private PhotoRepository photoDepot;
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui affiche la liste des articles
@@ -107,7 +104,7 @@ public class ArticleController
 	/**
 	 * Méthode qui ajoute un article à la liste
 	 * @param dataArticle: correspond aux données de l'article passées dans le Json
-	 * @return le nouvel article sauvegardé avec la date du jour
+	 * @return le nouvel article sauvegardé avec la date du jour et l'utilisateur connecté
 	 */
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -124,10 +121,20 @@ public class ArticleController
 	 * @throws Exception l'article n'existe pas
 	 */
 	@DeleteMapping("{articleId}")
-	public void supprimerArticle(@PathVariable int articleId) throws Exception
+	public void supprimerArticle(@PathVariable int articleId, @AuthenticationPrincipal User userIdentifier) throws Exception
 	{
-		if (articleDepot.existsById(articleId)){
-		articleDepot.deleteById(articleId);
+		if (articleDepot.existsById(articleId))
+		{
+			Optional<Article> optArticle = articleDepot.findById(articleId);
+			if (optArticle.isPresent())
+			{
+				if (userIdentifier.getId()==optArticle.get().getUser().getId())
+				{
+					articleDepot.deleteById(articleId);
+				}
+			} else {
+				throw new NotFoundException();
+			}
 		} else {
 			throw new NotFoundException();
 		}
