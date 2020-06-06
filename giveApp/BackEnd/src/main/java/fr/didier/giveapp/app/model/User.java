@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +32,7 @@ public class User implements UserDetails
 	private int id;
 
 	@JsonIgnore
-	private String role = "Utilisateur";
+	private String role = "USER";
 
 	private String nom ;
 	private String prenom;
@@ -47,7 +50,7 @@ public class User implements UserDetails
 	
 	@JsonBackReference // évite les boucles d'appel dans le json
 	// un utilisateur a plusieurs objets
-	@OneToMany(mappedBy = "user", orphanRemoval = true)
+	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<Article> articles = new HashSet();
 
 

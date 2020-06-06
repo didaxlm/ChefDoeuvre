@@ -1,21 +1,20 @@
 <div class="search">
   <div class="filter">
-    <div>
-      <label id="category" class="category">Que recherchez-vous ?
-      <select id="category-select" class="category" >
-        <option >-- Catégories --</option>
-        <option *ngFor="let categorie of categories">{{ categorie.typeCategorie }}</option>
-      </select>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <label for="category" id="category" class="category">Que recherchez-vous ?
+        <select ngModel="idCategorie" name="category"
+                #category="ngModel"
+                (change)="saisie(category)"
+                id="category-select" class="category">
+          <option>-- Catégories --</option>
+          <option *ngFor="let categorie of categories"
+                  value="{{categorie.id}}"
+                  >{{ categorie.typeCategorie }}
+          </option>
+        </select>
       </label>
-    </div>
-    <div>
-      <label id="lieu">Dans quelle ville ?
-      <select>
-        <option>-- Localités --</option>
-<!--        <option *ngFor="let article of articles">{{ article.lieuArticle }}</option>-->
-      </select>
-      </label>
-    </div>
+      <button class="btn" type="submit" [disabled]="f.invalid" [routerLink]="['/articles/categorie', f.value.category]">Rechercher</button>
+    </form>
   </div>
 </div>
 

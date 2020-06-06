@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {JwtService} from "../partage/jwt/jwt.service";
 import {IdentificationValidation} from "./identification.validation";
@@ -43,6 +43,8 @@ export class ConnexionComponent
 //######################################################################################
 
   formulaireDinscription = new FormGroup({
+    id: new FormControl(),
+    dateInscription: new FormControl(),
     nom: new FormControl("",[
       Validators.required,
       Validators.minLength(2)
@@ -98,6 +100,7 @@ export class ConnexionComponent
   get motDePasse(){
     return this.formulaireDinscription.get('motDePasse');
   }
+
   signUp()
   {
     console.log(this.formulaireDinscription)

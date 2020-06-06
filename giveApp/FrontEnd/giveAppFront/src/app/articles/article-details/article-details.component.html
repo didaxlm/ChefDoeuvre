@@ -7,9 +7,10 @@
     <p>Quantité : {{articleDetails?.quantiteArticle}}</p>
     <p>{{articleDetails?.etatArticle}}</p>
     <p>Déposé le : {{articleDetails?.dateDepot}}</p>
+    <p>Contact : {{articleDetails?.user?.mail}}</p>
     <section>
-      <i *ngIf="jwt.isLogged()" (click)="supprimerArticle()" class="far fa-trash-alt"></i>
+      <i *ngIf="jwt.isLogged()"
+         (click)="supprimerArticle()" [routerLink]="['/compte']" class="far fa-trash-alt"></i>
     </section>
   </li>
 </ul>
-

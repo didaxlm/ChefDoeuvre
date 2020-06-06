@@ -57,12 +57,12 @@ export class JwtService
   {
     if (this.isLogged())
     {
-      console.log(this.getPseudo());
       this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
       this.clearToken();
       this.route.navigate(['/']);
     }
   }
+
   login(pseudo: string, password: string)
   {
     const user = {pseudo, motDePasse: password};
@@ -76,22 +76,34 @@ export class JwtService
     );
   }
 
-  // TODO add a register form
-  register(pseudo: string, password: string, mail: string, codePostal: string, adresse: string, nom: string, prenom: string)
+  register(pseudo: string,
+           password: string,
+           mail: string,
+           codePostal: string,
+           adresse: string, nom: string,
+           prenom: string)
   {
     const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
     return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-up`, user).pipe(tap(res => {
-      this.route.navigate(['/connexion']);
+      this.route.navigate(['/']);
     }));
   }
 
-  update(pseudo: string, password: string, mail: string, codePostal: string, adresse: string, nom: string, prenom: string)
+  update(id: number,
+         dateInscription: string,
+         pseudo: string,
+         password: string,
+         mail: string,
+         codePostal: string,
+         adresse: string,
+         nom: string,
+         prenom: string)
   {
-    const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
+    const user = {id, dateInscription, pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
     return this.httpClient.put<{ access_token: string }>(`${environment.apiUrl}/users`, user).pipe(tap(_ => {
-      this.login(pseudo, password);
+      this.route.navigate(['/']);
     }));
   }
 
@@ -109,7 +121,6 @@ export class JwtService
   clearToken()
   {
     sessionStorage.removeItem('access_token');
-    console.log("bizarre");
   }
 
   userFromToken(token: string): { role: string; pseudo: string; }

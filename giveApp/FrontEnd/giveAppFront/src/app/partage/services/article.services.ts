@@ -33,7 +33,7 @@ export class ArticleServices extends RequestServices
    */
   getUnArticle(id: number): Observable<any>
   {
-    return this.getGiveApp(this.url+ "id/" + id);
+    return this.getGiveApp(this.url + "id/" + id);
   }
   /**
    * Récupère la liste des articles en fonction des villes
@@ -42,6 +42,10 @@ export class ArticleServices extends RequestServices
   getArticleByLieux(ville: string): Observable<any>
   {
     return this.getGiveApp(this.url + ville);
+  }
+  getArticleByCategorie(idCategorie: number): Observable<any>
+  {
+    return this.getGiveApp(this.url + "categorie/" + idCategorie);
   }
 
 // ###############################################################

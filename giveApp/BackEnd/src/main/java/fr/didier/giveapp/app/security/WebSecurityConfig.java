@@ -3,7 +3,6 @@ package fr.didier.giveapp.app.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,12 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -36,26 +29,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     /**
-     * TODO : séparer les cors csrf .... collé en commentaire à la fin de cette page
+     * Méthode qui configure les requètes http
+     * @param http paramètres des requètes
+     * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.cors()
-                .and()
-                .csrf()
-                .disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
+        //Disable car le token est stocké dans le session storage
+        http.csrf().disable();
+        //Aucune session ne sera créée ou utilisée par spring security
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        //Points d'entrée
+        http.authorizeRequests()
                 .antMatchers("/h2-console/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/").permitAll()
                 .antMatchers("/users/sign-in","/users/sign-up","/connexion").permitAll()
-                .antMatchers("/articles/","/articles/id/**","/categories/**","/photos/**").permitAll()
+                .antMatchers("/articles/","/articles/id/**","/articles/categorie/**","/categories/**","/photos/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/**").permitAll()
-                //Disallow everything else...
+                //Refuser tout le reste si non authentifié
                 .anyRequest().authenticated();
         //Apply Jwt
         http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
@@ -69,53 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
-        final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
-
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder()
+    {
         return new BCryptPasswordEncoder();
     }
 }
-/////////////////////////////////////////////////////////////
-//@Override
-//protected void configure(HttpSecurity http) throws Exception {
-//
-//    http.cors();
-//
-//    // Disable CSRF (cross site request forgery as our token will be stored in session storage)
-//    http.csrf().disable();
-//
-//    // No session will be created or used by spring security
-//    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//    // Entry points
-//    http.authorizeRequests()//
-//            .antMatchers("/api/sign-in", "/api/sign-up").permitAll()//
-//            .antMatchers("/api/init").permitAll()//
-//            .antMatchers(HttpMethod.GET, "/api/posts").permitAll()//
-//            .antMatchers("/h2-console/**").permitAll()
-//            .antMatchers("/v2/api-docs", "/webjars/**", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html/**").permitAll()
-////                .antMatchers("/").permitAll() // TODO ajouter une page racine
-////                .antMatchers("/csrf").permitAll()
-//
-//            // Disallow everything else...
-//            .anyRequest().authenticated();
-//
-//    // Apply JWT
-//    http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-//
-//    http.headers().frameOptions().disable();
-//
-//}

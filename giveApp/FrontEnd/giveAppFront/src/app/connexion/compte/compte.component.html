@@ -1,5 +1,127 @@
-<ul>
-  <li *ngIf="userDetails">
-    <h1>{{userDetails.pseudo}}</h1>
-  </li>
-</ul>
+<div class="all-form">
+  <form class="user-inscription" (ngSubmit)="updateUser()" [formGroup]="formulaireDinscription">
+    <div *ngIf="userDetails" id="formInscription">
+      <h1>{{userDetails.pseudo}}</h1>
+      <div *ngIf="formulaireDinscription.errors" class="alert alert-danger">Erreur, formulaire invalide.</div>
+      <div id="alertInscription" *ngIf="formulaireDinscription.invalid">(Veuillez remplir tous les champs ci-dessous)</div>
+      <!-- id du user -->
+      <div class="form-group">
+        <label for="id"></label>
+        <input formControlName="id"
+               type="hidden"
+               name="id"
+               id="id"
+               value="{{userDetails.id}}">
+      </div>
+      <!-- date inscription -->
+      <div class="form-group">
+        <label for="dateInscription"></label>
+        <input formControlName="dateInscription"
+               type="hidden"
+               name="dateInscription"
+               id="dateInscription"
+               value="{{userDetails.dateInscription}}">
+      </div>
+      <!-- champs du nom -->
+      <div class="form-group">
+        <label for="nom">{{userDetails.nom}}</label>
+        <input formControlName="nom"
+               type="text"
+               name="nom"
+               id="nom"
+               class="form-control"
+               placeholder="Modifier vôtre nom">
+<!--        <div *ngIf="nom.touched && nom.invalid" class="alert alert-danger">-->
+<!--          <div *ngIf="nom.errors.minlength">Vôtre pseudo doit contenir au moins {{ nom.errors.minlength.requiredLength}} caractères.</div>-->
+<!--        </div>-->
+      </div>
+      <!-- champs du prénom -->
+      <div class="form-group">
+        <label for="prenom">{{userDetails.prenom}}</label>
+        <input formControlName="prenom"
+               type="text"
+               name="prenom"
+               id="prenom"
+               class="form-control"
+               placeholder="Modifier vôtre prénom">
+        <div *ngIf="prenom.touched && prenom.invalid" class="alert alert-danger">
+          <div *ngIf="prenom.errors.minlength">Vôtre prénom doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
+          <div *ngIf="prenom.errors.maxlength">Vôtre prénom doit contenir au maximum {{ pseudo.errors.maxlength.requiredLength}} caractères.</div>
+        </div>
+      </div>
+      <!-- champs du pseudo -->
+      <div class="form-group">
+        <label for="pseudo">{{userDetails.pseudo}}</label>
+        <input formControlName="pseudo"
+               type="text"
+               name="pseudo"
+               id="pseudo"
+               class="form-control"
+               placeholder="Modifier vôtre pseudo">
+        <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
+          <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
+          <!--          <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>-->
+        </div>
+      </div>
+      <!-- champs adresse -->
+      <div class="form-group">
+        <label for="adresse">{{userDetails.adresse}}</label>
+        <input formControlName="adresse"
+               type="text"
+               name="adresse"
+               id="adresse"
+               class="form-control"
+               placeholder="Modifier vôtre adresse">
+        <div *ngIf="adresse.touched && adresse.invalid" class="alert alert-danger">
+          <div *ngIf="adresse.errors.minlength">Vôtre adresse doit contenir au moins {{ adresse.errors.minlength.requiredLength}} caractères.</div>
+          <div *ngIf="adresse.errors.maxlength">Vôtre adresse doit contenir au maximum {{ adresse.errors.maxlength.requiredLength}} caractères.</div>
+        </div>
+      </div>
+      <!-- champs du code postal -->
+      <div class="form-group">
+        <label for="codePostal">{{userDetails.codePostal}}</label>
+        <input formControlName="codePostal"
+               type="text"
+               name="codePostal"
+               id="codePostal"
+               class="form-control"
+               placeholder="Modifier vôtre codePostal">
+        <div *ngIf="codePostal.touched && codePostal.invalid" class="alert alert-danger">
+          <div *ngIf="codePostal.errors.minlength">Vôtre codePostal doit contenir au moins {{ codePostal.errors.minlength.requiredLength}} caractères.</div>
+          <div *ngIf="codePostal.errors.maxlength">Vôtre codePostal doit contenir au maximum {{ codePostal.errors.maxlength.requiredLength}} caractères.</div>
+          <div *ngIf="codePostal.errors.nePeutContenirEspace">Vôtre codePostal ne peut contenir d'espace.</div>
+        </div>
+      </div>
+      <!-- champs du mail -->
+      <div class="form-group">
+        <label for="mail">{{userDetails.mail}}</label>
+        <input formControlName="mail"
+               type="text"
+               name="mail"
+               id="mail"
+               class="form-control"
+               placeholder="Modifier vôtre mail">
+        <div *ngIf="mail.touched && mail.invalid" class="alert alert-danger">
+          <div *ngIf="mail.errors.minlength">Vôtre mail doit contenir au moins {{ mail.errors.minlength.requiredLength}} caractères.</div>
+          <div *ngIf="mail.errors.nePeutContenirEspace">Vôtre mail ne peut contenir d'espace.</div>
+        </div>
+      </div>
+      <!-- champs du mot de passe -->
+      <div class="form-group">
+        <label for="motDePasse">Mot de Passe</label>
+        <input formControlName="motDePasse"
+               type="password"
+               name="motDePasse"
+               id="motDePasse"
+               class="form-control"
+               placeholder="Modifier vôtre mot de passe">
+        <div *ngIf="motDePasse.touched && motDePasse.invalid" class="alert alert-danger">
+          <div *ngIf="motDePasse.errors.required">Ce champs ne peut être vide.</div>
+          <div *ngIf="motDePasse.errors.minlength">Vôtre motDePasse doit contenir au moins {{ motDePasse.errors.minlength.requiredLength}} caractères.</div>
+        </div>
+      </div>
+      <!-- bouton inscription -->
+      <button class="btn btn-primary">Modifier</button>
+    </div>
+  </form>
+</div>

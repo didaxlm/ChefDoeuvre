@@ -29,3 +29,8 @@
 .category{
   position: sticky;
 }
+.btn{
+  display: block;
+  margin: auto;
+  color: black;
+}

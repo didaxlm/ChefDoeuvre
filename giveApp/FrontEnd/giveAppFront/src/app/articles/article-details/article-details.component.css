@@ -75,7 +75,4 @@ h1{
 .far{
   font-weight: 400;
   font-size: xx-large;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
 }

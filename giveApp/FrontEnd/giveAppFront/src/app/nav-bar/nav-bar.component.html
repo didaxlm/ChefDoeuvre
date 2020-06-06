@@ -16,7 +16,7 @@
         <a *ngIf="!jwt.isLogged(); else connected" class="nav-link active connecter"  [routerLink]="['/connexion']">
           Se Connecter
         </a>
-        <ng-template #connected><a (click)="jwt.logout()" class="nav-link active connecter" >déconnecter</a></ng-template>
+        <ng-template #connected><a (click)="jwt.logout()" class="nav-link active connecter" >Se Déconnecter</a></ng-template>
       </li>
 
       <li *ngIf="jwt.isLogged()">

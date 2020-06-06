@@ -25,15 +25,7 @@ public class UserController
 	private UserService userService;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * Méthode qui affiche la liste des utilisateurs
-	 * @return toute la liste
-	 */
-	@GetMapping
-	public List<User> afficherListeUser() 
-	{
-		return userDepot.findAll();
-	}
+
 	/**
 	 * Méthode qui récupère un utilisateur en particulier en fonction de son id
 	 * @param userId : précisé dans l'url (ex : users/id/1)
@@ -47,17 +39,17 @@ public class UserController
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui ajoute un utilisateur dans la BDD
-	 * @param user: correspond aux données du user passées dans le Json
-	 * @return le user créé sous form d'une hash
+	 * @param newUser: correspond aux données du user passées dans le Json
+	 * @return le user créé sous forme d'une hash
 	 */
 	@PostMapping("/sign-up")
-	public ResponseEntity<User> signUp(@RequestBody User user)
+	public ResponseEntity<User> signUp(@RequestBody User newUser)
 	{
-		user.setDateInscription(LocalDate.now());
-		user = userService.signUp(user);
-		return ResponseEntity.status(HttpStatus.CREATED).body(user);
+		newUser.setDateInscription(LocalDate.now());
+		newUser = userService.signUp(newUser);
+		return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
 	}
-	/** TODO affiner le commentaire
+	/**
 	 * Méthode qui identifie un utilisateur
 	 * @param user
 	 * @return le jwt
@@ -68,15 +60,21 @@ public class UserController
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Méthode qui permet de modifier les données d'un utilisateur
+	 * @param userData : les données de l'utilisateur
+	 * @return l'utilisateur modifié sous forme d'une hash
+	 */
 	@PutMapping
 	public ResponseEntity<User> modifierUser(@RequestBody User userData)
 	{
-		Optional<User> user = userDepot.findById(userData.getId());
-		if (user.isPresent())
+		Optional<User> userAmodifier = userDepot.findById(userData.getId());
+		if (userAmodifier.isPresent())
 		{
-			userDepot.saveAndFlush(userData);
+			userData = userService.signUp(userData);
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body((userDepot.save(userData)));
+		return ResponseEntity.status(HttpStatus.CREATED).body(userData);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**

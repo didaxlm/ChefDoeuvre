@@ -1,28 +1,14 @@
 <app-recherche></app-recherche>
 <!-- Affichage des articles -->
-<div>
-  <div>
-    <ul id="articles" *ngFor="let article of articlesDetails" >
-      <li class="tailleSection">
-        <h1>{{article.nomArticle}}</h1>
-        <a class="dim_img" id="dim_img" [routerLink]="['/articles', article.id]">
-          <div>
-            <span>
-              <div class="imgarticle" *ngFor="let photo of photosDetail" >
-                <img class="taille_img" *ngIf="article.id == photo.article.id " [src]="photo.urlPhoto">
-              </div>
-            </span>
-          </div>
-          <section class="textSection" >
-            <div>
-              <p>{{ article.etatArticle }}</p>
-              <p>{{ article.lieuArticle }}</p>
-              <p>{{ article.user["pseudo"] }}</p>
-              <p>{{ article.dateDepot }}</p>
-            </div>
-          </section>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+<ul >
+  <li class="tailleSection" *ngFor="let article of articleDetails">
+    <h1>{{article?.nomArticle}}</h1>
+    <div class="imgarticle" >
+      <img class="taille_img" [src]="article?.photo?.urlPhoto">
+    </div>
+    <p>Quantité : {{article?.quantiteArticle}}</p>
+    <p>{{article?.etatArticle}}</p>
+    <p>Déposé le : {{article?.dateDepot}}</p>
+    <p>Contact : {{article?.user?.mail}}</p>
+  </li>
+</ul>

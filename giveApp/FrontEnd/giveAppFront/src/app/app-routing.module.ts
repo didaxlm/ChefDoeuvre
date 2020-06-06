@@ -8,11 +8,12 @@ import {CompteComponent} from "./connexion/compte/compte.component";
 import {ArticleDetailsComponent} from "./articles/article-details/article-details.component";
 import {ArticlesComponent} from "./articles/articles.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
-
+import {RechercheComponent} from "./recherche/recherche.component";
 
 const APP_ROUTE: Route[] = [
   { path: '', component: AccueilComponent },
-  { path: 'articles', component: ArticlesComponent },
+  { path: '', component: RechercheComponent },
+  { path: 'articles/categorie/:id', component: ArticlesComponent },
   { path: 'articles/:id', component: ArticleDetailsComponent },
   { path: 'don-articles', component: DonArticlesComponent },
   { path: 'connexion', component: ConnexionComponent},
