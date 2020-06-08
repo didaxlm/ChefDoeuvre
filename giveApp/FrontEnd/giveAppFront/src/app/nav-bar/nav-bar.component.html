@@ -6,30 +6,32 @@
         <a [routerLink]="['']"><img src="../assets/logo.png" class="logo" alt="logo" /></a>
       </div>
 
-      <li *ngIf="jwt.isLogged()">
-        <a class="nav-link active" id="donner" [routerLink]="['/don-articles']">
+      <div *ngIf="jwt.isLogged()">
+        <button class="nav-link active" id="donner" [routerLink]="['/don-articles']">
           Donner un Objet
-        </a>
-      </li>
+        </button>
+      </div>
 
-      <li>
-        <a *ngIf="!jwt.isLogged(); else connected" class="nav-link active connecter"  [routerLink]="['/connexion']">
+      <div>
+        <button *ngIf="!jwt.isLogged(); else connected" class="nav-link active connecter"  [routerLink]="['/connexion']">
           Se Connecter
-        </a>
-        <ng-template #connected><a (click)="jwt.logout()" class="nav-link active connecter" >Se Déconnecter</a></ng-template>
-      </li>
+        </button>
+        <ng-template #connected>
+          <button (click)="jwt.logout()" class="nav-link active connecter" >Se Déconnecter</button>
+        </ng-template>
+      </div>
 
-      <li *ngIf="jwt.isLogged()">
-        <a  class="nav-link active connecter"  [routerLink]="['/compte']">
+      <div *ngIf="jwt.isLogged()">
+        <button class="nav-link active connecter"  [routerLink]="['/compte']">
           Mon Compte
-        </a>
-      </li>
+        </button>
+      </div>
 
-      <li>
-        <a class="nav-link active" id="faq">
+      <div>
+        <button class="nav-link active" id="faq">
           F A Q
-        </a>
-      </li>
+        </button>
+      </div>
     </ul>
   </div>
 

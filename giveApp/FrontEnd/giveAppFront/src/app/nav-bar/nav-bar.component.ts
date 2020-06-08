@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {JwtService} from "../partage/jwt/jwt.service";
+import {JwtService} from '../partage/jwt/jwt.service';
 
 @Component({
   selector: 'app-nav-bar',

@@ -3,8 +3,6 @@ import {JwtService} from "../../partage/jwt/jwt.service";
 import {UserModel} from "../../partage/models/userModel";
 import {UserServices} from "../../partage/services/user.services";
 import {ConnexionComponent} from "../connexion.component";
-import {FormControl} from "@angular/forms";
-
 
 
 @Component({
@@ -18,7 +16,7 @@ export class CompteComponent extends ConnexionComponent implements OnInit
 
   constructor(public jwt: JwtService,
               public userServices: UserServices) {
-    super (jwt);
+    super(jwt);
   }
 
   ngOnInit() {
@@ -40,7 +38,7 @@ export class CompteComponent extends ConnexionComponent implements OnInit
     });
   }
 
-  updateUser()
+  updateUser(f)
   {
     console.log(this.formulaireDinscription);
     this.formulaireDinscription.markAllAsTouched();

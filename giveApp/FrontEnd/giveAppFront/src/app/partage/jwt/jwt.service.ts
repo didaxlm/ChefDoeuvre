@@ -71,7 +71,7 @@ export class JwtService
       tap(res => {
         this.setToken(res.access_token);
         this.feedbackService.info.next(`${pseudo} connected`);
-        this.route.navigate(['/compte']);
+        this.route.navigate(['/']);
       })
     );
   }
