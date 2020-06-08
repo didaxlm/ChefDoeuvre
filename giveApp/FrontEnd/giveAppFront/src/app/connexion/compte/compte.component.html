@@ -1,5 +1,5 @@
 <div class="all-form">
-  <form class="user-inscription" (ngSubmit)="updateUser()" [formGroup]="formulaireDinscription">
+  <form class="user-inscription" #f="ngForm" (ngSubmit)="updateUser(f)" [formGroup]="formulaireDinscription">
     <div *ngIf="userDetails" id="formInscription">
       <h1>{{userDetails.pseudo}}</h1>
       <div *ngIf="formulaireDinscription.errors" class="alert alert-danger">Erreur, formulaire invalide.</div>
@@ -24,20 +24,20 @@
       </div>
       <!-- champs du nom -->
       <div class="form-group">
-        <label for="nom">{{userDetails.nom}}</label>
+        <label for="nom">Nom</label>
         <input formControlName="nom"
                type="text"
                name="nom"
                id="nom"
                class="form-control"
                placeholder="Modifier vôtre nom">
-<!--        <div *ngIf="nom.touched && nom.invalid" class="alert alert-danger">-->
-<!--          <div *ngIf="nom.errors.minlength">Vôtre pseudo doit contenir au moins {{ nom.errors.minlength.requiredLength}} caractères.</div>-->
-<!--        </div>-->
+        <div *ngIf="nom.touched && nom.invalid" class="alert alert-danger">
+          <div *ngIf="nom.errors.minlength">Vôtre pseudo doit contenir au moins {{ nom.errors.minlength.requiredLength}} caractères.</div>
+        </div>
       </div>
       <!-- champs du prénom -->
       <div class="form-group">
-        <label for="prenom">{{userDetails.prenom}}</label>
+        <label for="prenom">Prénom</label>
         <input formControlName="prenom"
                type="text"
                name="prenom"
@@ -51,7 +51,7 @@
       </div>
       <!-- champs du pseudo -->
       <div class="form-group">
-        <label for="pseudo">{{userDetails.pseudo}}</label>
+        <label for="pseudo">Pseudo</label>
         <input formControlName="pseudo"
                type="text"
                name="pseudo"
@@ -65,7 +65,7 @@
       </div>
       <!-- champs adresse -->
       <div class="form-group">
-        <label for="adresse">{{userDetails.adresse}}</label>
+        <label for="adresse">Adresse</label>
         <input formControlName="adresse"
                type="text"
                name="adresse"
@@ -79,7 +79,7 @@
       </div>
       <!-- champs du code postal -->
       <div class="form-group">
-        <label for="codePostal">{{userDetails.codePostal}}</label>
+        <label for="codePostal">Code Postal</label>
         <input formControlName="codePostal"
                type="text"
                name="codePostal"
@@ -94,7 +94,7 @@
       </div>
       <!-- champs du mail -->
       <div class="form-group">
-        <label for="mail">{{userDetails.mail}}</label>
+        <label for="mail">Mail</label>
         <input formControlName="mail"
                type="text"
                name="mail"
@@ -121,7 +121,7 @@
         </div>
       </div>
       <!-- bouton inscription -->
-      <button class="btn btn-primary">Modifier</button>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Modifier</button>
     </div>
   </form>
 </div>

@@ -31,9 +31,11 @@ li{
 
 #donner{
   position: sticky;
-  height: 43px;
+  height: 80px;
   left: 606px;
   top: 85px;
+  box-shadow: 1px 1px 8px 1px black;
+  border-radius: 20px;
 
   font-family: Roboto;
   font-style: italic;
@@ -49,9 +51,11 @@ li{
   position: sticky;
   cursor: pointer;
 
-  height: 43px;
+  height: 80px;
   left: 1035px;
   top: 85px;
+  box-shadow: 1px 1px 8px 1px black;
+  border-radius: 20px;
 
   font-family: Roboto;
   font-style: italic;
@@ -67,9 +71,11 @@ li{
 #faq{
   position: sticky;
 
-  height: 43px;
+  height: 80px;
   left: 1221px;
   top: 85px;
+  box-shadow: 1px 1px 8px 1px black;
+  border-radius: 20px;
 
   font-family: Roboto;
   font-style: italic;
