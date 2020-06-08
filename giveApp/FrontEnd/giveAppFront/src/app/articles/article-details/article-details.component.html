@@ -4,8 +4,9 @@
     <div class="imgarticle" >
       <img class="taille_img" [src]="articleDetails?.photo?.urlPhoto">
     </div>
+    <p>Situé à {{articleDetails?.lieuArticle}}</p>
     <p>Quantité : {{articleDetails?.quantiteArticle}}</p>
-    <p>{{articleDetails?.etatArticle}}</p>
+    <p>Etat : {{articleDetails?.etatArticle}}</p>
     <p>Déposé le : {{articleDetails?.dateDepot}}</p>
     <p *ngIf="jwt.isLogged()">Contact : {{articleDetails?.user?.mail}}</p>
     <section>
