@@ -8,6 +8,7 @@ import {JwtService} from '../partage/jwt/jwt.service';
 })
 export class NavBarComponent
 {
+  // utilisateurConnect: number;
 
   constructor(public jwt: JwtService) { }
 }
