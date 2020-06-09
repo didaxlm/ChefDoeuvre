@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ArticleModel} from "../partage/models/articleModel";
-import {ArticleServices} from "../partage/services/article.services";
-import {PhotoModel} from "../partage/models/photoModel";
-import {PhotoServices} from "../partage/services/photo.services";
-import {JwtService} from "../partage/jwt/jwt.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {ArticleModel} from '../partage/models/articleModel';
+import {ArticleServices} from '../partage/services/article.services';
+import {PhotoModel} from '../partage/models/photoModel';
+import {PhotoServices} from '../partage/services/photo.services';
+import {JwtService} from '../partage/jwt/jwt.service';
 
 
 @Component({
@@ -20,21 +20,18 @@ export class AccueilComponent implements OnInit {
               private photoService: PhotoServices,
               public jwt: JwtService) { }
 
-  afficherArticles()
-  {
+  afficherArticles() {
     this.articleService.getAllArticles().subscribe(articles => {
       this.articlesDetails = articles;
     });
   }
 
-  afficherPhotos()
-  {
+  afficherPhotos() {
     this.photoService.getPhotosArticles().subscribe(photos => {
       this.photosDetail = photos;
     });
   }
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.afficherArticles();
     this.afficherPhotos();
   }

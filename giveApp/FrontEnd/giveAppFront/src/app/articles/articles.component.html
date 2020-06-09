@@ -2,13 +2,12 @@
 <!-- Affichage des articles -->
 <ul >
   <li class="tailleSection" *ngFor="let article of articleDetails">
-    <h1>{{article?.nomArticle}}</h1>
+    <h1>{{ article?.nomArticle }}</h1>
     <div class="imgarticle" >
       <img class="taille_img" [src]="article?.photo?.urlPhoto">
     </div>
-    <p>Quantité : {{article?.quantiteArticle}}</p>
-    <p>{{article?.etatArticle}}</p>
+    <p>Lieu : {{ article?.lieuArticle }}</p>
+    <p>Par : {{ article?.user?.pseudo }}</p>
     <p>Déposé le : {{article?.dateDepot}}</p>
-    <p>Contact : {{article?.user?.mail}}</p>
   </li>
 </ul>
