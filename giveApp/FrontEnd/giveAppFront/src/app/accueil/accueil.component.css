@@ -31,7 +31,10 @@ li{
   float: left;
 }
 .dim_img{
-  padding-left: 200px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .tailleSection{
   margin-left: 300px;
@@ -39,10 +42,13 @@ li{
 }
 .taille_img{
   border: 2px solid red;
-  width: 300px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  position: sticky;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*margin-top: 80px;*/
+  /*margin-bottom: 80px;*/
+  /*position: sticky;*/
 }
 
 /* partie description */
