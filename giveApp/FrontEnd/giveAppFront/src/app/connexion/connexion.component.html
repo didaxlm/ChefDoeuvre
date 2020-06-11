@@ -42,7 +42,7 @@
 
   <!--////////////////// Partie Inscription /////////////////////////////////-->
 
-  <form class="user-inscription" (ngSubmit)="signUp()" [formGroup]="formulaireDinscription">
+  <form class="user-inscription" #f="ngForm" (ngSubmit)="signUp()" [formGroup]="formulaireDinscription">
     <div id="formInscription">
       <h1>S'inscrire</h1>
       <div *ngIf="formulaireDinscription.errors" class="alert alert-danger">Erreur, formulaire invalide.</div>
@@ -152,7 +152,7 @@
         </div>
       </div>
       <!-- bouton inscription -->
-      <button class="btn btn-primary">S'inscrire</button>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">S'inscrire</button>
     </div>
   </form>
 </div>

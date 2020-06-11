@@ -3,8 +3,7 @@ import { ArticleModel } from './articleModel';
 /**
  * objet user, possède une relation 1 - n avec article
  */
-export class UserModel
-{
+export class UserModel {
   id: number;
   role: string;
   nom: string;

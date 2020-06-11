@@ -1,31 +1,31 @@
-import {AbstractControl, ValidationErrors} from "@angular/forms";
-import {UserModel} from "../partage/models/userModel";
+import {AbstractControl, ValidationErrors} from '@angular/forms';
+import {UserModel} from '../partage/models/userModel';
 
 export class IdentificationValidation {
 
-  users:  UserModel;
+  users: UserModel;
 
-  static nePeutContenirEspace(control: AbstractControl) : ValidationErrors | null
-  {
-    if (control.value){
-      if ((control.value as string).indexOf(' ') >= 0)
+  static nePeutContenirEspace(control: AbstractControl): ValidationErrors | null {
+    if (control.value) {
+      if ((control.value as string).indexOf(' ') >= 0) {
         return { nePeutContenirEspace: true };
-    return null;
+      }
+      return null;
     }
   }
-  static caractereSpeciaux(control: AbstractControl) : ValidationErrors | null{
-    if ((control.value as string).indexOf('<>') >= 0)
+  static caractereSpeciaux(control: AbstractControl): ValidationErrors | null {
+    if ((control.value as string).indexOf('<>') >= 0) {
       return {caractereSpeciaux: true};
+    }
     return null;
   }
 
-  static doitEtreUnique(control: AbstractControl) : Promise<ValidationErrors | null>
-  {
+  static doitEtreUnique(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (control.value === 'todo')
+        if (control.value === 'todo') {
           resolve({ doitEtreUnique: true });
-        else resolve(null);
+        } else { resolve(null); }
       }, 2000);
     });
   }

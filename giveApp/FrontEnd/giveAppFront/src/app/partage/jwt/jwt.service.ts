@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
-import {catchError, tap} from "rxjs/operators";
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {FeedbackService} from "../feedback/feedback.service";
-import {Router} from "@angular/router";
+import {catchError, tap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {FeedbackService} from '../feedback/feedback.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JwtService
-{
-  idUser :number;
+export class JwtService {
+  idUser: number;
 
   constructor(private httpClient: HttpClient,
               private feedbackService: FeedbackService,
@@ -19,33 +18,27 @@ export class JwtService
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
-  isLogged(): boolean
-  {
+  isLogged(): boolean {
     return Boolean(this.getToken());
   }
 
-  isAdmin(): boolean
-  {
-    if (!this.isLogged()){
+  isAdmin(): boolean {
+    if (!this.isLogged()) {
       return false;
-    } else if (this.getRole() == 'ADMIN'){
+    } else if (this.getRole() === 'ADMIN') {
       return true;
-    } else return false;
+    } else { return false; }
   }
 
-  getPseudo(): string
-  {
-    if (this.isLogged())
-    {
+  getPseudo(): string {
+    if (this.isLogged()) {
       return this.userFromToken(this.getToken()).pseudo;
     }
     return undefined;
   }
 
-  getRole(): string
-  {
-    if (this.isLogged())
-    {
+  getRole(): string {
+    if (this.isLogged()) {
       return this.userFromToken(this.getToken()).role;
     }
     return undefined;
@@ -53,18 +46,15 @@ export class JwtService
 
   //////////////////////////////////////////////////////////////////////////////
 
-  logout()
-  {
-    if (this.isLogged())
-    {
+  logout() {
+    if (this.isLogged()) {
       this.feedbackService.info.next(`${this.getPseudo()} disconnected`);
       this.clearToken();
       this.route.navigate(['/']);
     }
   }
 
-  login(pseudo: string, password: string)
-  {
+  login(pseudo: string, password: string) {
     const user = {pseudo, motDePasse: password};
 
     return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-in`, user).pipe(
@@ -81,8 +71,7 @@ export class JwtService
            mail: string,
            codePostal: string,
            adresse: string, nom: string,
-           prenom: string)
-  {
+           prenom: string) {
     const user = {pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
     return this.httpClient.post<{ access_token: string }>(`${environment.apiUrl}/users/sign-up`, user).pipe(tap(res => {
@@ -98,8 +87,7 @@ export class JwtService
          codePostal: string,
          adresse: string,
          nom: string,
-         prenom: string)
-  {
+         prenom: string) {
     const user = {id, dateInscription, pseudo, motDePasse: password, mail, codePostal, adresse, nom, prenom};
 
     return this.httpClient.put<{ access_token: string }>(`${environment.apiUrl}/users`, user).pipe(tap(_ => {
@@ -108,23 +96,19 @@ export class JwtService
   }
 
 
-  getToken(): string
-  {
+  getToken(): string {
     return sessionStorage.getItem('access_token');
   }
 
-  setToken(token: string)
-  {
+  setToken(token: string) {
     sessionStorage.setItem('access_token', token);
   }
 
-  clearToken()
-  {
+  clearToken() {
     sessionStorage.removeItem('access_token');
   }
 
-  userFromToken(token: string): { role: string; pseudo: string; }
-  {
+  userFromToken(token: string): { role: string; pseudo: string; } {
     const decodedToken = jwt_decode(token);
 
     const name = decodedToken.sub;
@@ -134,8 +118,8 @@ export class JwtService
 
     return { pseudo: name, role: roles[0]};
   }
-  getUserId(){
-    if (this.isLogged()){
+  getUserId() {
+    if (this.isLogged()) {
     const token = sessionStorage.getItem('access_token');
     const decodedToken = jwt_decode(token);
 

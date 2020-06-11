@@ -1,13 +1,12 @@
-import {UserModel} from "./userModel";
-import {CategorieModel} from "./categorieModel";
-import {PhotoModel} from "./photoModel";
+import {UserModel} from './userModel';
+import {CategorieModel} from './categorieModel';
+import {PhotoModel} from './photoModel';
 
 /**
  * objet article, possède des relations avec plusieurs objets:
  * n - 1 avec user, categorie et photo
  */
-export class ArticleModel
-{
+export class ArticleModel {
   id?: number;
   quantiteArticle?: number;
   nomArticle?: string;
