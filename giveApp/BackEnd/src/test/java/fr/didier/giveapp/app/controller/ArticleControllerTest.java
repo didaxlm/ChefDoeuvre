@@ -39,8 +39,11 @@ class ArticleControllerTest
 	{
 		when(articleDepot.findAll()).thenReturn(null);
 
-		ResultActions validResponse = this.mockMvc.perform(get("/articles"));
+		ResultActions validResponse = this.mockMvc.perform(get("/articles/"));
 		validResponse.andExpect(status().isOk());
+
+		ResultActions invalidResponse = this.mockMvc.perform(get("/fake"));
+		invalidResponse.andExpect(status().isForbidden());
 	}
 
 	@Test
@@ -67,12 +70,4 @@ class ArticleControllerTest
 	void supprimerArticle() {
 	}
 
-	/**
-	 * (Lorsque) je signale le don de l'objet A
-	 * (Alors) le statut de l'objet est "disponible"
-	 * (Alors) la date de signalement est apposée à l'objet
-	 * (Alors) le répertoire des objets récupérable est amendé
-	 * (Alors) mon porte-feuille d'objet est amendé
-	 * (et) les informations fournie sont affichées
-	 */
 }

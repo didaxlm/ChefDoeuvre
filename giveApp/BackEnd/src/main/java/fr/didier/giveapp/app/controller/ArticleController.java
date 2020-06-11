@@ -3,19 +3,19 @@ package fr.didier.giveapp.app.controller;
 import fr.didier.giveapp.app.exceptions.NotFoundException;
 import fr.didier.giveapp.app.model.Article;
 import fr.didier.giveapp.app.model.Categorie;
-import fr.didier.giveapp.app.model.Photo;
 import fr.didier.giveapp.app.model.User;
 import fr.didier.giveapp.app.repository.ArticleRepository;
 import fr.didier.giveapp.app.repository.CategorieRepository;
 import fr.didier.giveapp.app.repository.UserRepository;
-import fr.didier.giveapp.app.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RequestMapping("/articles")
 @RestController
