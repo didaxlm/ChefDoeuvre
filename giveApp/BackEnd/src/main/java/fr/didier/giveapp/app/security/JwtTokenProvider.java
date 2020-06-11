@@ -46,10 +46,7 @@ public class JwtTokenProvider
 
     /**
      * methode qui créer un token :
-     * "sub" pour pseudo
      * "auth" pour roles
-     * "dat" pour date du jour
-     * "exp" pour date du jour + validityTime
      * @param user le User
      * @return créer le jwt comme string
      */
