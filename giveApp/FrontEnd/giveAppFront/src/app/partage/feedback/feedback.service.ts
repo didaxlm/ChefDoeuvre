@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeedbackService
-{
+export class FeedbackService {
 
-  info : BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
-  warning : BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+  info: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+  warning: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 
   constructor() { }
 
@@ -18,15 +17,15 @@ export class FeedbackService
    * @param operation - nom de l'opération qui échoue
    * @param result - valeur optionelle qui retourne le résultat observable
    */
-  handleError<T> (operation = 'operation', result?: T){
+  handleError<T>(operation = 'operation', result?: T) {
 
     return (error: any): Observable<T> => {
       this.warning.next(`${operation} failed: ${error.message}`);
 
       console.log(`${operation} failed`); // TODO remove console
 
-      //laisse l'application tourner en retournant un résultat vide
+      // laisse l'application tourner en retournant un résultat vide
       return of(result as T);
-    }
+    };
   }
 }

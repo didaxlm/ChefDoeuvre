@@ -43,7 +43,7 @@ public class UserController
 	 * @return le user créé sous forme d'une hash
 	 */
 	@PostMapping("/sign-up")
-	public ResponseEntity<User> signUp(@RequestBody User newUser)
+	public ResponseEntity<User> ajouterUser(@RequestBody User newUser)
 	{
 		newUser.setDateInscription(LocalDate.now());
 		newUser = userService.signUp(newUser);

@@ -25,7 +25,6 @@ export class RechercheComponent implements OnInit {
   afficherCategorie() {
     this.categorieService.getAllCategories().subscribe(categories => {
       this.categories = categories;
-      console.log(this.categories);
     });
   }
 
@@ -33,7 +32,6 @@ export class RechercheComponent implements OnInit {
     console.log(arg);
   }
   onSubmit(f) {
-    console.log(f.value.category);
     this.idCategorie = f.value.category;
     this.afficherArticlesByCategorie();
   }
