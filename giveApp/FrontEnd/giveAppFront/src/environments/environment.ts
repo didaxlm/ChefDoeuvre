@@ -6,7 +6,7 @@ const server = 'localhost:8080';
 
 export const environment = {
   production: false,
-  server: server,
+  server,
   apiUrl: `http://${server}`,
 };
 
