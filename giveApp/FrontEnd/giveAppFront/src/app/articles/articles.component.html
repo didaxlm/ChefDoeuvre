@@ -1,4 +1,3 @@
-<app-recherche></app-recherche>
 <!-- Affichage des articles -->
 <ul >
   <li class="tailleSection" *ngFor="let article of articleDetails">
@@ -9,6 +8,6 @@
     <p>Quantité : {{article?.quantiteArticle}}</p>
     <p>{{article?.etatArticle}}</p>
     <p>Déposé le : {{article?.dateDepot}}</p>
-    <p>Contact : {{article?.user?.mail}}</p>
+    <p *ngIf="jwt.isLogged()">Contact : {{article?.user?.mail}}</p>
   </li>
 </ul>

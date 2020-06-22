@@ -7,7 +7,5 @@ import {JwtService} from '../partage/jwt/jwt.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  // utilisateurConnect: number;
-
   constructor(public jwt: JwtService) { }
 }
