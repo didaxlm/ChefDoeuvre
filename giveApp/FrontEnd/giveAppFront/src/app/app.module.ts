@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { RechercheComponent } from './recherche/recherche.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import {environment} from '../environments/environment';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -25,7 +24,6 @@ import {RequestInterceptorService} from './partage/services/request-interceptor.
     NavBarComponent,
     AccueilComponent,
     ArticlesComponent,
-    RechercheComponent,
     ConnexionComponent,
     CompteComponent,
     ArticleDetailsComponent,

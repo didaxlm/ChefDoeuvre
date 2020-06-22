@@ -1,8 +1,10 @@
 /* Partie générale */
 .all-form{
+  margin: 90px 0px 90px 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 
 }
@@ -23,9 +25,12 @@
   margin: 20px 10% 10% 15%;
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 500px;
   text-align: center;
-  height: fit-content;
+}
+#formConnection button{
+  background-color: #F90000;
+  color: white;
 }
 /* Partie inscription */
 
@@ -36,11 +41,15 @@
 }
 #formInscription{
   border: 1px solid black;
-  margin: 20px 15% 10% 15%;
+  margin: 65px 65px 65px 100px;
   box-shadow: 1px 1px 8px 1px black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 750px;
+  width: 500px;
   text-align: center;
+}
+#formInscription button{
+  background-color: #F90000;
+  color: white;
 }
