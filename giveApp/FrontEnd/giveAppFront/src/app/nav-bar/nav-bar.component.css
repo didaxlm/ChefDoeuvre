@@ -1,4 +1,50 @@
-/* header */
+nav{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: black;
+}
+
+nav ul{
+  width: 80%;
+  height: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav ul li{
+  list-style: none;
+}
+
+nav ul li button{
+  list-style: none;
+  font-family: Verdana;
+  font-style: italic;
+  font-size: 20px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 20px;
+  background-color: white;
+  position: sticky;
+  height: 80px;
+  left: 606px;
+  top: 85px;
+  box-shadow: 1px 1px 8px 1px black;
+  border-radius: 15px;
+}
+
+#donner{
+  font-weight: normal;
+  line-height: 35px;
+  text-align: initial;
+
+  color: #F90000;
+}
+/* header
 
 .logo {
   position: sticky;
@@ -37,7 +83,7 @@ li{
   box-shadow: 1px 1px 8px 1px black;
   border-radius: 20px;
 
-  font-family: Roboto;
+  font-family: Verdana;
   font-style: italic;
   font-weight: normal;
   font-size: 30px;
@@ -57,7 +103,7 @@ li{
   box-shadow: 1px 1px 8px 1px black;
   border-radius: 20px;
 
-  font-family: Roboto;
+  font-family: Verdana;
   font-style: italic;
   font-weight: normal;
   font-size: 30px;
@@ -77,7 +123,7 @@ li{
   box-shadow: 1px 1px 8px 1px black;
   border-radius: 20px;
 
-  font-family: Roboto;
+  font-family: Verdana;
   font-style: italic;
   font-weight: normal;
   font-size: 30px;
@@ -87,4 +133,4 @@ li{
   color: #000000;
 
 }
-
+*/

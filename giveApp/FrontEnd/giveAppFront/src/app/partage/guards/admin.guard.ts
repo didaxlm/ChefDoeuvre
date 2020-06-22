@@ -9,13 +9,11 @@ export class AdminGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
     if (!this.jwtService.isLogged()) {
       return false;
-    } else if (this.jwtService.getRole() == 'ADMIN') {
+    } else if (this.jwtService.getRole() === 'ADMIN') {
       return true;
     }
-
     return false;
   }
 }

@@ -1,9 +1,6 @@
 package fr.didier.giveapp.app.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@RequiredArgsConstructor
+
 public class Faq 
 {
 	@Id
@@ -26,5 +23,7 @@ public class Faq
 	private String reponse;
 
 	public Faq(String question, String reponse) {
+		this.question = question;
+		this.reponse = reponse;
 	}
 }

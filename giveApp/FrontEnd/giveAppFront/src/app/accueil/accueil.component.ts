@@ -4,6 +4,9 @@ import {ArticleServices} from '../partage/services/article.services';
 import {PhotoModel} from '../partage/models/photoModel';
 import {PhotoServices} from '../partage/services/photo.services';
 import {JwtService} from '../partage/jwt/jwt.service';
+import {CategorieModel} from '../partage/models/categorieModel';
+import {CategorieServices} from '../partage/services/categorie.services';
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -15,9 +18,14 @@ export class AccueilComponent implements OnInit {
 
   articlesDetails: ArticleModel[];
   photosDetail: PhotoModel[];
+  categories: CategorieModel[];
+  idCategorie: number;
+  categorieSelected: CategorieModel = new CategorieModel();
 
   constructor(private articleService: ArticleServices,
               private photoService: PhotoServices,
+              private categorieService: CategorieServices,
+              private route: ActivatedRoute,
               public jwt: JwtService) { }
 
   afficherArticles() {
@@ -26,12 +34,36 @@ export class AccueilComponent implements OnInit {
     });
   }
 
+  afficherCategorie() {
+    this.categorieService.getAllCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
   afficherPhotos() {
     this.photoService.getPhotosArticles().subscribe(photos => {
       this.photosDetail = photos;
     });
   }
+
+  afficherArticlesByCategorie(id: number) {
+    // const params = this.route.snapshot.paramMap;
+    // this.idCategorie = +params.get('id');
+    this.articleService.getArticleByCategorie(this.idCategorie).subscribe(category => {
+      this.categorieSelected = category;
+    });
+  }
+
+  saisie(arg) {
+    console.log(arg);
+  }
+  onSubmit(f) {
+    this.idCategorie = f.value.category;
+    this.afficherArticlesByCategorie(this.idCategorie);
+  }
+
   ngOnInit(): void {
+    this.afficherCategorie();
     this.afficherArticles();
     this.afficherPhotos();
   }

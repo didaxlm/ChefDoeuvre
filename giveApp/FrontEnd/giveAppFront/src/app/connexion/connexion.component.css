@@ -1,6 +1,10 @@
 /* Partie générale */
 .all-form{
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
 }
 .form-group{
   text-align: center;
@@ -11,7 +15,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 10%;
 }
 #formConnection{
   border: 1px solid black;
@@ -20,8 +23,9 @@
   margin: 20px 10% 10% 15%;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 750px;
   text-align: center;
+  height: fit-content;
 }
 /* Partie inscription */
 
@@ -29,7 +33,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 30%;
 }
 #formInscription{
   border: 1px solid black;
@@ -38,6 +41,6 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 750px;
   text-align: center;
 }

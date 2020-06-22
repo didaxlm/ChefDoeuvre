@@ -13,6 +13,7 @@ export class ArticleDetailsComponent implements OnInit {
   idArticle: number;
   articleDetails: ArticleModel;
   produit: ArticleModel[];
+  user = 0;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -25,6 +26,8 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.getUnArticle(this.idArticle).subscribe(article => {
       this.articleDetails = article;
     });
+    this.user = this.jwt.getUserId();
+    console.log(this.user);
   }
   supprimerArticle() {
     this.articleService.deleteArticle(this.idArticle).subscribe(() => {

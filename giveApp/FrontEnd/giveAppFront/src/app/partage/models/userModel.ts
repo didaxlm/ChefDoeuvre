@@ -15,5 +15,4 @@ export class UserModel {
   pseudo?: string;
   dateInscription: Date;
   article: ArticleModel;
-
 }
