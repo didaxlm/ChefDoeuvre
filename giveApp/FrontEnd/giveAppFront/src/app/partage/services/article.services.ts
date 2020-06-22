@@ -12,6 +12,9 @@ import {ArticleModel} from '../models/articleModel';
 export class ArticleServices extends RequestServices {
   url = this.data.baseUrl + '/articles/';
 
+  getAllArticles(): Observable<any> {
+    return this.getGiveApp(this.url);
+  }
   constructor(public http: HttpClient,
               private data: DataService) {
     super(http, data);
@@ -20,9 +23,6 @@ export class ArticleServices extends RequestServices {
   /**
    * récupère la liste des articles
    */
-  getAllArticles(): Observable<any> {
-    return this.getGiveApp(this.url);
-  }
 
   /**
    * Récupère les détails d'un article

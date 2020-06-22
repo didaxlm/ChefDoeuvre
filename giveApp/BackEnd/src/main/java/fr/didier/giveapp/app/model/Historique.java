@@ -19,12 +19,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Historique 
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto incrément
-	private int id;
-	
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate dateTransaction;
+	@Id
+	private int id;
+
+	@JsonFormat(pattern="dd-MM-yyyy")
+	private LocalDate dateDepot;
+
+	private int quantiteArticle;
+	private String nomArticle;
+	private String etatArticle;
+	private String lieuArticle;
+
 
 	public Historique(LocalDate dateTransaction) {
 	}

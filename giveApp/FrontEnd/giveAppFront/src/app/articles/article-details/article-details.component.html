@@ -9,9 +9,9 @@
     <p>Etat : {{articleDetails?.etatArticle}}</p>
     <p>Déposé le : {{articleDetails?.dateDepot}}</p>
     <p *ngIf="jwt.isLogged()">Contact : {{articleDetails?.user?.mail}}</p>
-    <section>
-      <i *ngIf="jwt.isLogged()"
-         (click)="supprimerArticle()" [routerLink]="['/compte']" class="far fa-trash-alt"></i>
+    <section *ngIf="user">
+      <i *ngIf="articleDetails?.user?.id == user"
+         (click)="supprimerArticle()" class="far fa-trash-alt"></i>
     </section>
   </li>
 </ul>

@@ -1,38 +1,38 @@
   <!-- navbar  -->
 
-  <div class="head">
+  <nav class="head">
     <ul>
-      <div>
+      <li>
         <a [routerLink]="['']"><img src="../assets/logo.png" class="logo" alt="logo" /></a>
-      </div>
+      </li>
 
-      <div *ngIf="jwt.isLogged()">
+      <li *ngIf="jwt.isLogged()">
         <button class="nav-link active" id="donner" [routerLink]="['/don-articles']">
           Donner un Objet
         </button>
-      </div>
+      </li>
 
-      <div>
+      <li>
         <button *ngIf="!jwt.isLogged(); else connected" class="nav-link active connecter"  [routerLink]="['/connexion']">
           Se Connecter
         </button>
         <ng-template #connected>
           <button (click)="jwt.logout()" class="nav-link active connecter" >Se Déconnecter</button>
         </ng-template>
-      </div>
+      </li>
 
-      <div *ngIf="jwt.isLogged()">
+      <li *ngIf="jwt.isLogged()">
         <button class="nav-link active connecter"  [routerLink]="['/compte']">
           Mon Compte
         </button>
-      </div>
+      </li>
 
-      <div>
+      <li>
         <button class="nav-link active" id="faq">
           F A Q
         </button>
-      </div>
+      </li>
     </ul>
-  </div>
+  </nav>
 <!--  <p *ngIf="jwt.isLogged()">{{userServices.getUnUser(utilisateurConnect)}}</p>-->
 

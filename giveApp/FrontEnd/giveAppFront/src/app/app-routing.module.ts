@@ -2,7 +2,6 @@ import {Route, RouterModule} from '@angular/router';
 import { DonArticlesComponent } from './articles/don-articles/don-articles.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import {ConnexionComponent} from './connexion/connexion.component';
-import {UserGuard} from './partage/guards/user.guard';
 import {AdminGuard} from './partage/guards/admin.guard';
 import {CompteComponent} from './connexion/compte/compte.component';
 import {ArticleDetailsComponent} from './articles/article-details/article-details.component';
@@ -18,9 +17,7 @@ const APP_ROUTE: Route[] = [
   { path: 'don-articles', component: DonArticlesComponent },
   { path: 'connexion', component: ConnexionComponent},
   { path: 'compte', component: CompteComponent },
-  { path: 'post', component: ConnexionComponent, canActivate: [UserGuard]},
   { path: 'admin', component: ConnexionComponent, canActivate: [AdminGuard]},
-  // { path: '', redirectTo: '/post', pathMatch: 'full'},
   { path: '**', component: NotFoundComponent }
 ];
 

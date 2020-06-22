@@ -25,7 +25,6 @@ public class DataInitializer implements CommandLineRunner
     private CategorieRepository categorieDepot;
     private FaqRepository faqDepot;
     private PhotoRepository photoDepot;
-    private HistoriqueRepository historiqueDepot;
 
     /**
      * Méthode qui formate la date
@@ -60,7 +59,7 @@ public class DataInitializer implements CommandLineRunner
             Categorie divers = new Categorie("Divers");
 
             User jean = new User("Dupont", "Jean", "USER", "janot123", "janot", "2 rue de Paris", "jean.dupont@yahoo.fr", "93100", parseDate("20/04/2019"));
-            User stephanie = new User("Raleuse", "Stephanie", "USER", "stephie1975", "stephie", "33 rue Raleuse", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
+            User stephanie = new User("Dufour", "Stephanie", "USER", "stephie123", "stephie", "33 rue Nantes", "stephie.co@yahoo.fr", "75020", parseDate("12/09/2019"));
             User jerry = new User("Chaton", "Jerry", "ADMIN", "jerry1980", "jerry75", "10 rue de Beaune", "jerry.chat@yahoo.fr", "75019", parseDate("03/04/2020"));
 
             Photo imgTable = new Photo("https://zupimages.net/up/20/16/1fbq.jpg");
@@ -72,11 +71,6 @@ public class DataInitializer implements CommandLineRunner
             Article raquette = new Article(parseDate("02/04/2020"), "Raquette", "Bon état","nantes", 2, loisir, stephanie, imgRaquette);
             Article marteau = new Article(parseDate("03/04/2020"), "Marteau", "Etat moyen","bordeaux", 2, accessoire, jerry, imgMarteau);
             Article clou = new Article(parseDate("04/04/2020"), "Clou", "Neuf","nantes", 10, accessoire, jerry, imgClou);
-
-
-            Historique histo1 = new Historique(parseDate("05/04/2020"));
-            Historique histo2 = new Historique(parseDate("06/04/2020"));
-            Historique histo3 = new Historique(parseDate("07/04/2020"));
 
             if (!faqDepot.findAll().iterator().hasNext()){
                 faqDepot.saveAll(Arrays.asList(regle, poster, supprimer));
@@ -93,9 +87,6 @@ public class DataInitializer implements CommandLineRunner
             }
             if (!photoDepot.findAll().iterator().hasNext()){
                 photoDepot.saveAll(Arrays.asList(imgTable, imgRaquette, imgMarteau, imgClou));
-            }
-            if (!historiqueDepot.findAll().iterator().hasNext()){
-                historiqueDepot.saveAll(Arrays.asList(histo1, histo2, histo3));
             }
 
         } catch (final Exception ex) {

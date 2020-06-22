@@ -24,12 +24,12 @@ import java.util.stream.Collectors;
 public class JwtTokenProvider
 {
     //on recupere la secret-key dans le fichier propertie
-    @Value("${security.jwt.token.secret:ceciestlacléquipermetdehasherladonnée}")
+    @Value("${security.jwt.token.secret-key}")
     private String secretKey;
 
     //on détermine le temps par défaut de la validité du token
-    @Value("${security.jwt.token.expire-length:3600000}")
-    private long validityInMilliseconds = 3600000; //1h
+    @Value("${security.jwt.token.expire-length}")
+    private long validityInMilliseconds;
 
     @Autowired
     private UserService userService;

@@ -13,14 +13,22 @@
   direction: ltr;
 }
 
-#formFooter {
-  background-color: #f6f6f6;
-  opacity: 0.6;
-  border-top: 1px solid #dce8f1;
-  padding: 15px;
-  border-radius: 10px;
-}
-
 #general{
   margin: 2px;
+}
+
+h1{
+  font-size: 20px;
+}
+h2{
+  font-size: 18px;
+}
+h3{
+  font-size: 16px;
+}
+p, a{
+  font-size: 13px;
+}
+*{
+  font-family: Verdana;
 }

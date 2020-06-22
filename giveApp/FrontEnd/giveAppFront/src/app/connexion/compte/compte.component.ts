@@ -22,8 +22,8 @@ export class CompteComponent extends ConnexionComponent implements OnInit {
     this.recupererUtilisateur();
   }
   recupererUtilisateur() {
-    const id = this.jwt.getUserId();
-    id && this.userServices.getUnUser(id).subscribe( user => {
+    const idRecup = this.jwt.getUserId();
+    idRecup && this.userServices.getUnUser(idRecup).subscribe( user => {
       this.userDetails = user;
       this.formulaireDinscription.controls.id.setValue(this.userDetails.id);
       this.formulaireDinscription.controls.dateInscription.setValue(this.userDetails.dateInscription);

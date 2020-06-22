@@ -1,4 +1,22 @@
-<app-recherche></app-recherche>
+<div class="search">
+  <div class="filter">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <label for="category" id="category" class="category">Que recherchez-vous ?
+        <select ngModel="idCategorie" name="category"
+                #category="ngModel"
+                (change)="afficherArticlesByCategorie(categorieSelected.id)"
+                id="category-select" class="category">
+          <option>-- Catégories --</option>
+          <option *ngFor="let categorie of categories"
+                  value="{{categorie.id}}"
+          >{{ categorie.typeCategorie }}
+          </option>
+        </select>
+      </label>
+<!--      <button class="btn" type="submit" [routerLink]="['/articles/categorie', f.value.category]">Rechercher</button>-->
+    </form>
+  </div>
+</div>
 <!-- Affichage des articles -->
 <div>
   <div>
