@@ -47,17 +47,15 @@ li{
 /* partie description */
 
 p{
-  font-style: normal;
-  font-family: Roboto;
-  font-size: 200%;
+  font-size: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 h1{
   margin-top: 20px;
-  font-family: Roboto;
-  font-style: normal;
+  font-size: 32px;
+  color: rgb(0, 123, 255);
 }
 .textSection{
   margin-left: 1px;
@@ -72,6 +70,5 @@ h1{
   text-align: center;
 }
 .far{
-  font-weight: 400;
   font-size: xx-large;
 }

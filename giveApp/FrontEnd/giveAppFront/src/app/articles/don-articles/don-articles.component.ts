@@ -33,7 +33,7 @@ export class DonArticlesComponent implements OnInit {
     console.log(this.newProduit);
     this.ajouterArticle();
     f.reset();
-    this.router.navigate(['/']);
+    alert('Vôtre article a été ajouté');
   }
 
   afficherCategorie() {

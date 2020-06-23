@@ -7,7 +7,6 @@
                 #category="ngModel"
                 (change)="saisie(f)"
                 id="category-select" class="category">
-          <option>-- Catégories --</option>
           <option *ngFor="let categorie of categories"
                   value="{{categorie.id}}"
           >{{ categorie.typeCategorie }}
