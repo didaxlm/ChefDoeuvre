@@ -19,12 +19,9 @@ li{
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 750px;
+  /*width: 750px;*/
 }
 
-/*#articles{*/
-/*  display: inline;*/
-/*}*/
 #articles{
   display: flex;
   flex-direction: column;
@@ -52,17 +49,14 @@ li{
 /* partie description */
 
 p{
-  font-style: normal;
-  font-family: Roboto;
-  font-size: 200%;
+  font-size: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 h1{
   margin-top: 20px;
-  font-family: Roboto;
-  font-style: normal;
+  font-size: 32px;
 }
 .textSection{
   margin-left: 1px;
@@ -81,32 +75,11 @@ h1{
   justify-content: center;
   align-items: center;
 }
+
 #category-select{
   padding: 10px 15px 10px 15px;
   border-radius: 10px;
 }
-/*#category, #lieu*/
-/*{*/
-/*  width: 280px;*/
-/*  height: 60px;*/
-/*  border-radius: 20px;*/
-/*  !*border: 1px solid black;*!*/
-
-/*  font-family: Roboto;*/
-/*  font-size: 124%;*/
-/*  text-align: center;*/
-/*  position: sticky;*/
-/*  left: 79px;*/
-
-/*}*/
-
-/*.filter{*/
-/*  position: sticky;*/
-/*  margin-top: 40px;*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  justify-content: space-around;*/
-/*}*/
 
 .category{
   position: sticky;
@@ -115,20 +88,6 @@ h1{
   display: block;
   margin: auto;
   color: black;
+  border: 1px solid #F90000;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
