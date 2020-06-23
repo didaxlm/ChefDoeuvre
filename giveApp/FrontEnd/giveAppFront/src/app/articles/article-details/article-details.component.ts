@@ -33,6 +33,7 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.deleteArticle(this.idArticle).subscribe(() => {
       this.articleService.getAllArticles().subscribe((articles: ArticleModel[]) => {
         this.produit = articles;
+        alert('Vôtre article à été supprimé');
         this.router.navigate(['/']);
       });
     });
