@@ -26,6 +26,7 @@ public class CategorieController
 	{
 		return categorieDepot.findAll();
 	}
+
 	/**
 	 * Méthode qui affiche une catégorie en particulier en fonction de l'id de la catégorie
 	 * @param categorieId précisé dans l'url (ex : categories/id/2)
@@ -35,7 +36,6 @@ public class CategorieController
 	public Optional<Categorie> afficherCategorie(@PathVariable int categorieId){
 		return categorieDepot.findById(categorieId);
 	}
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui ajoute une catégorie à la liste
@@ -48,7 +48,6 @@ public class CategorieController
 	{
 		return categorieDepot.saveAndFlush(categorieData);
 	}
-
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Méthode qui supprime une catégorie de la BDD

@@ -23,7 +23,7 @@ public class FaqController
 	{
 		return faqDepot.findAll();
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * ajoute une question ou une réponse à la FaQ
 	 * @param faqQuestion: correspond à la question passées dans le Json
@@ -35,7 +35,7 @@ public class FaqController
 	{
 		return faqDepot.saveAndFlush(faqQuestion);
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * supprime une question de la FaQ
 	 * @param faqQuestion: correspond à la question passées dans le json

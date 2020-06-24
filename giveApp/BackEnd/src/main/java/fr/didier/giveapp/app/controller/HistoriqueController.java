@@ -16,7 +16,9 @@ public class HistoriqueController
     @Autowired
     private HistoriqueRepository historiqueDepot;
 
-    //affiche la liste des historiques
+    /**
+     * affiche la liste des historiques
+     */
     @GetMapping
     public List<Historique> afficherHistorique()
     {
