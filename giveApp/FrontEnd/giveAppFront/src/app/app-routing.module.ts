@@ -7,9 +7,11 @@ import {CompteComponent} from './connexion/compte/compte.component';
 import {ArticleDetailsComponent} from './articles/article-details/article-details.component';
 import {ArticlesComponent} from './articles/articles.component';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {FaqComponent} from './faq/faq.component';
 
 const APP_ROUTE: Route[] = [
   { path: '', component: AccueilComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'articles/categorie/:id', component: ArticlesComponent },
   { path: 'articles/:id', component: ArticleDetailsComponent },
   { path: 'don-articles', component: DonArticlesComponent },

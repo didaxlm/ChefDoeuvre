@@ -14,14 +14,16 @@ public class FaqController
 {
 	@Autowired
 	private FaqRepository faqDepot;
-	
-	//affiche la liste des questions et des réponses
+
+	/**
+	 * Affiche la liste complète de la FaQ
+	 */
 	@GetMapping
 	public List<Faq> afficherListeFaq() 
 	{
 		return faqDepot.findAll();
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * ajoute une question ou une réponse à la FaQ
 	 * @param faqQuestion: correspond à la question passées dans le Json
@@ -33,7 +35,7 @@ public class FaqController
 	{
 		return faqDepot.saveAndFlush(faqQuestion);
 	}
-	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * supprime une question de la FaQ
 	 * @param faqQuestion: correspond à la question passées dans le json

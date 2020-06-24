@@ -24,7 +24,6 @@ public class UserController
 	private UserService userService;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Méthode qui récupère un utilisateur en particulier en fonction de son id
 	 * @param userId : précisé dans l'url (ex : users/id/1)
@@ -48,6 +47,7 @@ public class UserController
 		newUser = userService.signUp(newUser);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
 	}
+
 	/**
 	 * Méthode qui identifie un utilisateur
 	 * @param user
@@ -59,7 +59,6 @@ public class UserController
 		return ResponseEntity.ok(new JsonWebToken(userService.signIn(user.getPseudo(), user.getMotDePasse())));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	/**
 	 * Méthode qui permet de modifier les données d'un utilisateur
 	 * @param userData : les données de l'utilisateur

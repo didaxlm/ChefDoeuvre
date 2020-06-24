@@ -1,0 +1,18 @@
+section ul li{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+li{
+  color: rgb(0, 123, 255);
+  font-size: 24px;
+}
+ol{
+  color: black;
+  font-size: 18px;
+}
+section{
+  height: 1000px;
+}

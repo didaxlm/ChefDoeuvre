@@ -40,6 +40,7 @@ public class ArticleController
 	{
 		return articleDepot.findAll();
 	}
+
 	/**
 	 * Méthode qui récupère un article en particulier en fonction de l'id de l'article
 	 * @param articleId : précisé dans l'url (ex : articles/id/1)
@@ -50,6 +51,7 @@ public class ArticleController
 	{
 		return articleDepot.findById(articleId);
 	}
+
 	/**
 	 * Méthode qui affiche une liste d'articles en fonction de la localisation
 	 * @param ville : précisé dans l'url (ex: articles/nantes)
@@ -60,6 +62,7 @@ public class ArticleController
 	{
 		return articleDepot.findByLieuArticle(ville);
 	}
+
 	/**
 	 * Méthode qui affiche une liste d'articles en fonction de l'id de la catégorie
 	 * @param categorieId : précisé dans l'url (ex : articles/categorie/1)
