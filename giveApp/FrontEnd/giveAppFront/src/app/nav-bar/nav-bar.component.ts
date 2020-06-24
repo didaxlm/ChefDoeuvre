@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
 import {JwtService} from '../partage/jwt/jwt.service';
+import {UserServices} from '../partage/services/user.services';
+import {UserModel} from '../partage/models/userModel';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,5 +9,9 @@ import {JwtService} from '../partage/jwt/jwt.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor(public jwt: JwtService) { }
+  utilisateurConnect: number;
+  userDetails: UserModel[];
+
+  constructor(public jwt: JwtService,
+              private userServices: UserServices) { }
 }
