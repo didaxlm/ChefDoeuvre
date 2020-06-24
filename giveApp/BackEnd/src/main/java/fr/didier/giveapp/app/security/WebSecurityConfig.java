@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         //Points d'entrée
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/faq/").permitAll()
                 .antMatchers("/users/sign-in","/users/sign-up","/connexion").permitAll()
                 .antMatchers("/articles","/articles/**","/categories/**","/photos/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")

@@ -14,8 +14,10 @@ public class FaqController
 {
 	@Autowired
 	private FaqRepository faqDepot;
-	
-	//affiche la liste des questions et des réponses
+
+	/**
+	 * Affiche la liste complète de la FaQ
+	 */
 	@GetMapping
 	public List<Faq> afficherListeFaq() 
 	{

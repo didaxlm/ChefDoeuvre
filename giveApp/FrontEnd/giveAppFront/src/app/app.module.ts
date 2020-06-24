@@ -16,6 +16,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { DonArticlesComponent } from './articles/don-articles/don-articles.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {RequestInterceptorService} from './partage/services/request-interceptor.service';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {RequestInterceptorService} from './partage/services/request-interceptor.
     ArticleDetailsComponent,
     DonArticlesComponent,
     NotFoundComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,
