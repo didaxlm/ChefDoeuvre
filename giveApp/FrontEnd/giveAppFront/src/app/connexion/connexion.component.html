@@ -88,7 +88,7 @@
         <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
           <div *ngIf="pseudo.errors.required">Ce champs ne peut être vide.</div>
           <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
-<!--          <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>-->
+          <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>
         </div>
       </div>
       <!-- champs adresse -->

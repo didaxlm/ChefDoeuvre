@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/","/faq/").permitAll()
-                .antMatchers("/users/sign-in","/users/sign-up","/connexion").permitAll()
+                .antMatchers("/users/sign-in","/users/sign-up","/connexion","/users/exist/**").permitAll()
                 .antMatchers("/articles","/articles/**","/categories/**","/photos/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 //Refuser tout le reste si non authentifié

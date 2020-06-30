@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {JwtService} from '../partage/jwt/jwt.service';
 import {IdentificationValidation} from './identification.validation';
@@ -9,9 +9,10 @@ import {IdentificationValidation} from './identification.validation';
   styleUrls: ['./connexion.component.css']
 })
 
-export class ConnexionComponent {
+export class ConnexionComponent implements OnInit {
 
-  constructor(private auth: JwtService) { }
+  constructor(private auth: JwtService,
+              public identificationValidation: IdentificationValidation) { }
 
   get identifiant() {
     return this.formulaireDeConnexion.get('identifiant');
@@ -68,8 +69,8 @@ export class ConnexionComponent {
     ]),
     pseudo: new FormControl('', [
       Validators.required,
-      Validators.minLength(2),
-      // IdentificationValidation.doitEtreUnique
+      Validators.minLength(2)], [
+      this.identificationValidation.doitEtreUnique()
     ]),
     adresse: new FormControl('', [
       Validators.required,
@@ -91,6 +92,14 @@ export class ConnexionComponent {
       Validators.minLength(6)
     ]),
   });
+
+  ngOnInit() {
+    this.formulaireDinscription.valueChanges.subscribe(
+      () => {
+        console.log(this.formulaireDinscription);
+      });
+  }
+
   signIn() {
     this.auth.login(this.formulaireDeConnexion.get('identifiant').value, this.formulaireDeConnexion.get('password').value)
       .subscribe(

@@ -60,7 +60,7 @@
                placeholder="Modifier vôtre pseudo">
         <div *ngIf="pseudo.touched && pseudo.invalid" class="alert alert-danger">
           <div *ngIf="pseudo.errors.minlength">Vôtre pseudo doit contenir au moins {{ pseudo.errors.minlength.requiredLength}} caractères.</div>
-          <!--          <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>-->
+          <div *ngIf="pseudo.errors.doitEtreUnique">Pseudo déjà utilisé.</div>
         </div>
       </div>
       <!-- champs adresse -->
@@ -121,7 +121,7 @@
         </div>
       </div>
       <!-- bouton inscription -->
-      <button type="submit" [disabled]="f.invalid">Modifier</button>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Modifier</button>
     </div>
   </form>
 </div>
