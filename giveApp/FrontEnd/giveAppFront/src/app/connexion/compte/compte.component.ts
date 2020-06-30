@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JwtService} from '../../partage/jwt/jwt.service';
 import {UserModel} from '../../partage/models/userModel';
 import {UserServices} from '../../partage/services/user.services';
 import {ConnexionComponent} from '../connexion.component';
+import {IdentificationValidation} from '../identification.validation';
 
 
 @Component({
@@ -11,11 +12,13 @@ import {ConnexionComponent} from '../connexion.component';
   styleUrls: ['./compte.component.css']
 })
 export class CompteComponent extends ConnexionComponent implements OnInit {
+
   userDetails: UserModel;
 
   constructor(public jwt: JwtService,
+              public identificationValidation: IdentificationValidation,
               public userServices: UserServices) {
-    super(jwt);
+    super(jwt, identificationValidation);
   }
 
   ngOnInit() {

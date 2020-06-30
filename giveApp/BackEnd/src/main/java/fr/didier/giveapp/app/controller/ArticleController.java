@@ -57,7 +57,7 @@ public class ArticleController
 	 * @param ville : précisé dans l'url (ex: articles/nantes)
 	 * @return une liste d'articles
 	 */
-	@RequestMapping(value = "{ville}",method = RequestMethod.GET)
+	@GetMapping("ville/{ville}")
 	public List<Article> afficherArticlesByLieu(@PathVariable String ville)
 	{
 		return articleDepot.findByLieuArticle(ville);

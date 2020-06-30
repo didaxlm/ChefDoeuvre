@@ -59,4 +59,8 @@ public class UserService implements UserDetailsService
         user.setMotDePasse(passwordEncoder.encode(user.getMotDePasse()));
         return userDepot.saveAndFlush(user);
     }
+
+    public boolean isPseudoExist(String pseudo){
+        return userDepot.existsByPseudo(pseudo);
+    }
 }

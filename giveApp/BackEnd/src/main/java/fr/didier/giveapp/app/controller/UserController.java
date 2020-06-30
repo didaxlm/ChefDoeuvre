@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,6 +35,10 @@ public class UserController
 	public Optional<User> afficherUser(@PathVariable int userId)
 	{
 		return userDepot.findById(userId);
+	}
+	@GetMapping("exist/{pseudo}")
+	public Map<String, Boolean> existByPseudo(@PathVariable String pseudo){
+		return Collections.singletonMap("resultat", userService.isPseudoExist(pseudo));
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**

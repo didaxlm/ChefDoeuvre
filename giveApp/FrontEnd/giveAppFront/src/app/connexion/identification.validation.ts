@@ -1,10 +1,20 @@
-import {AbstractControl, ValidationErrors} from '@angular/forms';
-import {UserModel} from '../partage/models/userModel';
+import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
+import {Observable, of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {UserServices} from '../partage/services/user.services';
+import {DataService} from '../partage/services/data.services';
+import {RequestServices} from '../partage/services/request.services';
 
-export class IdentificationValidation {
+@Injectable({providedIn: 'root'})
+export class IdentificationValidation extends RequestServices {
 
-  users: UserModel;
-
+  constructor(public http: HttpClient,
+              public userServices: UserServices,
+              private data: DataService) {
+    super(http, data);
+  }
   static nePeutContenirEspace(control: AbstractControl): ValidationErrors | null {
     if (control.value) {
       if ((control.value as string).indexOf(' ') >= 0) {
@@ -20,13 +30,12 @@ export class IdentificationValidation {
     return null;
   }
 
-  static doitEtreUnique(control: AbstractControl): Promise<ValidationErrors | null> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value === 'todo') {
-          resolve({ doitEtreUnique: true });
-        } else { resolve(null); }
-      }, 2000);
-    });
+  doitEtreUnique(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.userServices.isPseudoTaken(control.value).pipe(
+        map(isTaken => (isTaken.resultat ? {doitEtreUnique: true} : null)),
+        catchError(() => of(null)));
+    };
+
   }
 }
