@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleModel} from '../partage/models/articleModel';
 import {ArticleServices} from '../partage/services/article.services';
 import {PhotoModel} from '../partage/models/photoModel';
@@ -55,10 +55,4 @@ export class AccueilComponent implements OnInit {
     this.afficherPhotos();
   }
 }
-// afficherArticlesByCategorie() {
-//   const params = this.route.snapshot.paramMap;
-//   this.idCategorie = +params.get('id');
-//   this.articleService.getArticleByCategorie(this.idCategorie).subscribe(category => {
-//     this.categorieSelected = category;
-//   });
-// }
+

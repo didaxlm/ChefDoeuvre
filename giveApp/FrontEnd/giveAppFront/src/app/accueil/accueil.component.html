@@ -33,9 +33,9 @@
           </div>
           <section class="textSection">
             <div >
-              <p>Lieu : {{ article?.lieuArticle }}</p>
-              <p>Par : {{ article?.user?.pseudo }}</p>
-              <p>Déposé le : {{ article?.dateDepot }}</p>
+              <p>{{"'ARTICLES.LOCALISATION.TITLE | translate'"}} {{ article?.lieuArticle }}</p>
+              <p>{{"'ARTICLES.USER.OWNER | translate'"}} {{ article?.user?.pseudo }}</p>
+              <p>{{"'ARTICLES.DATE.POST | translate'"}} {{ article?.dateDepot }}</p>
             </div>
           </section>
         </a>
