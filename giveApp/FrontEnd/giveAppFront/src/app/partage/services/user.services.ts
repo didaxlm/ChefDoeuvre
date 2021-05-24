@@ -25,7 +25,7 @@ export class UserServices  extends RequestServices {
   /**
    * Vérifie si le pseudo est déjà utilisé
    */
-  isPseudoTaken(pseudo: string): Observable<{resultat: boolean}>{
+  isPseudoTaken(pseudo: string): Observable<{resultat: boolean}> {
     return this.http.get<{resultat: boolean}>(this.url + 'exist/' + pseudo);
   }
 }
